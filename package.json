@@ -1,0 +1,47 @@
+{
+  "name": "healer",
+  "version": "1.0.0",
+  "description": "Self-Healing of Concordia Specifications",
+  "main": "dist",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
+    "lint-fix": "eslint . --ext .js,.ts --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordialang/healer.git"
+  },
+  "keywords": [
+    "concordia",
+    "concordialang",
+    "test",
+    "self-healing",
+    "auto-healing",
+    "healer"
+  ],
+  "authors": [
+    "Lucas Azevedo da Silva",
+    "Thiago Delgado Pinto"
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/concordialang/healer/issues"
+  },
+  "homepage": "https://github.com/concordialang/healer#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.28.0",
+    "eslint-plugin-import-helpers": "^1.1.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {}
+}
