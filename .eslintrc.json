@@ -1,7 +1,8 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
@@ -69,7 +70,7 @@
     "func-name-matching": "error",
     "func-style": ["error", "expression"],
     "function-call-argument-newline": ["error", "consistent"],
-    "function-paren-newline": ["error", "multiline"],
+    "function-paren-newline": ["error", "multiline-arguments"],
     "grouped-accessor-pairs": ["error", "getBeforeSet"],
     "indent": [
       "error",
