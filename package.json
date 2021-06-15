@@ -1,11 +1,11 @@
 {
   "name": "healer",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Self-Healing of Concordia Specifications",
   "scripts": {
     "build": "rimraf dist && tsc",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
-    "lint-fix": "eslint . --ext .js,.ts --fix",
+    "lint-fix": "eslint \"./**/*.{ts,js}\" --fix --no-error-on-unmatched-pattern",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "test": "ts-mocha **/*.spec.ts"
@@ -25,9 +25,6 @@
   "authors": [
     "Lucas Azevedo da Silva",
     "Thiago Delgado Pinto"
-  ],
-  "workspaces": [
-    "packages/*"
   ],
   "license": "AGPL-3.0",
   "bugs": {

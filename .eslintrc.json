@@ -120,7 +120,7 @@
     "max-len": [
       "error",
       {
-        "code": 80
+        "code": 100
       }
     ],
     "max-nested-callbacks": ["error", 4],
@@ -184,7 +184,6 @@
     "no-nested-ternary": "error",
     "no-new-object": "error",
     "no-tabs": "error",
-    "no-underscore-dangle": "error",
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
     "no-promise-executor-return": "error",
@@ -238,7 +237,6 @@
     ],
     "no-throw-literal": "error",
     "no-unmodified-loop-condition": "error",
-    "no-unused-expressions": "error",
     "no-useless-call": "error",
     "no-useless-concat": "error",
     "no-useless-return": "error",
@@ -326,25 +324,10 @@
       }
     ],
     "semi-style": ["error", "last"],
-    "sort-keys": [
-      "error",
-      "asc",
-      {
-        "caseSensitive": false,
-        "natural": true
-      }
-    ],
     "sort-vars": [
       "error",
       {
         "ignoreCase": true
-      }
-    ],
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": true,
-        "allowSeparatedGroups": true
       }
     ],
     "symbol-description": "error",
@@ -399,6 +382,7 @@
       }
     ],
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/type-annotation-spacing": [
       "error",
