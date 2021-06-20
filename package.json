@@ -33,11 +33,13 @@
   "homepage": "https://github.com/concordialang/healer#readme",
   "devDependencies": {
     "@types/chai": "^4.2.18",
+    "@types/chai-as-promised": "^7.1.4",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.12.2",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^7.28.0",
     "eslint-plugin-import-helpers": "^1.1.0",
     "husky": "^6.0.0",

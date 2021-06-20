@@ -25,7 +25,6 @@
       }
     ],
     "array-bracket-spacing": ["error", "always"],
-    "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "always"],
     "arrow-spacing": [
       "error",
@@ -188,7 +187,7 @@
     "no-whitespace-before-property": "error",
     "no-promise-executor-return": "error",
     "no-undef-init": "error",
-    "no-unused-vars": "error",
+    "no-unused-expressions": "error",
     "no-unreachable-loop": "error",
     "no-unsafe-optional-chaining": "error",
     "no-use-before-define": "error",
@@ -384,11 +383,15 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/type-annotation-spacing": [
       "error",
       {
         "before": false,
-        "after": true
+        "after": true,
+        "overrides": {
+          "arrow": { "before": true, "after": true }
+        }
       }
     ],
     "import-helpers/order-imports": [
@@ -402,5 +405,13 @@
         }
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": "*.spec.ts",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }
