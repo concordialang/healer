@@ -12,14 +12,6 @@ export const fromDirname = ( from: string, dirname?: string ): string => {
     return from;
 };
 
-export const requireDefault = async (
-    from: string,
-): Promise<RequirementData | RequirementData[]> => {
-    const obj = await import( from );
-
-    return obj.default;
-};
-
 export const arrayFind = ( data: RequirementData[], req: RequirementEntry ): RequirementData => {
     return data.find( ( value: RequirementData ) => value.name === req.name );
 };

@@ -124,7 +124,6 @@
     ],
     "max-nested-callbacks": ["error", 4],
     "max-params": ["error", 3],
-    "max-statements": "error",
     "max-statements-per-line": [
       "error",
       {
@@ -290,7 +289,7 @@
         "next": "*"
       },
       {
-        "blankLine": "never",
+        "blankLine": "any",
         "prev": ["const", "let", "var"],
         "next": ["const", "let", "var"]
       }
@@ -392,6 +391,12 @@
         "overrides": {
           "arrow": { "before": true, "after": true }
         }
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "error",
+      {
+        "allowArgumentsExplicitlyTypedAsAny": true
       }
     ],
     "import-helpers/order-imports": [

@@ -1,5 +1,6 @@
+import { requireDefault } from '../util';
 import { RequirementData } from './requirement-data';
-import { arrayFind, fromDirname, onInvalid, requireDefault, validate } from './requirement-default';
+import { arrayFind, fromDirname, onInvalid, validate } from './requirement-default';
 import { RequirementEntry } from './requirement-entry';
 
 export class Requirement<Data extends RequirementData> {
