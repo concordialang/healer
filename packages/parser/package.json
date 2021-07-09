@@ -20,5 +20,8 @@
     "fs-monkey": "^1.0.3",
     "memfs": "^3.2.2",
     "ts-mocha": "^8.0.0"
+  },
+  "dependencies": {
+    "@healer/models": "^0.0.0"
   }
 }

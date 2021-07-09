@@ -1,11 +1,12 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import { expect } from 'chai';
 import { patchRequire } from 'fs-monkey';
 import { vol } from 'memfs';
 
-import { Requirement, RequirementData, RequirementException } from '../src/requirement';
+import { Requirement } from '../src/requirement';
 
-use( chaiAsPromised );
+const onArray = ( data: any[], entry: any ): any => {
+    return data.find( ( value: any ) => value.name === entry.name );
+};
 
 describe( 'Requirement', () => {
     const localPackage: string = 'local-package';
@@ -31,7 +32,7 @@ describe( 'Requirement', () => {
         const localPackageFrom: string = `./${localPackage}`;
 
         it( 'Should require correct data from package', async () => {
-            const requirement: Requirement<RequirementData> = new Requirement();
+            const requirement = new Requirement( { onArray } );
             const firstData = await requirement.find( {
                 name: firstExported,
                 from: localPackageFrom,
@@ -49,7 +50,7 @@ describe( 'Requirement', () => {
 
         it( 'Should cache required data from package', async () => {
             const cache: Record<string, any> = {};
-            const requirement: Requirement<RequirementData> = new Requirement( { cache } );
+            const requirement = new Requirement( { cache, onArray } );
             const firstData = await requirement.find( {
                 name: firstExported,
                 from: localPackageFrom,
@@ -69,7 +70,7 @@ describe( 'Requirement', () => {
         it( 'Should use cached required data', async () => {
             const otherPackage: string = './other-package';
             const cache: Record<string, any> = { [ otherPackage ]: { name: firstExported } };
-            const requirement: Requirement<RequirementData> = new Requirement( { cache } );
+            const requirement = new Requirement( { cache, onArray } );
             const data = await requirement.find( {
                 name: firstExported,
                 from: otherPackage,
@@ -77,22 +78,11 @@ describe( 'Requirement', () => {
 
             expect( data.name ).to.be.equal( firstExported );
         } );
-
-        it( 'Should throw an error if not find required data from package', async () => {
-            const requirement: Requirement<RequirementData> = new Requirement();
-
-            await expect(
-                requirement.find( {
-                    name: 'other-data',
-                    from: localPackageFrom,
-                } ),
-            ).to.eventually.be.rejectedWith( RequirementException );
-        } );
     } );
 
     describe( 'Node Modules requires', () => {
         it( 'Should require correct data from package', async () => {
-            const requirement: Requirement<RequirementData> = new Requirement();
+            const requirement = new Requirement( { onArray } );
             const firstData = await requirement.find( {
                 name: firstExported,
                 from: modulePackage,
@@ -110,7 +100,7 @@ describe( 'Requirement', () => {
 
         it( 'Should cache required data from package', async () => {
             const cache: Record<string, any> = {};
-            const requirement: Requirement<RequirementData> = new Requirement( { cache } );
+            const requirement = new Requirement( { cache, onArray } );
             const firstData = await requirement.find( {
                 name: firstExported,
                 from: modulePackage,
@@ -130,24 +120,13 @@ describe( 'Requirement', () => {
         it( 'Should use cached required data', async () => {
             const otherPackage: string = './other-package';
             const cache: Record<string, any> = { [ otherPackage ]: { name: firstExported } };
-            const requirement: Requirement<RequirementData> = new Requirement( { cache } );
+            const requirement = new Requirement( { cache, onArray } );
             const data = await requirement.find( {
                 name: firstExported,
                 from: otherPackage,
             } );
 
             expect( data.name ).to.be.equal( firstExported );
-        } );
-
-        it( 'Should throw an error if not find required data from package', async () => {
-            const requirement: Requirement<RequirementData> = new Requirement();
-
-            await expect(
-                requirement.find( {
-                    name: 'other-data',
-                    from: modulePackage,
-                } ),
-            ).to.eventually.be.rejectedWith( RequirementException );
         } );
     } );
 

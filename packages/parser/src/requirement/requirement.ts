@@ -1,41 +1,48 @@
+import { resolve } from 'path';
+
 import { requireDefault } from '../util';
-import { RequirementData } from './requirement-data';
-import { arrayFind, fromDirname, onInvalid, validate } from './requirement-default';
 import { RequirementEntry } from './requirement-entry';
 
-export class Requirement<Data extends RequirementData> {
-    private cache: Record<string, Data | Data[]>;
-    private dirname: string;
+type OnArray<Entry, Data> = ( data: Data[], entry: Entry ) => Data;
 
-    constructor(
-        params: {
-            cache?: Record<string, Data | Data[]>;
-            dirname?: string;
-        } = {},
-    ) {
-        this.cache = params.cache || {};
-        this.dirname = params.dirname || process.cwd();
+const fromDirname = ( from: string, dirname: string ): string => {
+    if ( from.startsWith( '.' ) ) {
+        return resolve( dirname, from );
     }
 
-    private async require( req: RequirementEntry ): Promise<Data | Data[]> {
-        if ( this.cache[ req.from ] ) {
-            return this.cache[ req.from ];
-        }
-        const dirname: string = fromDirname( req.from, this.dirname );
-        const data: Data | Data[] = ( await requireDefault( dirname ) ) as Data | Data[];
+    return from;
+};
 
-        this.cache[ req.from ] = data;
+export class Requirement<Entry extends RequirementEntry, Data = any> {
+    private cache: Record<string, Data>;
+    private dirname: string;
+    private onArray: OnArray<Entry, Data>;
+
+    constructor( params: {
+        cache?: Record<string, Data>;
+        dirname?: string;
+        onArray: OnArray<Entry, Data>;
+    } ) {
+        this.cache = params.cache || {};
+        this.dirname = params.dirname || process.cwd();
+        this.onArray = params.onArray;
+    }
+
+    private async require( from: string ): Promise<Data> {
+        if ( this.cache[ from ] ) {
+            return this.cache[ from ];
+        }
+        const dirname: string = fromDirname( from, this.dirname );
+        const data: Data = await requireDefault( dirname );
+
+        this.cache[ from ] = data;
 
         return data;
     }
 
-    public async find( req: RequirementEntry ): Promise<Data> {
-        const data: Data | Data[] = await this.require( req );
-        const finded: Data = Array.isArray( data ) ? arrayFind( data, req ) as Data : data;
-
-        if ( !validate( finded, req ) ) {
-            onInvalid( req );
-        }
+    public async find( entry: Entry ): Promise<Data> {
+        const data: Data = await this.require( entry.from );
+        const finded: Data = Array.isArray( data ) ? this.onArray( data, entry ) : data;
 
         return finded;
     }
