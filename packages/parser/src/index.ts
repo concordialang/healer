@@ -1,8 +1,8 @@
-import { Heuristic, Options } from '@healer/models';
+import { Config as HealerConfig, Heuristic, HeuristicEntry, Options } from '@healer/models';
 
 import { Config, ConfigException } from './config';
-import { explorer, HealerConfig } from './explorer';
-import { HeuristicEntry, heuristicFinder } from './heuristic';
+import { explorer } from './explorer';
+import { heuristicFinder } from './heuristic';
 
 const validate = ( heuristic: Heuristic, entry: HeuristicEntry ): boolean => {
     return heuristic?.name === entry.name;

@@ -1,3 +1,4 @@
+import { Config as HealerConfig } from '@healer/models';
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { patchRequire } from 'fs-monkey';
@@ -5,7 +6,7 @@ import { vol } from 'memfs';
 
 import { getOptions } from '../src';
 import { Config, ConfigException } from '../src/config';
-import { FILE_NAMES, HealerConfig } from '../src/explorer';
+import { FILE_NAMES } from '../src/explorer';
 
 use( chaiAsPromised );
 
