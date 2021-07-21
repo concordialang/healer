@@ -1,0 +1,28 @@
+{
+  "name": "@healer/lib",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
+  "homepage": "https://github.com/concordialang/healer/tree/main/packages/lib#readme",
+  "license": "AGPL-3.0",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordialang/healer.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/concordialang/healer/issues"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "inquirer": "^6.5.2"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.3",
+    "fs-monkey": "^1.0.3",
+    "memfs": "^3.2.2"
+  }
+}
