@@ -1,8 +1,9 @@
 import fs from 'fs';
-import { extname, join } from 'path';
+import { extname } from 'path';
 
+import { fileExists, searchConfigFile } from '../utils';
 import { ConfigException } from './config-exception';
-import { Loaders, defaultLoaders } from './loaders';
+import { defaultLoaders, Loaders } from './loaders';
 
 export class Config<ConfigData = any> {
     private fileNames: string[];
@@ -23,22 +24,17 @@ export class Config<ConfigData = any> {
     }
 
     public load(): Promise<ConfigData> {
-        const configFile: string = this.searchConfigFile();
+        const configFile: string = searchConfigFile(
+            this.fileNames,
+            this.dirname,
+            ( filePath: string ) => fileExists( filePath, this.fileSystem ),
+        );
 
         if ( !configFile ) {
             throw new ConfigException( `Can not load config from ${this.fileNames.join( ', ' )}.` );
         }
 
         return this.loadConfigFromFile( configFile );
-    }
-
-    private isFile( filePath: string ): boolean {
-        try {
-            return this.fileSystem.lstatSync( filePath )
-                .isFile();
-        } catch ( error ) {
-            return false;
-        }
     }
 
     private loadConfigFromFile( filePath: string ): Promise<ConfigData> {
@@ -51,17 +47,5 @@ export class Config<ConfigData = any> {
         }
 
         return loader( filePath );
-    }
-
-    private searchConfigFile(): string {
-        for ( const configFile of this.fileNames ) {
-            const filePath: string = join( this.dirname, configFile );
-
-            if ( this.isFile( filePath ) ) {
-                return filePath;
-            }
-        }
-
-        return null;
     }
 }
