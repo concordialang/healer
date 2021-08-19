@@ -17,12 +17,21 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "dependencies": {
+    "@mikro-orm/core": "^4.5.7",
+    "@mikro-orm/migrations": "^4.5.7",
     "chalk": "^2.4.2",
-    "inquirer": "^6.5.2"
+    "inquirer": "^6.5.2",
+    "uuid": "^8.3.2",
+    "ws": "^8.1.0"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^4.5.7",
+    "@mikro-orm/postgresql": "^4.5.7",
     "@types/inquirer": "^7.3.3",
+    "@types/uuid": "^8.3.1",
+    "@types/ws": "^7.4.7",
     "fs-monkey": "^1.0.3",
-    "memfs": "^3.2.2"
+    "memfs": "^3.2.2",
+    "ts-node": "^10.2.0"
   }
 }

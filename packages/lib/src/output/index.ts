@@ -2,7 +2,7 @@ import colors, { Chalk } from 'chalk';
 import { prompt } from 'inquirer';
 
 const testLevel: number = 0;
-const logLevel: number = 0;
+const logLevel: number = 1;
 
 const { log } = console;
 
