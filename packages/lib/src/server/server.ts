@@ -21,6 +21,7 @@ type Endpoint = {
 type WSServer = {
     post: ( path: string, listener: RequestListener ) => void;
     listen: ( port: number, listener: () => void ) => void;
+    close: () => void;
 };
 
 const isData = ( data: any ): boolean => {
@@ -100,7 +101,10 @@ const wsServer = ( onError: RequestError = requestError ): WSServer => {
         listen: ( port: number, listener: () => void ) => {
             initServer( port, listener );
         },
+        close: () => {
+            server.close();
+        },
     };
 };
 
-export { wsServer, Request, Response, RequestListener, RequestError };
+export { wsServer, WSServer, Request, Response, RequestListener, RequestError };

@@ -1,5 +1,6 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import fs from 'fs';
 import { patchRequire } from 'fs-monkey';
 import { vol } from 'memfs';
 
@@ -36,6 +37,10 @@ describe( 'Parser', () => {
 
     afterEach( () => {
         vol.reset();
+    } );
+
+    after( () => {
+        patchRequire( fs );
     } );
 
     it( 'Should load config options from config file', async () => {

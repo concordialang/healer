@@ -1,23 +1,43 @@
+import { DatabaseOptions, initDatabase } from '../database';
 import { error } from '../output';
-import { initDatabase, initServer } from '../server';
+import { initServer, ServerOptions } from '../server';
 
-const defaultPort: number = 3000;
+type ServerConfig = {
+    serverOptions: ServerOptions;
+    databaseOptions: DatabaseOptions;
+};
 
-export const server = async (): Promise<void> => {
+const defaults: ServerConfig = {
+    databaseOptions: {
+        type: 'sqlite',
+        dbName: ':memory:',
+    },
+    serverOptions: {
+        port: 5000,
+    },
+};
+
+export const server = async ( {
+    serverOptions,
+    databaseOptions,
+}: ServerConfig = defaults ): Promise<boolean> => {
     try {
-        await initDatabase( {
-            user: 'healer_user',
-            password: '7MR9v2ghLUQS8h7Q',
-            type: 'postgresql',
-        } );
+        await initDatabase( databaseOptions );
     } catch ( err ) {
         error( '    Error on Database connection ' );
         error( err );
 
-        return;
+        return false;
     }
 
-    initServer( defaultPort );
-};
+    try {
+        initServer( serverOptions );
+    } catch ( err ) {
+        error( '    Error on Server start ' );
+        error( err );
 
-server();
+        return false;
+    }
+
+    return true;
+};

@@ -1,5 +1,5 @@
 import { UIElement } from '../../database/entities/ui-element';
-import { UIElementRepository } from '../../database/repositories/ui-element-repository';
+import { UIElementRepository } from '../../database/repositories';
 import { error } from '../../output';
 import { RequestListener } from '../server';
 

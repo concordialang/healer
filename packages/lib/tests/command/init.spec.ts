@@ -11,7 +11,9 @@ describe( 'Init command', () => {
     const configContent: HealerConfig = { heuristics: [] };
     const path: string = process.cwd();
 
-    setLevel( OutputLevel.TEST );
+    before( () => {
+        setLevel( OutputLevel.TEST );
+    } );
 
     beforeEach( () => {
         vol.mkdirSync( path, { recursive: true } );

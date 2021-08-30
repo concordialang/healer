@@ -40,4 +40,4 @@ const getManager = (): EntityManager => {
     return connection.em;
 };
 
-export { initDatabase, closeConnection, getManager };
+export { DatabaseOptions, initDatabase, closeConnection, getManager };

@@ -1,10 +1,15 @@
-import { initDatabase } from '../database';
 import { colors, error, success } from '../output';
 import { elementEndpoint } from './enpoints';
-import { wsServer } from './server';
+import { WSServer, wsServer } from './server';
 
-const initServer = ( port: number ): void => {
-    const server = wsServer( ( req, resp, err ) => {
+type ServerOptions = {
+    port: number;
+};
+
+let server: WSServer = null;
+
+const initServer = ( { port }: ServerOptions ): void => {
+    server = wsServer( ( req, resp, err ) => {
         error( `Error on request ${req.path}: ${err.message}` );
     } );
 
@@ -15,4 +20,8 @@ const initServer = ( port: number ): void => {
     } );
 };
 
-export { initServer, initDatabase };
+const closeServer = (): void => {
+    server.close();
+};
+
+export { ServerOptions, initServer, closeServer };
