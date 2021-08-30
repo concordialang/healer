@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import fs from 'fs';
 import { patchRequire } from 'fs-monkey';
 import { vol } from 'memfs';
 
@@ -46,6 +47,10 @@ describe( 'Config', () => {
 
     afterEach( () => {
         vol.reset();
+    } );
+
+    after( () => {
+        patchRequire( fs );
     } );
 
     describe( 'JSON File', () => {

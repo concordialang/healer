@@ -1,10 +1,11 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
-import { generateKey } from '../utils';
+import { IUIElement } from '../../models';
+import { buildUIElementKey } from '../utils';
 
 @Entity()
-export class UIElement {
-    @PrimaryKey()
+export class UIElement implements IUIElement {
+    @PrimaryKey( { type: 'uuid' } )
     uuid: string;
 
     @Property()
@@ -17,7 +18,13 @@ export class UIElement {
     locator: string;
 
     @Property()
-    content: string;
+    locatorType: string;
+
+    @Property( { type: 'json' } )
+    content: Record<string, any>;
+
+    @Property()
+    uiType: string;
 
     @Property( { onCreate: () => new Date() } )
     createdAt: Date;
@@ -26,20 +33,28 @@ export class UIElement {
     updatedAt: Date;
 
     constructor( {
+        uuid,
         feature,
         scenario,
         locator,
+        locatorType,
         content,
+        uiType,
     }: {
+        uuid?: string;
         feature: string;
         scenario: string;
         locator: string;
-        content: string;
+        locatorType: string;
+        content: any;
+        uiType: string;
     } ) {
-        this.uuid = generateKey( feature, scenario, locator );
+        this.uuid = uuid || buildUIElementKey( { feature, scenario, locator } );
         this.feature = feature;
         this.scenario = scenario;
         this.locator = locator;
+        this.locatorType = locatorType;
         this.content = content;
+        this.uiType = uiType;
     }
 }

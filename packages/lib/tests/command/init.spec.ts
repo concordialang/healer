@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { patchRequire } from 'fs-monkey';
 import { vol } from 'memfs';
 import { join } from 'path';
 
@@ -16,7 +15,6 @@ describe( 'Init command', () => {
 
     beforeEach( () => {
         vol.mkdirSync( path, { recursive: true } );
-        patchRequire( vol );
     } );
 
     afterEach( () => {

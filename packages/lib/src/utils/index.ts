@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { join } from 'path';
+import { v4 as uuid4, v5 as uuid5 } from 'uuid';
 
 export const requireDefault = async ( from: string ): Promise<any> => {
     const obj = await import( from );
@@ -30,4 +31,12 @@ export const searchConfigFile = (
     }
 
     return null;
+};
+
+export const generateKey = ( ...seeds: string[] ): string => {
+    if ( seeds.length ) {
+        return uuid5( seeds.join( '' ), uuid5.URL );
+    }
+
+    return uuid4();
 };

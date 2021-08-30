@@ -1,5 +1,5 @@
+import { initDatabase } from '../database';
 import { colors, error, success } from '../output';
-import { initDatabase } from './database';
 import { elementEndpoint } from './enpoints';
 import { wsServer } from './server';
 

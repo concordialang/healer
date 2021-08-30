@@ -1,9 +1,6 @@
 import colors, { Chalk } from 'chalk';
 import { prompt } from 'inquirer';
 
-const testLevel: number = 0;
-const logLevel: number = 1;
-
 const { log } = console;
 
 const styles = {
@@ -16,8 +13,8 @@ const styles = {
 };
 
 enum OutputLevel {
-    TEST = testLevel,
-    LOG = logLevel,
+    TEST,
+    LOG,
 }
 
 let outputLevel: OutputLevel = OutputLevel.LOG;
@@ -41,9 +38,13 @@ const say = ( msg: string, color: Chalk ): void => {
     print( `   ${color( msg )}` );
 };
 
+const levelIsAvailable = ( level: OutputLevel ): boolean => {
+    return Object.values( OutputLevel )
+        .includes( level );
+};
+
 const setLevel = ( level: OutputLevel ): void => {
-    if ( level && Object.values( OutputLevel )
-        .includes( level ) ) {
+    if ( levelIsAvailable( level ) ) {
         outputLevel = level;
     }
 };
