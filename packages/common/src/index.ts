@@ -1,6 +1,16 @@
-import Healer from './healer';
+import Healer, { HealerInstance } from './healer';
 import HealingElement from './healing-element';
-import Heuristic from './heuristic';
+import Heuristic, { HeuristicInstance } from './heuristic';
+import HeuristicResult, { ScoredElement } from './heuristic-result';
 import UIElement from './ui-element';
 
-export { Heuristic, UIElement, HealingElement, Healer };
+export {
+    Heuristic,
+    HeuristicInstance,
+    UIElement,
+    HeuristicResult,
+    ScoredElement,
+    Healer,
+    HealerInstance,
+    HealingElement,
+};

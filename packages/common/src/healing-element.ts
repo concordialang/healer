@@ -1,8 +1,11 @@
 interface HealingElement {
     node: any;
-    locator: string;
-    score: number;
-    weight: number;
+    totalScore: number;
+    appliedHeuristics: {
+        name: string;
+        locator: string;
+        score: number;
+    }[];
 }
 
 export default HealingElement;
