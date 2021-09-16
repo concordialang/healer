@@ -1,3 +1,4 @@
+import { HeuristicResult } from '@healer/common';
 import { expect } from 'chai';
 import { JSDOM } from 'jsdom';
 
@@ -14,10 +15,12 @@ describe( 'By Id Heuristic', () => {
     </form>
     ` ).window.document;
 
-    it( 'Should return empty if element has no id', () => {
+    it( 'Should return empty', () => {
         const element: any = {
             content: {
-                tag: 'input',
+                attributes: {
+                    id: 'input-username',
+                },
             },
         };
         const healingElements = byId.run( { element, source } );
@@ -33,14 +36,14 @@ describe( 'By Id Heuristic', () => {
                 },
             },
         };
-        const healingElements = byId.run( { element, source } );
+        const healingElements = byId.run( { element, source } ) as HeuristicResult;
 
-        expect( healingElements ).to.have.length( 1 );
+        expect( healingElements.elements ).to.have.length( 1 );
+        expect( healingElements.weight ).to.be.equals( 1 );
 
-        const [ healingElement ] = healingElements;
+        const [ healingElement ] = healingElements.elements;
 
         expect( healingElement.score ).to.be.equals( 1 );
-        expect( healingElement.weight ).to.be.equals( 1 );
         expect( healingElement.locator ).to.be.equals( '#username' );
     } );
 
@@ -60,13 +63,13 @@ describe( 'By Id Heuristic', () => {
             },
         };
 
-        const healingElements = byId.run( { element, source: page } );
+        const healingElements = byId.run( { element, source: page } ) as HeuristicResult;
 
-        expect( healingElements ).to.have.length( 2 );
+        expect( healingElements.elements ).to.have.length( 2 );
+        expect( healingElements.weight ).to.be.equals( 0.5 );
 
-        healingElements.forEach( ( healingElement ) => {
+        healingElements.elements.forEach( ( healingElement ) => {
             expect( healingElement.score ).to.be.equals( 1 );
-            expect( healingElement.weight ).to.be.equals( 0.5 );
             expect( healingElement.locator ).to.be.equals( '#user' );
         } );
     } );

@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 
-import healer from '../../src/healer';
+import Healer from '../../src/healer';
 
 describe( 'Healer', () => {
+    const healer = Healer();
     const source = `
     <html>
         <body>
@@ -34,19 +35,31 @@ describe( 'Healer', () => {
         expect(
             healer.toLocator( {
                 element: null,
-                node: inputUsername,
+                healing: {
+                    totalScore: 1,
+                    node: inputUsername,
+                    appliedHeuristics: [],
+                },
             } ),
         ).to.be.equals( '#username' );
         expect(
             healer.toLocator( {
                 element: null,
-                node: inputPassword,
+                healing: {
+                    totalScore: 1,
+                    node: inputPassword,
+                    appliedHeuristics: [],
+                },
             } ),
         ).to.be.equals( '#password' );
         expect(
             healer.toLocator( {
                 element: null,
-                node: buttonSubmit,
+                healing: {
+                    totalScore: 1,
+                    node: buttonSubmit,
+                    appliedHeuristics: [],
+                },
             } ),
         ).to.be.equals( '[type="submit"]' );
     } );

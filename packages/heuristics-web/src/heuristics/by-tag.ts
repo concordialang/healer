@@ -9,12 +9,18 @@ const byTag: Heuristic = () => ( {
         const locator = tag;
         const foundElements = Array.from( source.querySelectorAll( locator ) );
 
-        return foundElements.map( ( node ) => ( {
-            node,
-            locator,
-            score: 1,
+        if ( !foundElements?.length ) {
+            return [];
+        }
+
+        return {
             weight: 1 / foundElements.length,
-        } ) );
+            elements: foundElements.map( ( node ) => ( {
+                node,
+                locator,
+                score: 1,
+            } ) ),
+        };
     },
 } );
 

@@ -1,10 +1,10 @@
-import { HealingElement, Heuristic } from '@healer/common';
+import { Heuristic, HeuristicResult } from '@healer/common';
 
 import { UIElement } from '../models/ui-element';
 
 const byAttributes: Heuristic = () => ( {
     name: 'by-attributes',
-    run: ( { element, source }: { element: UIElement; source: Document } ): HealingElement[] => {
+    run: ( { element, source }: { element: UIElement; source: Document } ) => {
         const { attributes } = element.content;
 
         if ( !attributes || !Object.keys( attributes ).length ) {
@@ -23,15 +23,19 @@ const byAttributes: Heuristic = () => ( {
                 const locator = `[${attribute}="${attributeValue}"]`;
                 const foundElements = Array.from( source.querySelectorAll( locator ) );
 
-                return buffer.concat(
-                    foundElements.map( ( node ) => ( {
+                if ( !foundElements?.length ) {
+                    return buffer;
+                }
+
+                return buffer.concat( {
+                    weight: 1 / foundElements.length,
+                    elements: foundElements.map( ( node ) => ( {
                         node,
                         locator,
                         score: 1,
-                        weight: 1 / foundElements.length,
                     } ) ),
-                );
-            }, <HealingElement[]>[] );
+                } );
+            }, <HeuristicResult[]>[] );
     },
 } );
 

@@ -15,6 +15,10 @@ const byText: Heuristic = () => ( {
         const locator = `//*[text()="${innerText}"]`;
         const nodes = source.evaluate( locator, source, null, XPathResult.ANY_TYPE, null );
 
+        if ( !nodes ) {
+            return [];
+        }
+
         let node = nodes.iterateNext();
 
         while ( node ) {
@@ -22,12 +26,18 @@ const byText: Heuristic = () => ( {
             node = nodes.iterateNext();
         }
 
-        return foundElements.map( ( value ) => ( {
-            node: value,
-            locator: `//${value.localName}[text()="${innerText}"]`,
-            score: 1,
+        if ( !foundElements.length ) {
+            return [];
+        }
+
+        return {
             weight: 1 / foundElements.length,
-        } ) );
+            elements: foundElements.map( ( value ) => ( {
+                node: value,
+                locator: `//${value.localName}[text()="${innerText}"]`,
+                score: 1,
+            } ) ),
+        };
     },
 } );
 

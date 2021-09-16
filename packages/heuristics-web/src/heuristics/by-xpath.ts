@@ -26,12 +26,18 @@ const byXPath: Heuristic = () => ( {
             node = nodes.iterateNext();
         }
 
-        return foundElements.map( ( value ) => ( {
-            node: value,
-            locator,
-            score: 1,
+        if ( !foundElements.length ) {
+            return [];
+        }
+
+        return {
             weight: 1 / foundElements.length,
-        } ) );
+            elements: foundElements.map( ( value ) => ( {
+                node: value,
+                locator,
+                score: 1,
+            } ) ),
+        };
     },
 } );
 

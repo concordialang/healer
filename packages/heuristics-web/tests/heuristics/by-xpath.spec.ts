@@ -1,3 +1,4 @@
+import { HeuristicResult } from '@healer/common';
 import { expect } from 'chai';
 import { JSDOM } from 'jsdom';
 
@@ -36,14 +37,14 @@ describe( 'By XPath Heuristic', () => {
             },
         };
 
-        const healingElements = byXPath.run( { element, source: page } );
+        const healingElements = byXPath.run( { element, source: page } ) as HeuristicResult;
 
-        expect( healingElements ).to.have.length( 1 );
+        expect( healingElements.elements ).to.have.length( 1 );
+        expect( healingElements.weight ).to.be.equals( 1 );
 
-        const [ healingElement ] = healingElements;
+        const [ healingElement ] = healingElements.elements;
 
         expect( healingElement.score ).to.be.equals( 1 );
-        expect( healingElement.weight ).to.be.equals( 1 );
         expect( healingElement.locator ).to.be.equals( '//html/body/form/input[1]' );
     } );
 
@@ -61,13 +62,13 @@ describe( 'By XPath Heuristic', () => {
             },
         };
 
-        const healingElements = byXPath.run( { element, source: page } );
+        const healingElements = byXPath.run( { element, source: page } ) as HeuristicResult;
 
-        expect( healingElements ).to.have.length( 2 );
+        expect( healingElements.elements ).to.have.length( 2 );
+        expect( healingElements.weight ).to.be.equals( 0.5 );
 
-        healingElements.forEach( ( healingElement ) => {
+        healingElements.elements.forEach( ( healingElement ) => {
             expect( healingElement.score ).to.be.equals( 1 );
-            expect( healingElement.weight ).to.be.equals( 0.5 );
             expect( healingElement.locator ).to.be.equals( '//html/body/form/input' );
         } );
     } );

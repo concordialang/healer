@@ -1,4 +1,4 @@
-import { HealingElement, Heuristic, UIElement } from '@healer/common';
+import { Heuristic, HeuristicResult, UIElement } from '@healer/common';
 
 const byClasses: Heuristic = () => ( {
     name: 'by-classes',
@@ -13,15 +13,19 @@ const byClasses: Heuristic = () => ( {
             const locator = `.${classValue}`;
             const foundElements = Array.from( source.querySelectorAll( locator ) );
 
-            return buffer.concat(
-                foundElements.map( ( node ) => ( {
+            if ( !foundElements?.length ) {
+                return buffer;
+            }
+
+            return buffer.concat( {
+                weight: 1 / foundElements.length,
+                elements: foundElements.map( ( node ) => ( {
                     node,
                     locator,
                     score: 1,
-                    weight: 1 / foundElements.length,
                 } ) ),
-            );
-        }, <HealingElement[]>[] );
+            } );
+        }, <HeuristicResult[]>[] );
     },
 } );
 

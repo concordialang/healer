@@ -1,3 +1,4 @@
+import { HeuristicResult } from '@healer/common';
 import { expect } from 'chai';
 import { JSDOM } from 'jsdom';
 
@@ -39,14 +40,15 @@ describe( 'By Attributes Heuristic', () => {
                 },
             },
         };
-        const healingElements = byAttributes.run( { element, source } );
+        const healingElements = byAttributes.run( { element, source } ) as HeuristicResult[];
 
         expect( healingElements ).to.have.length( 1 );
+        expect( healingElements[ 0 ].weight ).to.be.equals( 1 );
+        expect( healingElements[ 0 ].elements ).to.have.length( 1 );
 
-        const [ healingElement ] = healingElements;
+        const [ healingElement ] = healingElements[ 0 ].elements;
 
         expect( healingElement.score ).to.be.equals( 1 );
-        expect( healingElement.weight ).to.be.equals( 1 );
         expect( healingElement.locator ).to.be.equals( '[type="text"]' );
     } );
 
@@ -66,13 +68,14 @@ describe( 'By Attributes Heuristic', () => {
             },
         };
 
-        const healingElements = byAttributes.run( { element, source: page } );
+        const healingElements = byAttributes.run( { element, source: page } ) as HeuristicResult[];
 
-        expect( healingElements ).to.have.length( 2 );
+        expect( healingElements ).to.have.length( 1 );
+        expect( healingElements[ 0 ].weight ).to.be.equals( 0.5 );
+        expect( healingElements[ 0 ].elements ).to.have.length( 2 );
 
-        healingElements.forEach( ( healingElement ) => {
+        healingElements[ 0 ].elements.forEach( ( healingElement ) => {
             expect( healingElement.score ).to.be.equals( 1 );
-            expect( healingElement.weight ).to.be.equals( 0.5 );
             expect( healingElement.locator ).to.be.equals( '[type="text"]' );
         } );
     } );
@@ -94,20 +97,21 @@ describe( 'By Attributes Heuristic', () => {
             },
         };
 
-        const healingElements = byAttributes.run( { element, source: page } );
+        const healingElements = byAttributes.run( { element, source: page } ) as HeuristicResult[];
 
-        expect( healingElements ).to.have.length( 3 );
-
-        expect( healingElements[ 0 ].score ).to.be.equals( 1 );
+        expect( healingElements ).to.have.length( 2 );
         expect( healingElements[ 0 ].weight ).to.be.equals( 0.5 );
-        expect( healingElements[ 0 ].locator ).to.be.equals( '[data-test="input"]' );
+        expect( healingElements[ 0 ].elements ).to.have.length( 2 );
+        expect( healingElements[ 1 ].weight ).to.be.equals( 1 );
+        expect( healingElements[ 1 ].elements ).to.have.length( 1 );
 
-        expect( healingElements[ 1 ].score ).to.be.equals( 1 );
-        expect( healingElements[ 1 ].weight ).to.be.equals( 0.5 );
-        expect( healingElements[ 1 ].locator ).to.be.equals( '[data-test="input"]' );
+        expect( healingElements[ 0 ].elements[ 0 ].score ).to.be.equals( 1 );
+        expect( healingElements[ 0 ].elements[ 0 ].locator ).to.be.equals( '[data-test="input"]' );
 
-        expect( healingElements[ 2 ].score ).to.be.equals( 1 );
-        expect( healingElements[ 2 ].weight ).to.be.equals( 1 );
-        expect( healingElements[ 2 ].locator ).to.be.equals( '[type="submit"]' );
+        expect( healingElements[ 0 ].elements[ 1 ].score ).to.be.equals( 1 );
+        expect( healingElements[ 0 ].elements[ 1 ].locator ).to.be.equals( '[data-test="input"]' );
+
+        expect( healingElements[ 1 ].elements[ 0 ].score ).to.be.equals( 1 );
+        expect( healingElements[ 1 ].elements[ 0 ].locator ).to.be.equals( '[type="submit"]' );
     } );
 } );
