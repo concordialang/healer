@@ -42,8 +42,8 @@ export class Requirement<Entry extends RequirementEntry, Data = any> {
 
     public async find( entry: Entry ): Promise<Data> {
         const data: Data = await this.require( entry.from );
-        const finded: Data = Array.isArray( data ) ? this.onArray( data, entry ) : data;
+        const found: Data = Array.isArray( data ) ? this.onArray( data, entry ) : data;
 
-        return finded;
+        return found;
     }
 }

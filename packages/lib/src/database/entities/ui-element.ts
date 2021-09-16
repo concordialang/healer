@@ -12,9 +12,6 @@ export class UIElement implements IUIElement {
     feature: string;
 
     @Property()
-    scenario: string;
-
-    @Property()
     locator: string;
 
     @Property()
@@ -35,7 +32,6 @@ export class UIElement implements IUIElement {
     constructor( {
         uuid,
         feature,
-        scenario,
         locator,
         locatorType,
         content,
@@ -49,9 +45,8 @@ export class UIElement implements IUIElement {
         content: any;
         uiType: string;
     } ) {
-        this.uuid = uuid || buildUIElementKey( { feature, scenario, locator } );
+        this.uuid = uuid || buildUIElementKey( { feature, locator } );
         this.feature = feature;
-        this.scenario = scenario;
         this.locator = locator;
         this.locatorType = locatorType;
         this.content = content;

@@ -18,9 +18,16 @@ describe( 'Parser', () => {
     const heuristicsPackage: string = 'heuristics';
     const heuristicsPackageContent: string = `
     module.exports = [
-        { name: '${firstHeuristic}', run: () => '${firstHeuristic}' },
-        { name: '${secondHeuristic}', run: () => '${secondHeuristic}' },
+        () => ( { name: '${firstHeuristic}', run: () => '${firstHeuristic}' } ),
+        () => ( { name: '${secondHeuristic}', run: () => '${secondHeuristic}' } ),
     ]
+    `;
+    const healerPackage: string = 'healer';
+    const healerPackageContent: string = `
+    module.exports = () => ( {
+        transform: () => ( { source: 'source' } ),
+        toLocator: () => 'new-locator',
+    } )
     `;
 
     const explorer = new Config<HealerConfig>( {
@@ -31,6 +38,7 @@ describe( 'Parser', () => {
     beforeEach( () => {
         vol.fromJSON( {
             [ `node_modules/${heuristicsPackage}/index.js` ]: heuristicsPackageContent,
+            [ `node_modules/${healerPackage}/index.js` ]: healerPackageContent,
         } );
         patchRequire( vol );
     } );
@@ -52,6 +60,9 @@ describe( 'Parser', () => {
                     { from: heuristicsPackage, name: firstHeuristic },
                     { from: heuristicsPackage, name: secondHeuristic },
                 ],
+                healer: {
+                    from: healerPackage,
+                },
             } ),
         } );
 

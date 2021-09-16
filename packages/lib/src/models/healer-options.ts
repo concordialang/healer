@@ -1,5 +1,6 @@
-import { Heuristic } from './heuristic';
+import { HealerInstance, HeuristicInstance } from '@healer/common';
 
 export interface HealerOptions {
-    heuristics: Heuristic[];
+    heuristics: HeuristicInstance[];
+    healer: HealerInstance;
 }

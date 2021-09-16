@@ -8,7 +8,7 @@ import { HealerConfig } from '../../src/models';
 import { OutputLevel, setLevel } from '../../src/output';
 
 describe( 'Init command', () => {
-    const configContent: HealerConfig = { heuristics: [] };
+    const configContent: HealerConfig = { heuristics: [], healer: null };
     const path: string = process.cwd();
 
     before( () => {

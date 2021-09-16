@@ -1,15 +1,9 @@
 import { generateKey } from '../../utils';
 
-const buildUIElementKey = ( {
-    feature,
-    scenario,
-    locator,
-}: {
-    feature: string;
-    scenario: string;
-    locator: string;
-} ): string => {
-    return generateKey( feature, scenario, locator );
+const buildUIElementKey = ( params: { feature: string; locator: string } ): string => {
+    const { feature, locator } = params;
+
+    return generateKey( feature, locator );
 };
 
 const buildHealingResultKey = (): string => {

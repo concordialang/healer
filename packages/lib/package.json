@@ -17,6 +17,7 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "dependencies": {
+    "@healer/common": "^0.0.0",
     "@mikro-orm/core": "^4.5.9",
     "chalk": "^2.4.2",
     "inquirer": "^6.5.2",
