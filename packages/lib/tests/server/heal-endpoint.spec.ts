@@ -1,17 +1,21 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 
 import Healer from '../../../heuristics-web/src/healer';
 import Heuristics from '../../../heuristics-web/src/heuristics';
-import { closeConnection, initDatabase } from '../../src/database';
 import { UIElement } from '../../src/database/entities';
+import { closeConnection, initDatabase } from '../../src/database/manager';
 import { UIElementRepository } from '../../src/database/repositories';
-import { healProcess } from '../../src/heal/heal-process';
 import { OutputLevel, setLevel } from '../../src/output';
-import { getUIElement } from '../../src/utils';
+import { healEndpoint } from '../../src/server/enpoints';
 
-describe( 'Heal Process', () => {
-    const healer = Healer();
-    const heuristics = Heuristics.map( ( Heuristic ) => Heuristic() );
+use( chaiAsPromised );
+
+describe( 'Heal Endpoint', () => {
+    const endpoint = healEndpoint( {
+        healer: Healer(),
+        heuristics: Heuristics.map( ( Heuristic ) => Heuristic() ),
+    } );
 
     before( async () => {
         setLevel( OutputLevel.TEST );
@@ -80,7 +84,7 @@ describe( 'Heal Process', () => {
         await closeConnection();
     } );
 
-    it( 'Should return a new locator for username with score 1', async () => {
+    it( 'Should return a new locator for username', async () => {
         const source = `
         <form>
             <input type="text" name="username" class="input">
@@ -88,26 +92,25 @@ describe( 'Heal Process', () => {
             <input class="btn" type="submit" value="Submit">
         </form>
         `;
-        const element = await getUIElement( {
-            feature: '/login',
-            locator: '#username',
+        const locators = await new Promise( ( resolve ) => {
+            const request = {
+                body: {
+                    feature: '/login',
+                    locator: '#username',
+                    source,
+                },
+            };
+            const response = {
+                send: ( result: string[] ) => resolve( result ),
+            };
+
+            endpoint( request, response );
         } );
 
-        const scoredLocators = healProcess( {
-            element,
-            source,
-            options: {
-                heuristics,
-                healer,
-            },
-        } );
-
-        expect( scoredLocators ).to.have.length( 1 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '[name="username"]' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 1 );
+        expect( locators ).to.be.deep.equals( [ '[name="username"]' ] );
     } );
 
-    it( 'Should return a new locator for password with score 1', async () => {
+    it( 'Should return a new locator for password', async () => {
         const source = `
         <form>
             <input type="text" name="username" class="input">
@@ -115,25 +118,22 @@ describe( 'Heal Process', () => {
             <input class="btn" type="submit" value="Submit">
         </form>
         `;
-        const element = await getUIElement( {
-            feature: '/login',
-            locator: '#password',
-        } );
-        const scoredLocators = healProcess( {
-            element,
-            source,
-            options: {
-                heuristics,
-                healer,
-            },
+        const locators = await new Promise( ( resolve ) => {
+            const request = {
+                body: {
+                    feature: '/login',
+                    locator: '#password',
+                    source,
+                },
+            };
+            const response = {
+                send: ( data: string[] ) => resolve( data ),
+            };
+
+            endpoint( request, response );
         } );
 
-        expect( scoredLocators ).to.have.length( 2 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '[name="pass"]' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 1 );
-
-        expect( scoredLocators[ 1 ].locator ).to.be.equals( '[name="username"]' );
-        expect( Number.parseFloat( scoredLocators[ 1 ].score.toFixed( 2 ) ) ).to.be.equals( 0.57 );
+        expect( locators ).to.be.deep.equals( [ '[name="pass"]', '[name="username"]' ] );
     } );
 
     it( 'Should return a new locator for submit with score 0.8', async () => {
@@ -144,21 +144,21 @@ describe( 'Heal Process', () => {
             <button class="btn" type="submit">Submit</button>
         </form>
         `;
-        const element = await getUIElement( {
-            feature: '/login',
-            locator: '[type="submit"]',
-        } );
-        const scoredLocators = healProcess( {
-            element,
-            source,
-            options: {
-                heuristics,
-                healer,
-            },
+        const locators = await new Promise( ( resolve ) => {
+            const request = {
+                body: {
+                    feature: '/login',
+                    locator: '[type="submit"]',
+                    source,
+                },
+            };
+            const response = {
+                send: ( data: string[] ) => resolve( data ),
+            };
+
+            endpoint( request, response );
         } );
 
-        expect( scoredLocators ).to.have.length( 1 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '.btn' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 0.8 );
+        expect( locators ).to.be.deep.equals( [ '.btn' ] );
     } );
 } );

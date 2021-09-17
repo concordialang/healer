@@ -11,12 +11,10 @@ export const elementEndpoint: RequestListener = async ( req ) => {
     } catch {
         const errorMessage = `Error on save element: ${JSON.stringify( {
             feature: uiElement.feature,
-            scenario: uiElement.scenario,
             locator: uiElement.locator,
             content: uiElement.content,
         } )}`;
 
         error( errorMessage );
-        throw new Error( errorMessage );
     }
 };

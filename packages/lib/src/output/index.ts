@@ -1,7 +1,7 @@
 import colors, { Chalk } from 'chalk';
 import { prompt } from 'inquirer';
 
-const { log } = console;
+const { log, table: consoleTable } = console;
 
 const styles = {
     error: colors.bgRed.white.bold,
@@ -24,6 +24,13 @@ const print = ( ...msg: string[] ): void => {
         return;
     }
     log( ...msg );
+};
+
+const table = ( data: any ): void => {
+    if ( outputLevel === OutputLevel.TEST ) {
+        return;
+    }
+    consoleTable( data );
 };
 
 const error = ( msg: string ): void => {
@@ -49,6 +56,6 @@ const setLevel = ( level: OutputLevel ): void => {
     }
 };
 
-export default { colors, styles, prompt, setLevel, print, error, success, say };
+export default { colors, styles, prompt, setLevel, print, table, error, success, say };
 
-export { colors, styles, prompt, setLevel, print, error, success, say, OutputLevel };
+export { colors, styles, prompt, setLevel, print, table, error, success, say, OutputLevel };

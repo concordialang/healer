@@ -1,6 +1,7 @@
 import { Server } from 'ws';
 
 type Data = {
+    cmd?: string;
     action: string;
     payload: any;
 };
@@ -11,7 +12,7 @@ type Response = { send: ( data: any ) => void };
 
 type RequestListener = ( req: Request, res: Response ) => void | Promise<void>;
 
-type RequestError = ( req: Request, res: Response, error: Error ) => void;
+type RequestError = ( req: Request, res: Response, error: any ) => void;
 
 type Endpoint = {
     action: string;
@@ -28,7 +29,7 @@ const isData = ( data: any ): boolean => {
     return data?.action;
 };
 
-const parseData = ( dataStr: string, onError: ( error: Error ) => void ): Data => {
+const parseData = ( dataStr: string, onError: ( error: any ) => void ): Data => {
     let data: any = null;
 
     try {
@@ -47,11 +48,7 @@ const parseData = ( dataStr: string, onError: ( error: Error ) => void ): Data =
     };
 };
 
-const requestError: RequestError = ( req, res, error ) => {
-    res.send( error?.message || error );
-};
-
-const wsServer = ( onError: RequestError = requestError ): WSServer => {
+const wsServer = ( onError: RequestError ): WSServer => {
     const endpoints: Endpoint[] = [];
     let server: Server = null;
 
@@ -62,11 +59,8 @@ const wsServer = ( onError: RequestError = requestError ): WSServer => {
 
         server.on( 'connection', ( socket ) => {
             socket.on( 'message', async ( data ) => {
-                const response: Response = {
-                    send: ( message ) => socket.send( message ),
-                };
-                const onParserError = ( err: Error ): void => onError( {}, response, err );
-                const { action, payload } = parseData( data.toString(), onParserError );
+                const onParserError = ( err: Error ): void => onError( null, null, err );
+                const { cmd, action, payload } = parseData( data.toString(), onParserError );
                 const endpoint = endpoints.find( ( value ) => {
                     return value.action === action;
                 } );
@@ -78,6 +72,15 @@ const wsServer = ( onError: RequestError = requestError ): WSServer => {
                 const request: Request = {
                     path: action,
                     body: payload,
+                };
+
+                const response: Response = {
+                    send: ( result ) => socket.send(
+                        JSON.stringify( {
+                            cmd,
+                            result,
+                        } ),
+                    ),
                 };
 
                 try {

@@ -14,6 +14,7 @@ const defaults: ServerConfig = {
     },
     serverOptions: {
         port: 5000,
+        healer: null,
     },
 };
 

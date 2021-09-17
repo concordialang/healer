@@ -1,121 +1,65 @@
-import { HealingElement, HeuristicInstance, HeuristicResult } from '@healer/common';
+import { HealingResult, UIElement } from '../database/entities';
+import { HealingResultRepository } from '../database/repositories';
+import { HealerOptions, HealingRequest, HealingResultStatus, ScoredLocator } from '../models';
+import { colors, error, print, success, table } from '../output';
+import { getUIElement } from '../utils';
+import { healProcess } from './heal-process';
 
-import { UIElement } from '../database/entities';
-import { UIElementRepository } from '../database/repositories';
-import { buildUIElementKey } from '../database/utils';
-import { HealerOptions } from '../models';
-import { HealingRequest } from '../models/healing-request';
-import { ScoredLocator } from '../models/scored-locator';
-import { colors, error } from '../output';
-
-const getUIElement = ( { feature, locator }: HealingRequest ): Promise<UIElement> => {
-    const uuid = buildUIElementKey( {
-        feature,
-        locator,
-    } );
-
-    return UIElementRepository.findOne( {
-        uuid,
-    } );
+const saveHealingResult = ( {
+    element,
+    status,
+    scoredLocators,
+}: {
+    element: UIElement;
+    status: HealingResultStatus;
+    scoredLocators: ScoredLocator[];
+} ): Promise<void> => {
+    return HealingResultRepository.save(
+        new HealingResult( {
+            element,
+            status,
+            scoredLocators,
+        } ),
+    );
 };
 
-const runHeuristics = (
-    heuristics: HeuristicInstance[],
-    uiElement: UIElement,
-    source: any,
-): {
-    healing: HealingElement[];
-    maximumWeight: number;
-} => {
-    let maximumWeight: number = 0;
-    const healing = heuristics.reduce( ( map, heuristic ) => {
-        const result = heuristic.run( {
-            element: uiElement,
-            source,
-        } );
+const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<string[]> => {
+    print();
+    print( `Trying to heal the locator "${request.locator}"` );
+    print();
 
-        if ( !result ) {
-            return map;
-        }
-
-        if ( Array.isArray( result ) && !result.length ) {
-            return map;
-        }
-
-        [].concat( result )
-            .forEach( ( value: HeuristicResult ) => {
-                value.elements.forEach( ( scoredElement ) => {
-                    const score = scoredElement.score * value.weight;
-                    const applied = {
-                        name: heuristic.name,
-                        locator: scoredElement.locator,
-                        score,
-                    };
-
-                    if ( map.has( scoredElement.node ) ) {
-                        const data = map.get( scoredElement.node );
-
-                        data.appliedHeuristics.push( applied );
-                        data.totalScore += score;
-                    } else {
-                        map.set( scoredElement.node, {
-                            node: scoredElement.node,
-                            appliedHeuristics: [ applied ],
-                            totalScore: score,
-                        } );
-                    }
-                } );
-
-                maximumWeight += value.weight;
-            } );
-
-        return map;
-    }, new Map<any, HealingElement>() );
-
-    return {
-        healing: Array.from( healing.values() ),
-        maximumWeight,
-    };
-};
-
-const heal = async (
-    request: HealingRequest & {
-        options: HealerOptions;
-    },
-): Promise<ScoredLocator[]> => {
     const element = await getUIElement( request );
 
     if ( !element ) {
         const locator = colors.grey.bold( request.locator );
 
-        error( `    Element ${locator} not found. So the healing process cannot continue. :(` );
+        error( `Element ${locator} not found. So the healing process cannot continue. :(` );
 
         return [];
     }
 
-    const { heuristics, healer } = request.options;
-    const { source } = healer.transform( {
+    const scoredLocators = healProcess( {
         element,
+        options,
         source: request.source,
     } );
-    const { healing, maximumWeight } = runHeuristics( heuristics, element, source );
 
-    const healingResult = healing
-        .map( ( value ) => ( {
-            ...value,
-            totalScore: value.totalScore / maximumWeight,
-        } ) )
-        // TODO: Use minimal score from options
-        .filter( ( value ) => value.totalScore > 0.5 )
-        .sort( ( valueA, valueB ) => valueB.totalScore - valueA.totalScore );
+    if ( scoredLocators.length ) {
+        success( 'The healing process was successful. :)' );
+        print();
+        print( `Found new locators for the locator "${request.locator}":    ` );
+        table( scoredLocators );
+    } else {
+        print( 'The healing process was unable to heal the locator. :(' );
+    }
 
-    return healingResult.map( ( value ) => ( {
-        locator: healer.toLocator( {
-            element,
-            healing: value,
-        } ),
-        score: value.totalScore,
-    } ) );
+    await saveHealingResult( {
+        element,
+        status: scoredLocators.length ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
+        scoredLocators: scoredLocators.length ? scoredLocators : null,
+    } );
+
+    return scoredLocators.map( ( value ) => value.locator );
 };
 
 export { heal };

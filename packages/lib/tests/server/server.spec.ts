@@ -8,7 +8,7 @@ describe( 'Server', () => {
     let server: WSServer = null;
 
     it( 'Should server and listening on specific port', ( done ) => {
-        server = wsServer();
+        server = wsServer( ( req, res, error ) => res.send( { error: error.message } ) );
 
         server.listen( testPort, () => {
             done();
@@ -61,7 +61,7 @@ describe( 'Server', () => {
         } );
 
         ws.on( 'message', ( data ) => {
-            expect( data.toString() ).to.be.equals( error.message );
+            expect( JSON.parse( data.toString() ).result.error ).to.be.equals( error.message );
 
             ws.close();
 

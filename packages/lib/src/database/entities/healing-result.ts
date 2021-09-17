@@ -1,6 +1,6 @@
 import { Entity, Enum, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 
-import { HealingResultStatus, IHealingResult } from '../../models';
+import { HealingResultStatus, IHealingResult, ScoredLocator } from '../../models';
 import { buildHealingResultKey } from '../utils';
 import { UIElement } from './ui-element';
 
@@ -9,14 +9,17 @@ export class HealingResult implements IHealingResult {
     @PrimaryKey( { type: 'uuid' } )
     uuid: string;
 
-    @Property()
+    @Property( { nullable: true } )
     newLocator: string;
 
-    @Property()
+    @Property( { nullable: true } )
     score: number;
 
     @Enum()
     status: HealingResultStatus;
+
+    @Property( { type: 'json', nullable: true } )
+    scoredLocators: ScoredLocator[];
 
     @Property( { onCreate: () => new Date() } )
     createdAt: Date;
@@ -29,9 +32,11 @@ export class HealingResult implements IHealingResult {
         score,
         status,
         element,
+        scoredLocators,
     }: {
-        newLocator: string;
-        score: number;
+        newLocator?: string;
+        score?: number;
+        scoredLocators?: ScoredLocator[];
         status: HealingResultStatus;
         element: UIElement;
     } ) {
@@ -40,5 +45,6 @@ export class HealingResult implements IHealingResult {
         this.score = score;
         this.status = status;
         this.element = element;
+        this.scoredLocators = scoredLocators;
     }
 }

@@ -12,7 +12,15 @@ type InitOptions = {
 };
 
 const defaultConfig: HealerConfig = {
-    heuristics: [],
+    heuristics: [
+        {
+            name: '',
+            from: '',
+        },
+    ],
+    healer: {
+        from: '',
+    },
 };
 
 const configIndentSize: number = 2;
