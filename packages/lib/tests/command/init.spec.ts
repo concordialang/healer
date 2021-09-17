@@ -9,7 +9,7 @@ import { OutputLevel, setLevel } from '../../src/output';
 
 describe( 'Init command', () => {
     const configContent: HealerConfig = { heuristics: [], healer: null };
-    const path: string = process.cwd();
+    const path = __dirname;
 
     before( () => {
         setLevel( OutputLevel.TEST );
@@ -34,7 +34,7 @@ describe( 'Init command', () => {
     it( 'Should not create file if already exists', () => {
         const expectedConfigPath: string = join( path, DEFAULT_CONFIG_FILE_NAME );
 
-        vol.fromJSON( { [ DEFAULT_CONFIG_FILE_NAME ]: JSON.stringify( configContent ) } );
+        vol.fromJSON( { [ DEFAULT_CONFIG_FILE_NAME ]: JSON.stringify( configContent ) }, path );
 
         const configPath: string = init( { path, fileSystem: vol } );
 

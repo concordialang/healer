@@ -66,11 +66,11 @@ describe( 'Parser', () => {
             } ),
         } );
 
-        const expectedheuristicsLength: number = 2;
+        const expectedHeuristicsLength: number = 2;
         const options = await getOptions( explorer );
 
         expect( options ).to.be.not.empty;
-        expect( options.heuristics ).to.have.length( expectedheuristicsLength );
+        expect( options.heuristics ).to.have.length( expectedHeuristicsLength );
 
         const [ first, second ] = options.heuristics;
 
@@ -78,7 +78,7 @@ describe( 'Parser', () => {
         expect( second.run( null ) ).to.be.equals( secondHeuristic );
     } );
 
-    it( 'Should throw an error if heuristic not finded in heuristics package', () => {
+    it( 'Should throw an error if heuristic not found in heuristics package', () => {
         const jsonFile: string = 'healer.json';
         const otherHeuristic: string = 'other-heuristic';
 

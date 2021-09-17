@@ -7,6 +7,7 @@ import { before } from 'mocha';
 import loadConfig from '../src/load-config';
 
 describe( 'Load config', () => {
+    const dirname = __dirname;
     const jsonConfig: any = { server: 'ws://localhost:5000' };
 
     before( () => {
@@ -29,9 +30,9 @@ describe( 'Load config', () => {
     it( 'Should throw an error if server option is not in config file', () => {
         const configFile = '.healerrc.json';
 
-        vol.fromJSON( { [ configFile ]: JSON.stringify( {} ) } );
+        vol.fromJSON( { [ configFile ]: JSON.stringify( {} ) }, dirname );
 
-        expect( () => loadConfig( configFile ) ).to.throw(
+        expect( () => loadConfig( configFile, dirname ) ).to.throw(
             `Server option not provided in configuration file "${configFile}"`,
         );
     } );
@@ -39,9 +40,9 @@ describe( 'Load config', () => {
     it( 'Should load config from file', () => {
         const configFile = 'healer.json';
 
-        vol.fromJSON( { [ configFile ]: JSON.stringify( jsonConfig ) } );
+        vol.fromJSON( { [ configFile ]: JSON.stringify( jsonConfig ) }, dirname );
 
-        const config = loadConfig( configFile );
+        const config = loadConfig( configFile, dirname );
 
         expect( config.server ).to.be.equals( 'ws://localhost:5000' );
     } );

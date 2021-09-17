@@ -6,6 +6,7 @@ import { vol } from 'memfs';
 import { Config, ConfigException, defaultLoaders, LoaderFn } from '../../src/config';
 
 describe( 'Config', () => {
+    const dirname = __dirname;
     const jsonConfig: any = { property: [ { name: 'first-data' }, { name: 'second-data' } ] };
     const jsConfig: string = `
         module.exports = {
@@ -33,6 +34,7 @@ describe( 'Config', () => {
         return JSON.parse( json );
     };
     const explorer = new Config( {
+        dirname,
         fileNames: jsonFiles.concat( jsFiles, tsFiles ),
         fileSystem: vol,
         loaders: {
@@ -56,7 +58,7 @@ describe( 'Config', () => {
     describe( 'JSON File', () => {
         for ( const jsonFile of jsonFiles ) {
             it( `Should load config from "${jsonFile}"`, async () => {
-                vol.fromJSON( { [ jsonFile ]: JSON.stringify( jsonConfig ) } );
+                vol.fromJSON( { [ jsonFile ]: JSON.stringify( jsonConfig ) }, dirname );
 
                 const config = await explorer.load();
 
@@ -69,7 +71,7 @@ describe( 'Config', () => {
     describe( 'JS File', () => {
         for ( const jsFile of jsFiles ) {
             it( `Should load config from "${jsFile}"`, async () => {
-                vol.fromJSON( { [ jsFile ]: jsConfig } );
+                vol.fromJSON( { [ jsFile ]: jsConfig }, dirname );
 
                 const config: any = await explorer.load();
 
@@ -82,7 +84,7 @@ describe( 'Config', () => {
     describe( 'TS File', () => {
         for ( const tsFile of tsFiles ) {
             it( `Should load config from "${tsFile}"`, async () => {
-                vol.fromJSON( { [ tsFile ]: tsConfig } );
+                vol.fromJSON( { [ tsFile ]: tsConfig }, dirname );
 
                 const config: any = await explorer.load();
 
@@ -104,7 +106,7 @@ describe( 'Config', () => {
                 fileSystem: vol,
             } );
 
-            vol.fromJSON( { [ file ]: JSON.stringify( jsonConfig ) } );
+            vol.fromJSON( { [ file ]: JSON.stringify( jsonConfig ) }, dirname );
 
             expect( () => specificExplorer.load() ).to.throw( ConfigException );
         } );
