@@ -1,4 +1,5 @@
 import getElementData from './element-data';
+import locatorType from './locator-type';
 import WSConnection from './ws-connection';
 
 class ClientWeb {
@@ -8,21 +9,44 @@ class ClientWeb {
         this.connection = connection;
     }
 
-    saveElement( element: HTMLElement ): Promise<void> {
+    saveElement( {
+        element,
+        feature,
+        locator,
+    }: {
+        element: HTMLElement;
+        feature: string;
+        locator: string;
+    } ): Promise<void> {
         return this.connection.send( {
             action: '/element',
-            payload: getElementData( element ),
+            payload: {
+                feature,
+                locator,
+                uiType: 'html',
+                locatorType: locatorType( locator ),
+                content: getElementData( element ),
+            },
         } );
     }
 
-    healElement( element: HTMLElement, body: HTMLElement ): Promise<string> {
+    healElement( {
+        body,
+        feature,
+        locator,
+    }: {
+        body: string;
+        feature: string;
+        locator: string;
+    } ): Promise<string[]> {
         return new Promise( ( resolve ) => {
             this.connection.send(
                 {
                     action: '/heal',
                     payload: {
-                        element: getElementData( element ),
-                        body: body.outerHTML,
+                        source: body,
+                        feature,
+                        locator,
                     },
                 },
                 resolve,

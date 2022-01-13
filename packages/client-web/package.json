@@ -11,7 +11,8 @@
     "url": "git+https://github.com/concordialang/healer.git"
   },
   "scripts": {
-    "test": "ts-mocha -p tsconfig.json **/*.spec.ts"
+    "test": "ts-mocha -p tsconfig.json **/*.spec.ts",
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
@@ -27,6 +28,7 @@
     "jsdom": "^17.0.0",
     "memfs": "^3.2.2",
     "mock-socket": "^9.0.3",
-    "ts-mocha": "^8.0.0"
+    "ts-mocha": "^8.0.0",
+    "typescript": "*"
   }
 }

@@ -38,13 +38,16 @@ describe( 'Client Web', () => {
 
                 expect( data.action ).to.be.equals( '/element' );
                 expect( data.payload ).to.be.not.null;
-                expect( data.payload.tag ).to.be.equals( 'a' );
-                expect( data.payload.attributes ).to.have.keys( 'id' );
-                expect( data.payload.attributes.id ).to.be.equals( 'home' );
-                expect( data.payload.xpath ).to.be.equals( '/html/body/a' );
-                expect( data.payload.parents ).to.have.length( 2 );
-                expect( data.payload.parents[ 0 ].tag ).to.be.equals( 'body' );
-                expect( data.payload.parents[ 1 ].tag ).to.be.equals( 'html' );
+                expect( data.payload.locator ).to.be.equals( '#home' );
+                expect( data.payload.uiType ).to.be.equals( 'html' );
+                expect( data.payload.feature ).to.be.equals( 'test' );
+                expect( data.payload.content.tag ).to.be.equals( 'a' );
+                expect( data.payload.content.attributes ).to.have.keys( 'id' );
+                expect( data.payload.content.attributes.id ).to.be.equals( 'home' );
+                expect( data.payload.content.xpath ).to.be.equals( '/html/body/a' );
+                expect( data.payload.content.parents ).to.have.length( 2 );
+                expect( data.payload.content.parents[ 0 ].tag ).to.be.equals( 'body' );
+                expect( data.payload.content.parents[ 1 ].tag ).to.be.equals( 'html' );
 
                 done();
             } );
@@ -58,7 +61,7 @@ describe( 'Client Web', () => {
 
         const client = new ClientWeb( new WSConnection( url, WebSocket ) );
 
-        client.saveElement( anchor );
+        client.saveElement( { element: anchor, locator: '#home', feature: 'test' } );
     } );
 
     it( 'Should request a healing method', async () => {
@@ -69,10 +72,11 @@ describe( 'Client Web', () => {
                 expect( data.cmd ).to.be.equals( 'cmd_1' );
                 expect( data.action ).to.be.equals( '/heal' );
                 expect( data.payload ).to.be.not.null;
-                expect( data.payload.element.tag ).to.be.equals( 'a' );
-                expect( data.payload.body ).to.be.string;
+                expect( data.payload.locator ).to.be.equals( '#home' );
+                expect( data.payload.feature ).to.be.equals( 'test' );
+                expect( data.payload.source ).to.be.string;
 
-                const { document } = new JSDOM( data.payload.body ).window;
+                const { document } = new JSDOM( data.payload.source ).window;
 
                 const anchor = document.querySelectorAll( '.link.link-item' );
 
@@ -96,7 +100,11 @@ describe( 'Client Web', () => {
 
         const client = new ClientWeb( new WSConnection( url, WebSocket ) );
 
-        const result = await client.healElement( anchor, document.body );
+        const result = await client.healElement( {
+            body: document.body.outerHTML,
+            feature: 'test',
+            locator: '#home',
+        } );
 
         expect( result ).to.be.equals( '.link.link-item' );
     } );
