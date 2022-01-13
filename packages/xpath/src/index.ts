@@ -1,3 +1,5 @@
+import Node from './node-type';
+
 class Step {
     value: string;
     optimized: boolean;
