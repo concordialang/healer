@@ -1,3 +1,6 @@
+import { DatabaseOptions } from './database-options';
+import { ServerOptions } from './server-options';
+
 export interface HeuristicEntry {
     name: string;
     from: string;
@@ -12,4 +15,6 @@ export interface HealerEntry {
 export interface HealerConfig {
     healer: HealerEntry;
     heuristics: HeuristicEntry[];
+    database: DatabaseOptions;
+    server: ServerOptions;
 }

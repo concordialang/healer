@@ -1,7 +1,14 @@
 import { Healer, HealerInstance, Heuristic, HeuristicInstance } from '@healer/common';
 
 import { Config, ConfigException } from '../config';
-import { HealerConfig, HealerEntry, HealerOptions, HeuristicEntry } from '../models';
+import {
+    DatabaseOptions,
+    HealerConfig,
+    HealerEntry,
+    HealerOptions,
+    HeuristicEntry,
+    ServerOptions,
+} from '../models';
 import { explorer } from './explorer';
 import { healerFinder } from './healer-finder';
 import { heuristicFinder } from './heuristic-finder';
@@ -50,10 +57,21 @@ const loadHealer = async ( entry: HealerEntry ): Promise<HealerInstance> => {
 
 export const getOptions = async (
     configExplorer: Config<HealerConfig> = explorer,
-): Promise<HealerOptions> => {
+): Promise<{
+    healer: HealerOptions;
+    server: ServerOptions;
+    database: DatabaseOptions;
+}> => {
     const config: HealerConfig = await configExplorer.load();
     const heuristics: HeuristicInstance[] = await loadHeuristics( config.heuristics );
     const healer: HealerInstance = await loadHealer( config.healer );
 
-    return { heuristics, healer };
+    return {
+        healer: {
+            heuristics,
+            healer,
+        },
+        server: config.server,
+        database: config.database,
+    };
 };

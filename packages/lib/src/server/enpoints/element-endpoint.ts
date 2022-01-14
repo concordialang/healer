@@ -1,20 +1,16 @@
 import { UIElement } from '../../database/entities/ui-element';
 import { UIElementRepository } from '../../database/repositories';
-import { error } from '../../output';
+import { colors, error, print } from '../../output';
 import { RequestListener } from '../server';
 
 export const elementEndpoint: RequestListener = async ( req ) => {
     const uiElement = new UIElement( req.body );
 
+    print( `  Received element -> ${uiElement.feature} - ${uiElement.locator}` );
+
     try {
         await UIElementRepository.upsert( uiElement );
-    } catch {
-        const errorMessage = `Error on save element: ${JSON.stringify( {
-            feature: uiElement.feature,
-            locator: uiElement.locator,
-            content: uiElement.content,
-        } )}`;
-
-        error( errorMessage );
+    } catch ( err: any ) {
+        error( `     ${colors.bold( 'Error on save element:' )} ${err.message}` );
     }
 };

@@ -6,12 +6,16 @@
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/lib#readme",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
+  "bin": {
+    "concordia-healer": "./bin"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/concordialang/healer.git"
   },
   "scripts": {
-    "test": "ts-mocha -p tsconfig.json **/*.spec.ts"
+    "test": "ts-mocha -p tsconfig.json **/*.spec.ts",
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
@@ -20,11 +24,13 @@
     "@healer/common": "^0.0.0",
     "@mikro-orm/core": "^4.5.9",
     "chalk": "^2.4.2",
+    "commander": "^8.3.0",
     "inquirer": "^6.5.2",
     "uuid": "^8.3.2",
     "ws": "^8.1.0"
   },
   "devDependencies": {
+    "@mikro-orm/postgresql": "^4.5.9",
     "@mikro-orm/sqlite": "^4.5.9",
     "@types/inquirer": "^7.3.3",
     "@types/uuid": "^8.3.1",

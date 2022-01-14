@@ -96,7 +96,8 @@ describe( 'Healing Result', () => {
             uuid: healingResult.uuid,
         } );
 
-        expect( element ).to.have.be.deep.equals( healingResult );
+        expect( element.uuid ).to.be.not.null;
+        expect( element.uuid ).to.be.equals( healingResult.uuid );
 
         element = await HealingResultRepository.findOne( { uuid: 'uuid' } );
 

@@ -1,4 +1,5 @@
 import colors, { Chalk } from 'chalk';
+import { program } from 'commander';
 import { prompt } from 'inquirer';
 
 const { log, table: consoleTable } = console;
@@ -56,6 +57,18 @@ const setLevel = ( level: OutputLevel ): void => {
     }
 };
 
-export default { colors, styles, prompt, setLevel, print, table, error, success, say };
+export default { colors, styles, prompt, program, setLevel, print, table, error, success, say };
 
-export { colors, styles, prompt, setLevel, print, table, error, success, say, OutputLevel };
+export {
+    colors,
+    styles,
+    prompt,
+    program,
+    setLevel,
+    print,
+    table,
+    error,
+    success,
+    say,
+    OutputLevel,
+};

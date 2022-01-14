@@ -14,12 +14,50 @@ type InitOptions = {
 const defaultConfig: HealerConfig = {
     heuristics: [
         {
-            name: '',
-            from: '',
+            name: 'by-id',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
+        },
+        {
+            name: 'by-classes',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
+        },
+        {
+            name: 'by-attributes',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
+        },
+        {
+            name: 'by-tag',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
+        },
+        {
+            name: 'by-xpath',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
+        },
+        {
+            name: 'by-text',
+            from: '@healer/heuristics-web/heuristics',
+            options: {},
         },
     ],
     healer: {
-        from: '',
+        from: '@healer/heuristics-web/healer',
+        options: {},
+    },
+    database: {
+        type: 'sqlite',
+        dbName: ':memory:',
+        host: 'localhost',
+        port: null,
+        user: null,
+        password: null,
+    },
+    server: {
+        port: 5000,
     },
 };
 

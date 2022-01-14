@@ -1,16 +1,8 @@
 import { EntityManager, MikroORM } from '@mikro-orm/core';
 import { ISchemaGenerator } from '@mikro-orm/core/typings';
 
+import { DatabaseOptions } from '../models';
 import { HealingResult, UIElement } from './entities';
-
-type DatabaseOptions = {
-    user?: string;
-    password?: string;
-    host?: string;
-    port?: number;
-    dbName?: string;
-    type: 'postgresql' | 'sqlite';
-};
 
 let connection: MikroORM = null;
 
@@ -37,7 +29,7 @@ const closeConnection = (): Promise<void> => {
 };
 
 const getManager = (): EntityManager => {
-    return connection.em;
+    return connection.em.fork();
 };
 
-export { DatabaseOptions, initDatabase, closeConnection, getManager };
+export { initDatabase, closeConnection, getManager };

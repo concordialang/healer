@@ -70,9 +70,9 @@ describe( 'Parser', () => {
         const options = await getOptions( explorer );
 
         expect( options ).to.be.not.empty;
-        expect( options.heuristics ).to.have.length( expectedHeuristicsLength );
+        expect( options.healer.heuristics ).to.have.length( expectedHeuristicsLength );
 
-        const [ first, second ] = options.heuristics;
+        const [ first, second ] = options.healer.heuristics;
 
         expect( first.run( null ) ).to.be.equals( firstHeuristic );
         expect( second.run( null ) ).to.be.equals( secondHeuristic );

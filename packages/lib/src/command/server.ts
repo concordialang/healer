@@ -1,41 +1,27 @@
-import { DatabaseOptions, initDatabase } from '../database';
+import { initDatabase } from '../database';
+import { DatabaseOptions, HealerOptions, ServerOptions } from '../models';
 import { error } from '../output';
-import { initServer, ServerOptions } from '../server';
+import { initServer } from '../server';
 
-type ServerConfig = {
-    serverOptions: ServerOptions;
-    databaseOptions: DatabaseOptions;
-};
-
-const defaults: ServerConfig = {
-    databaseOptions: {
-        type: 'sqlite',
-        dbName: ':memory:',
-    },
-    serverOptions: {
-        port: 5000,
-        healer: null,
-    },
-};
-
-export const server = async ( {
-    serverOptions,
-    databaseOptions,
-}: ServerConfig = defaults ): Promise<boolean> => {
+export const server = async ( options: {
+    server: ServerOptions;
+    database: DatabaseOptions;
+    healer: HealerOptions;
+} ): Promise<boolean> => {
     try {
-        await initDatabase( databaseOptions );
-    } catch ( err ) {
+        await initDatabase( options.database );
+    } catch ( err: any ) {
         error( '    Error on Database connection ' );
-        error( err );
+        error( err.message );
 
         return false;
     }
 
     try {
-        initServer( serverOptions );
-    } catch ( err ) {
+        initServer( options.server, options.healer );
+    } catch ( err: any ) {
         error( '    Error on Server start ' );
-        error( err );
+        error( err.message );
 
         return false;
     }

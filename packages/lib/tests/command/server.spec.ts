@@ -17,13 +17,14 @@ describe( 'Server command', () => {
 
     it( 'Should correct init database and server', async () => {
         const ok = await server( {
-            databaseOptions: {
+            database: {
                 type: 'sqlite',
                 dbName: ':memory:',
             },
-            serverOptions: {
+            server: {
                 port: 5000,
             },
+            healer: null,
         } );
 
         expect( ok ).to.be.true;
@@ -31,13 +32,14 @@ describe( 'Server command', () => {
 
     it( 'Should not init on database connection error', async () => {
         const ok = await server( {
-            databaseOptions: {
+            database: {
                 type: 'postgresql',
                 dbName: ':memory:',
             },
-            serverOptions: {
+            server: {
                 port: 5000,
             },
+            healer: null,
         } );
 
         expect( ok ).to.be.false;

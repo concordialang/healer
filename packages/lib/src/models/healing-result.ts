@@ -1,11 +1,11 @@
 import { IUIElement } from './ui-element';
 
 export enum HealingResultStatus {
-    FAIL,
-    FAIL_DISPLAYED,
-    SUCCESS,
-    SUCCESS_DISPLAYED,
-    SUCCESS_ACCEPTED,
+    FAIL = 'fail',
+    FAIL_DISPLAYED = 'fail_displayed',
+    SUCCESS = 'success',
+    SUCCESS_DISPLAYED = 'success_displayed',
+    SUCCESS_ACCEPTED = 'success_accepted',
 }
 
 export class IHealingResult {

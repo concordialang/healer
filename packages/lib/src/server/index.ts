@@ -1,17 +1,12 @@
-import { HealerOptions } from '../models';
+import { HealerOptions, ServerOptions } from '../models';
 import { colors, error, success } from '../output';
 import { elementEndpoint } from './enpoints';
 import { healEndpoint } from './enpoints/heal-endpoint';
 import { WSServer, wsServer } from './server';
 
-type ServerOptions = {
-    port: number;
-    healer: HealerOptions;
-};
-
 let server: WSServer = null;
 
-const initServer = ( { port, healer }: ServerOptions ): void => {
+const initServer = ( { port }: ServerOptions, healer: HealerOptions ): void => {
     server = wsServer( ( req, resp, err ) => {
         error( `Error on request ${req?.path}: ${err.message || err}` );
     } );
@@ -28,4 +23,4 @@ const closeServer = (): void => {
     server.close();
 };
 
-export { ServerOptions, initServer, closeServer };
+export { initServer, closeServer };

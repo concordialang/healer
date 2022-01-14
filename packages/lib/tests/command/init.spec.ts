@@ -8,7 +8,18 @@ import { HealerConfig } from '../../src/models';
 import { OutputLevel, setLevel } from '../../src/output';
 
 describe( 'Init command', () => {
-    const configContent: HealerConfig = { heuristics: [], healer: null };
+    const configContent: HealerConfig = {
+        heuristics: [],
+        healer: null,
+        database: {
+            type: 'sqlite',
+            dbName: ':memory:',
+        },
+        server: {
+            port: 5000,
+        },
+    };
+
     const path = __dirname;
 
     before( () => {

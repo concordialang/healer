@@ -25,7 +25,7 @@ const saveHealingResult = ( {
 
 const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<string[]> => {
     print();
-    print( `Trying to heal the locator "${request.locator}"` );
+    print( `  Trying to heal the locator "${request.locator}"` );
     print();
 
     const element = await getUIElement( request );
@@ -33,7 +33,7 @@ const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<
     if ( !element ) {
         const locator = colors.grey.bold( request.locator );
 
-        error( `Element ${locator} not found. So the healing process cannot continue. :(` );
+        error( `  Element ${locator} not found. So the healing process cannot continue. :(` );
 
         return [];
     }
@@ -45,12 +45,12 @@ const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<
     } );
 
     if ( scoredLocators.length ) {
-        success( 'The healing process was successful. :)' );
+        success( '  The healing process was successful. :)' );
         print();
-        print( `Found new locators for the locator "${request.locator}":    ` );
+        print( `  Found new locators for the locator "${request.locator}":    ` );
         table( scoredLocators );
     } else {
-        print( 'The healing process was unable to heal the locator. :(' );
+        print( '  The healing process was unable to heal the locator. :(' );
     }
 
     await saveHealingResult( {
