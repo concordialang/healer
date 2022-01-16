@@ -1,0 +1,26 @@
+{
+  "name": "@healer/element-data",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
+  "homepage": "https://github.com/concordialang/healer/tree/main/packages/element-data#readme",
+  "license": "AGPL-3.0",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordialang/healer.git"
+  },
+  "scripts": {
+    "test": "ts-mocha -p tsconfig.json **/*.spec.ts",
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/concordialang/healer/issues"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^16.2.13",
+    "jsdom": "^17.0.0",
+    "ts-mocha": "^8.0.0",
+    "typescript": "*"
+  }
+}
