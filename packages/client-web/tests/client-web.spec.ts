@@ -42,12 +42,7 @@ describe( 'Client Web', () => {
                 expect( data.payload.uiType ).to.be.equals( 'html' );
                 expect( data.payload.feature ).to.be.equals( 'test' );
                 expect( data.payload.content.tag ).to.be.equals( 'a' );
-                expect( data.payload.content.attributes ).to.have.keys( 'id' );
-                expect( data.payload.content.attributes.id ).to.be.equals( 'home' );
-                expect( data.payload.content.xpath ).to.be.equals( '/html/body/a' );
-                expect( data.payload.content.parents ).to.have.length( 2 );
-                expect( data.payload.content.parents[ 0 ].tag ).to.be.equals( 'body' );
-                expect( data.payload.content.parents[ 1 ].tag ).to.be.equals( 'html' );
+                expect( data.payload.content.id ).to.be.equals( 'home' );
 
                 done();
             } );
@@ -61,7 +56,14 @@ describe( 'Client Web', () => {
 
         const client = new ClientWeb( new WSConnection( url, WebSocket ) );
 
-        client.saveElement( { element: anchor, locator: '#home', feature: 'test' } );
+        client.saveElement( {
+            data: {
+                tag: anchor.localName,
+                id: anchor.getAttribute( 'id' ),
+            },
+            locator: '#home',
+            feature: 'test',
+        } );
     } );
 
     it( 'Should request a healing method', async () => {

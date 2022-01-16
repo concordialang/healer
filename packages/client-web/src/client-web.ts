@@ -1,4 +1,3 @@
-import getElementData from './element-data';
 import locatorType from './locator-type';
 import WSConnection from './ws-connection';
 
@@ -10,11 +9,11 @@ class ClientWeb {
     }
 
     saveElement( {
-        element,
+        data,
         feature,
         locator,
     }: {
-        element: HTMLElement;
+        data: any;
         feature: string;
         locator: string;
     } ): Promise<void> {
@@ -25,7 +24,7 @@ class ClientWeb {
                 locator,
                 uiType: 'html',
                 locatorType: locatorType( locator ),
-                content: getElementData( element ),
+                content: data,
             },
         } );
     }

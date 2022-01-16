@@ -5,7 +5,7 @@ import { ClientWebConfig } from './models/client-web.config';
 const requireConfig = ( configFile: string, cwd: string ): ClientWebConfig => {
     try {
         return require( join( cwd, configFile ) );
-    } catch ( error ) {
+    } catch ( error: any ) {
         if ( error.code === 'MODULE_NOT_FOUND' ) {
             throw new Error( `  Cannot find configuration file "${configFile}"` );
         }
