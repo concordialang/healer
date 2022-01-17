@@ -1,0 +1,12 @@
+{
+  "extends": "../../.eslintrc.json",
+  "rules": {
+    "func-style": "off",
+    "max-params": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "class-methods-use-this": "off",
+    "id-length": "off"
+  },
+  "ignorePatterns": "src/helper/index.ts"
+}
