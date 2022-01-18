@@ -39,7 +39,7 @@ class ClientWeb {
         feature: string;
         locator: string;
         testPath: string;
-    } ): Promise<string[]> {
+    } ): Promise<string> {
         return new Promise( ( resolve ) => {
             this.connection.send(
                 {

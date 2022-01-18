@@ -102,9 +102,8 @@ describe( 'Heal Process', () => {
             },
         } );
 
-        expect( scoredLocators ).to.have.length( 1 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '[name="username"]' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 1 );
+        expect( scoredLocators.locator ).to.be.equals( '[name="username"]' );
+        expect( scoredLocators.score ).to.be.equals( 1 );
     } );
 
     it( 'Should return a new locator for password with score 1', async () => {
@@ -128,12 +127,8 @@ describe( 'Heal Process', () => {
             },
         } );
 
-        expect( scoredLocators ).to.have.length( 2 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '[name="pass"]' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 1 );
-
-        expect( scoredLocators[ 1 ].locator ).to.be.equals( '[name="username"]' );
-        expect( Number.parseFloat( scoredLocators[ 1 ].score.toFixed( 2 ) ) ).to.be.equals( 0.57 );
+        expect( scoredLocators.locator ).to.be.equals( '[name="pass"]' );
+        expect( scoredLocators.score ).to.be.equals( 1 );
     } );
 
     it( 'Should return a new locator for submit with score 0.8', async () => {
@@ -157,8 +152,7 @@ describe( 'Heal Process', () => {
             },
         } );
 
-        expect( scoredLocators ).to.have.length( 1 );
-        expect( scoredLocators[ 0 ].locator ).to.be.equals( '.btn' );
-        expect( scoredLocators[ 0 ].score ).to.be.equals( 0.8 );
+        expect( scoredLocators.locator ).to.be.equals( '.btn' );
+        expect( scoredLocators.score ).to.be.equals( 0.8 );
     } );
 } );

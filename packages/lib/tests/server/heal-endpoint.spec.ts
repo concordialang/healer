@@ -92,7 +92,7 @@ describe( 'Heal Endpoint', () => {
             <input class="btn" type="submit" value="Submit">
         </form>
         `;
-        const locators = await new Promise( ( resolve ) => {
+        const locator = await new Promise( ( resolve ) => {
             const request = {
                 body: {
                     feature: '/login',
@@ -102,13 +102,13 @@ describe( 'Heal Endpoint', () => {
                 },
             };
             const response = {
-                send: ( result: string[] ) => resolve( result ),
+                send: ( result: string ) => resolve( result ),
             };
 
             endpoint( request, response );
         } );
 
-        expect( locators ).to.be.deep.equals( [ '[name="username"]' ] );
+        expect( locator ).to.be.equals( '[name="username"]' );
     } );
 
     it( 'Should return a new locator for password', async () => {
@@ -119,7 +119,7 @@ describe( 'Heal Endpoint', () => {
             <input class="btn" type="submit" value="Submit">
         </form>
         `;
-        const locators = await new Promise( ( resolve ) => {
+        const locator = await new Promise( ( resolve ) => {
             const request = {
                 body: {
                     feature: '/login',
@@ -129,16 +129,16 @@ describe( 'Heal Endpoint', () => {
                 },
             };
             const response = {
-                send: ( data: string[] ) => resolve( data ),
+                send: ( data: string ) => resolve( data ),
             };
 
             endpoint( request, response );
         } );
 
-        expect( locators ).to.be.deep.equals( [ '[name="pass"]', '[name="username"]' ] );
+        expect( locator ).to.be.equals( '[name="pass"]' );
     } );
 
-    it( 'Should return a new locator for submit with score 0.8', async () => {
+    it( 'Should return a new locator for submit', async () => {
         const source = `
         <form>
             <input type="text" name="username" class="input">
@@ -162,6 +162,6 @@ describe( 'Heal Endpoint', () => {
             endpoint( request, response );
         } );
 
-        expect( locators ).to.be.deep.equals( [ '.btn' ] );
+        expect( locators ).to.be.equals( '.btn' );
     } );
 } );

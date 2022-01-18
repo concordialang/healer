@@ -1,6 +1,6 @@
 import { HealingResult, UIElement } from '../database/entities';
 import { HealingResultRepository } from '../database/repositories';
-import { HealerOptions, HealingRequest, HealingResultStatus, ScoredLocator } from '../models';
+import { HealerOptions, HealingRequest, HealingResultStatus } from '../models';
 import { colors, error, print, success, table } from '../output';
 import { getUIElement } from '../utils';
 import { healProcess } from './heal-process';
@@ -8,20 +8,17 @@ import { healProcess } from './heal-process';
 const saveHealingResult = ( {
     element,
     status,
-    scoredLocators,
+    newLocator,
+    score,
     testPath,
-}: {
-    element: UIElement;
-    status: HealingResultStatus;
-    scoredLocators: ScoredLocator[];
-    testPath: string;
-} ): Promise<void> => {
+}: Partial<HealingResult> ): Promise<void> => {
     return HealingResultRepository.save(
         new HealingResult( {
             element,
             status,
-            scoredLocators,
             testPath,
+            newLocator,
+            score,
         } ),
     );
 };
@@ -39,47 +36,50 @@ const findHealingResult = ( { element }: { element: UIElement } ): Promise<Heali
     );
 };
 
-const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<string[]> => {
-    print();
-    print( `  Trying to heal the locator "${request.locator}"` );
-    print();
+const heal = async (
+    { locator, source, feature, testPath }: HealingRequest,
+    options: HealerOptions,
+): Promise<string> => {
+    print( `  Trying to heal "${locator}" element in ${colors.bold( feature )} feature.` );
 
-    const element = await getUIElement( request );
+    const element = await getUIElement( { feature, locator } );
 
     if ( !element ) {
-        const locator = colors.grey.bold( request.locator );
+        error(
+            `  Element ${colors.grey.bold(
+                locator,
+            )} not found. The healing process cannot continue. :(`,
+        );
 
-        error( `  Element ${locator} not found. So the healing process cannot continue. :(` );
-
-        return [];
+        return null;
     }
 
     const healingResult = await findHealingResult( { element } );
-    const scoredLocators = healingResult
-        ? healingResult.scoredLocators
+    const scoredLocator = healingResult
+        ? { score: healingResult.score, locator: healingResult.newLocator }
         : healProcess( {
             element,
             options,
-            source: request.source,
+            source,
         } );
 
-    if ( scoredLocators.length ) {
+    if ( scoredLocator ) {
         success( '  The healing process was successful. :)' );
-        print();
-        print( `  Found new locators for the locator "${request.locator}":    ` );
-        table( scoredLocators );
+        print( `  Found new locator for "${locator}" element:    ` );
+        table( [ scoredLocator ] );
     } else {
-        print( '  The healing process was unable to heal the locator. :(' );
+        print( '  The healing process was unable to heal element. :(' );
     }
 
     await saveHealingResult( {
         element,
-        status: scoredLocators.length ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
-        scoredLocators: scoredLocators.length ? scoredLocators : null,
-        testPath: request.testPath,
+        status: scoredLocator ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
+        newLocator: scoredLocator.locator,
+        score: scoredLocator.score,
+        testPath,
     } );
 
-    return scoredLocators.map( ( value ) => value.locator );
+    return scoredLocator.locator;
 };
 
 export { heal };

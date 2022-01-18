@@ -7,13 +7,16 @@ export const healEndpoint
     = ( options: HealerOptions ): RequestListener => async ( req, res ) => {
         const healRequest: HealingRequest = req.body;
 
+        print();
         print( `  Heal request -> ${healRequest.feature} - ${healRequest.locator}` );
 
         try {
-            const locators = await heal( healRequest, options );
+            const locator = await heal( healRequest, options );
 
-            res.send( locators );
+            res.send( locator );
         } catch ( err: any ) {
             error( `    ${colors.bold( 'Error on heal element:' )} ${err.message}` );
         }
+
+        print();
     };

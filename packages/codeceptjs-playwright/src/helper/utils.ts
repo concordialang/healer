@@ -34,18 +34,14 @@ class HelperUtils {
     }
 
     private async heal( context: any, locator: string ) {
-        const locators = await clientWeb.healElement( {
+        const healedLocator = await clientWeb.healElement( {
             body: await context.$eval( 'body', ( el ) => el.outerHTML ),
             feature: this.lastFeature,
             testPath: this.lastTestPath,
             locator,
         } );
 
-        if ( !locators?.length ) {
-            return null;
-        }
-
-        return context.$$( locators[ 0 ] );
+        return healedLocator && context.$$( healedLocator );
     }
 
     private async saveElement( el: any, locator: string ) {

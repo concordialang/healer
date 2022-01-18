@@ -1,5 +1,5 @@
 import { HealerOptions, ServerOptions } from '../models';
-import { colors, error, success } from '../output';
+import { colors, error, print, success } from '../output';
 import { elementEndpoint } from './enpoints';
 import { healEndpoint } from './enpoints/heal-endpoint';
 import { WSServer, wsServer } from './server';
@@ -16,6 +16,7 @@ const initServer = ( { port }: ServerOptions, healer: HealerOptions ): void => {
 
     server.listen( port, () => {
         success( `   The ${colors.magenta.bold( 'Healer' )} server is running. :) ` );
+        print();
     } );
 };
 

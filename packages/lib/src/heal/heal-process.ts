@@ -66,14 +66,19 @@ const healProcess = ( request: {
     element: UIElement;
     source: any;
     options: HealerOptions;
-} ): ScoredLocator[] => {
+} ): ScoredLocator => {
     const { heuristics, healer } = request.options;
     const { source } = healer.transform( {
         element: request.element,
         source: request.source,
     } );
     const { healing, maximumWeight } = runHeuristics( heuristics, request.element, source );
-    const healingResult = healing
+
+    if ( !healing?.length ) {
+        return null;
+    }
+
+    const [ healingResult ] = healing
         .map( ( value ) => ( {
             ...value,
             totalScore: value.totalScore / maximumWeight,
@@ -82,13 +87,13 @@ const healProcess = ( request: {
         .filter( ( value ) => value.totalScore > 0.5 )
         .sort( ( valueA, valueB ) => valueB.totalScore - valueA.totalScore );
 
-    return healingResult.map( ( value ) => ( {
+    return {
         locator: healer.toLocator( {
             element: request.element,
-            healing: value,
+            healing: healingResult,
         } ),
-        score: value.totalScore,
-    } ) );
+        score: healingResult.totalScore,
+    };
 };
 
 export { healProcess };
