@@ -15,37 +15,37 @@ const defaultConfig: HealerConfig = {
     heuristics: [
         {
             name: 'by-id',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
         {
             name: 'by-classes',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
         {
             name: 'by-attributes',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
         {
             name: 'by-tag',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
         {
             name: 'by-xpath',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
         {
             name: 'by-text',
-            from: '@healer/heuristics-web/heuristics',
+            from: '@healer/heuristics-web/dist/heuristics',
             options: {},
         },
     ],
     healer: {
-        from: '@healer/heuristics-web/healer',
+        from: '@healer/heuristics-web/dist/healer',
         options: {},
     },
     database: {
