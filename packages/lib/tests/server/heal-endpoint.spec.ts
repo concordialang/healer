@@ -98,6 +98,7 @@ describe( 'Heal Endpoint', () => {
                     feature: '/login',
                     locator: '#username',
                     source,
+                    testPath: '/test/path',
                 },
             };
             const response = {
@@ -124,6 +125,7 @@ describe( 'Heal Endpoint', () => {
                     feature: '/login',
                     locator: '#password',
                     source,
+                    testPath: '/test/path',
                 },
             };
             const response = {
@@ -150,6 +152,7 @@ describe( 'Heal Endpoint', () => {
                     feature: '/login',
                     locator: '[type="submit"]',
                     source,
+                    testPath: '/test/path',
                 },
             };
             const response = {

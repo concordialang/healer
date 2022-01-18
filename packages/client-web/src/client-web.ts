@@ -33,10 +33,12 @@ class ClientWeb {
         body,
         feature,
         locator,
+        testPath,
     }: {
         body: string;
         feature: string;
         locator: string;
+        testPath: string;
     } ): Promise<string[]> {
         return new Promise( ( resolve ) => {
             this.connection.send(
@@ -46,6 +48,7 @@ class ClientWeb {
                         source: body,
                         feature,
                         locator,
+                        testPath,
                     },
                 },
                 resolve,

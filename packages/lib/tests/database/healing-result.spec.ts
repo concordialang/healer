@@ -29,6 +29,7 @@ describe( 'Healing Result', () => {
         } ),
         score: 0.9,
         status: HealingResultStatus.SUCCESS,
+        testPath: '/test/path',
     } );
 
     it( 'Should generate uuid', () => {

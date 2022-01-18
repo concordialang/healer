@@ -4,6 +4,7 @@ import ElementNotFound from 'codeceptjs/lib/helper/errors/ElementNotFound';
 
 class HelperUtils {
     private lastFeature = '';
+    private lastTestPath = '';
 
     async assertElementExists(
         context: any,
@@ -28,6 +29,7 @@ class HelperUtils {
     }
 
     onTest( test: Mocha.Test ) {
+        this.lastTestPath = test.file;
         [ this.lastFeature ] = test.titlePath();
     }
 
@@ -35,6 +37,7 @@ class HelperUtils {
         const locators = await clientWeb.healElement( {
             body: await context.$eval( 'body', ( el ) => el.outerHTML ),
             feature: this.lastFeature,
+            testPath: this.lastTestPath,
             locator,
         } );
 

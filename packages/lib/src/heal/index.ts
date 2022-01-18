@@ -9,16 +9,19 @@ const saveHealingResult = ( {
     element,
     status,
     scoredLocators,
+    testPath,
 }: {
     element: UIElement;
     status: HealingResultStatus;
     scoredLocators: ScoredLocator[];
+    testPath: string;
 } ): Promise<void> => {
     return HealingResultRepository.save(
         new HealingResult( {
             element,
             status,
             scoredLocators,
+            testPath,
         } ),
     );
 };
@@ -73,6 +76,7 @@ const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<
         element,
         status: scoredLocators.length ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
         scoredLocators: scoredLocators.length ? scoredLocators : null,
+        testPath: request.testPath,
     } );
 
     return scoredLocators.map( ( value ) => value.locator );

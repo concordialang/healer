@@ -15,6 +15,9 @@ export class HealingResult implements IHealingResult {
     @Property( { nullable: true } )
     score: number;
 
+    @Property()
+    testPath: string;
+
     @Enum()
     status: HealingResultStatus;
 
@@ -33,12 +36,14 @@ export class HealingResult implements IHealingResult {
         status,
         element,
         scoredLocators,
+        testPath,
     }: {
         newLocator?: string;
         score?: number;
         scoredLocators?: ScoredLocator[];
         status: HealingResultStatus;
         element: UIElement;
+        testPath: string;
     } ) {
         this.uuid = buildHealingResultKey();
         this.newLocator = newLocator;
@@ -46,5 +51,6 @@ export class HealingResult implements IHealingResult {
         this.status = status;
         this.element = element;
         this.scoredLocators = scoredLocators;
+        this.testPath = testPath;
     }
 }
