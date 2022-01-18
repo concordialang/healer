@@ -73,7 +73,6 @@ const healProcess = ( request: {
         source: request.source,
     } );
     const { healing, maximumWeight } = runHeuristics( heuristics, request.element, source );
-
     const healingResult = healing
         .map( ( value ) => ( {
             ...value,

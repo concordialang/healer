@@ -23,6 +23,19 @@ const saveHealingResult = ( {
     );
 };
 
+const findHealingResult = ( { element }: { element: UIElement } ): Promise<HealingResult> => {
+    return HealingResultRepository.findOne(
+        {
+            element,
+        },
+        {
+            orderBy: {
+                createdAt: 'DESC',
+            },
+        },
+    );
+};
+
 const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<string[]> => {
     print();
     print( `  Trying to heal the locator "${request.locator}"` );
@@ -38,11 +51,14 @@ const heal = async ( request: HealingRequest, options: HealerOptions ): Promise<
         return [];
     }
 
-    const scoredLocators = healProcess( {
-        element,
-        options,
-        source: request.source,
-    } );
+    const healingResult = await findHealingResult( { element } );
+    const scoredLocators = healingResult
+        ? healingResult.scoredLocators
+        : healProcess( {
+            element,
+            options,
+            source: request.source,
+        } );
 
     if ( scoredLocators.length ) {
         success( '  The healing process was successful. :)' );

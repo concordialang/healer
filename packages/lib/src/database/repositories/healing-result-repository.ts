@@ -1,4 +1,4 @@
-import { EntityManager, FilterQuery } from '@mikro-orm/core';
+import { EntityManager, FilterQuery, FindOneOptions } from '@mikro-orm/core';
 
 import { HealingResult } from '../entities/healing-result';
 import { getManager } from '../manager';
@@ -26,9 +26,10 @@ const find = (
 
 const findOne = (
     where: FilterQuery<HealingResult>,
+    options: FindOneOptions<HealingResult> = null,
     manager: EntityManager = getManager(),
 ): Promise<HealingResult> => {
-    return manager.findOne( HealingResult, where );
+    return manager.findOne( HealingResult, where, options );
 };
 
 const HealingResultRepository = { save, update, find, findOne };
