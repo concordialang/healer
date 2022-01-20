@@ -66,7 +66,10 @@ const heal = async (
     if ( scoredLocator ) {
         success( '  The healing process was successful. :)' );
         print( `  Found new locator for "${locator}" element:    ` );
-        table( [ scoredLocator ] );
+        table( {
+            head: [ 'Locator', 'Score' ],
+            rows: [ [ scoredLocator.locator, scoredLocator.score.toFixed( 2 ) ] ],
+        } );
     } else {
         print( '  The healing process was unable to heal element. :(' );
     }

@@ -39,7 +39,6 @@ export class UIElement implements IUIElement {
     }: {
         uuid?: string;
         feature: string;
-        scenario: string;
         locator: string;
         locatorType: string;
         content: any;

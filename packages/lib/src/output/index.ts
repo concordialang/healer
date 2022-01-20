@@ -1,8 +1,11 @@
 import colors, { Chalk } from 'chalk';
+import Table from 'cli-table3';
 import { program } from 'commander';
 import { prompt } from 'inquirer';
 
-const { log, table: consoleTable } = console;
+// import Table from 'tty-table';
+
+const { log } = console;
 
 const styles = {
     error: colors.bgRed.white.bold,
@@ -27,11 +30,26 @@ const print = ( ...msg: string[] ): void => {
     log( ...msg );
 };
 
-const table = ( data: any ): void => {
-    if ( outputLevel === OutputLevel.TEST ) {
-        return;
-    }
-    consoleTable( data );
+const table = ( {
+    head,
+    rows,
+    colWidths,
+}: {
+    head: string[];
+    rows: string[][];
+    colWidths?: number[];
+} ): void => {
+    const cliTable = new Table( {
+        head: head.map( ( value ) => colors.cyanBright( value ) ),
+        colWidths: colWidths || [],
+        wordWrap: true,
+    } );
+
+    rows.map( ( value ) => {
+        cliTable.push( value );
+    } );
+
+    print( cliTable.toString() );
 };
 
 const error = ( msg: string ): void => {

@@ -19,9 +19,10 @@ const update = async (
 
 const find = (
     where?: FilterQuery<HealingResult>,
+    options: FindOneOptions<HealingResult> = null,
     manager: EntityManager = getManager(),
 ): Promise<HealingResult[]> => {
-    return manager.find( HealingResult, where || {} );
+    return manager.find( HealingResult, where || {}, options );
 };
 
 const findOne = (

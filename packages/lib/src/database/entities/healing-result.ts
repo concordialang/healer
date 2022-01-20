@@ -1,4 +1,4 @@
-import { Entity, Enum, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 
 import { HealingResultStatus, IHealingResult } from '../../models';
 import { buildHealingResultKey } from '../utils';
@@ -18,7 +18,7 @@ export class HealingResult implements IHealingResult {
     @Property()
     testPath: string;
 
-    @Enum()
+    @Property()
     status: HealingResultStatus;
 
     @Property( { onCreate: () => new Date() } )
