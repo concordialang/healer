@@ -1,3 +1,4 @@
+import { UIElement } from '@healer/common';
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
@@ -22,9 +23,8 @@ describe( 'Element Endpoint', () => {
     } );
 
     it( 'Should insert a valid new element', async () => {
-        const uiElement = {
+        const uiElement: UIElement = {
             feature: 'feature',
-            scenario: 'scenario',
             locator: '#locator',
             locatorType: 'id',
             content: {
@@ -48,9 +48,8 @@ describe( 'Element Endpoint', () => {
     } );
 
     it( 'Should update existing element', async () => {
-        const uiElement = {
+        const uiElement: UIElement = {
             feature: 'feature',
-            scenario: 'scenario',
             locator: '#locator',
             locatorType: 'id',
             content: {
@@ -77,7 +76,6 @@ describe( 'Element Endpoint', () => {
     it( 'Should throw an error on invalid element', () => {
         const uiElement = {
             feature: 'feature',
-            scenario: 'scenario',
             locator: '#locator',
         };
 

@@ -36,7 +36,6 @@ describe( 'Heal Process', () => {
                         type: 'text',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
             new UIElement( {
@@ -54,7 +53,6 @@ describe( 'Heal Process', () => {
                         type: 'text',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
             new UIElement( {
@@ -70,7 +68,6 @@ describe( 'Heal Process', () => {
                         type: 'submit',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
         ] );

@@ -19,7 +19,6 @@ describe( 'UI Element', () => {
     const uiElements = [
         new UIElement( {
             feature: 'feature',
-            scenario: 'scenario',
             locator: 'locator',
             locatorType: 'locatorType',
             uiType: 'uiType',
@@ -27,7 +26,6 @@ describe( 'UI Element', () => {
         } ),
         new UIElement( {
             feature: 'feature1',
-            scenario: 'scenario1',
             locator: 'locator1',
             locatorType: 'locatorType1',
             uiType: 'uiType1',
@@ -35,7 +33,6 @@ describe( 'UI Element', () => {
         } ),
         new UIElement( {
             feature: 'feature2',
-            scenario: 'scenario2',
             locator: 'locator2',
             locatorType: 'locatorType2',
             uiType: 'uiType2',

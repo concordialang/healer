@@ -40,7 +40,6 @@ describe( 'Heal Endpoint', () => {
                         type: 'text',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
             new UIElement( {
@@ -58,7 +57,6 @@ describe( 'Heal Endpoint', () => {
                         type: 'text',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
             new UIElement( {
@@ -74,7 +72,6 @@ describe( 'Heal Endpoint', () => {
                         type: 'submit',
                     },
                 },
-                scenario: 'login',
                 uiType: 'html',
             } ),
         ] );

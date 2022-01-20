@@ -21,7 +21,6 @@ describe( 'Healing Result', () => {
         newLocator: 'new-locator',
         element: new UIElement( {
             feature: 'feature',
-            scenario: 'scenario',
             locator: 'locator',
             locatorType: 'locatorType',
             uiType: 'uiType',
