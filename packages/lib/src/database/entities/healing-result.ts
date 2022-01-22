@@ -18,7 +18,7 @@ export class HealingResult implements IHealingResult {
     @Property()
     testPath: string;
 
-    @Property()
+    @Property( { type: 'string' } )
     status: HealingResultStatus;
 
     @Property( { onCreate: () => new Date() } )
