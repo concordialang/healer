@@ -11,7 +11,7 @@ const healReplaces = (
             replace: `<${newLocator}>`,
         },
         {
-            regex: new RegExp( `(- [A-z ]+ (["']))${oldLocator}(\\2)` ),
+            regex: new RegExp( `(- ?[A-z ]+ (["']))${oldLocator}(\\2)` ),
             replace: `$1${newLocator}$3`,
         },
     ];
@@ -41,7 +41,8 @@ const executeHealFromPath = (
 
     fileSystem.writeFileSync( featurePath, newFeature, { encoding: 'utf-8' } );
 
-    const imported = feature.match( /"(.+\.feature)"/ )?.[ 1 ];
+    // TODO: i18n import
+    const imported = feature.match( /importe? "(.+\.feature)"/ )?.[ 1 ];
 
     if ( imported ) {
         const path = join( featurePath.split( '/' )

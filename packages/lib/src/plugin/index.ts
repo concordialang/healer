@@ -138,8 +138,6 @@ const afterReporting = async (
     print( `  Nice! ${confirmed.length} were been accepted for adjustment.` );
     print( '  Let\'s adjust your features...' );
 
-    await updateHealingResults( confirmed, HealingResultStatus.SUCCESS_ACCEPTED );
-
     const healed = confirmed.reduce(
         ( buffer, { element, newLocator, testPath } ) => ( {
             ...buffer,
@@ -153,6 +151,8 @@ const afterReporting = async (
 
     Object.keys( healed )
         .map( ( path ) => healFeature( path, healed[ path ], fileSystem ) );
+
+    await updateHealingResults( confirmed, HealingResultStatus.SUCCESS_ACCEPTED );
 
     success( '  Ok! Everything is right now. ;)' );
 };
