@@ -42,7 +42,6 @@
       }
     ],
     "camelcase": "error",
-    "class-methods-use-this": "error",
     "consistent-return": "error",
     "consistent-this": "error",
     "comma-dangle": ["error", "always-multiline"],
@@ -155,13 +154,7 @@
         "includeExports": true
       }
     ],
-    "no-extra-parens": [
-      "error",
-      "all",
-      {
-        "nestedBinaryExpressions": true
-      }
-    ],
+    "no-extra-parens": "off",
     "no-lonely-if": "error",
     "no-loss-of-precision": "error",
     "no-mixed-operators": "error",
@@ -216,7 +209,6 @@
     "no-new": "error",
     "no-new-func": "error",
     "no-new-wrappers": "error",
-    "no-octal-escape": "error",
     "no-param-reassign": "error",
     "no-return-assign": "error",
     "no-return-await": "error",
@@ -392,6 +384,13 @@
       }
     ],
     "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-extra-parens": [
+      "error",
+      "all",
+      {
+        "nestedBinaryExpressions": true
+      }
+    ],
     "import-helpers/order-imports": [
       "error",
       {
