@@ -74,13 +74,15 @@ const heal = async (
         print( '  The healing process was unable to heal element. :(' );
     }
 
-    await saveHealingResult( {
-        element,
-        status: scoredLocator ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
-        newLocator: scoredLocator.locator,
-        score: scoredLocator.score,
-        testPath,
-    } );
+    if ( !healingResult ) {
+        await saveHealingResult( {
+            element,
+            status: scoredLocator ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
+            newLocator: scoredLocator.locator,
+            score: scoredLocator.score,
+            testPath,
+        } );
+    }
 
     return scoredLocator.locator;
 };

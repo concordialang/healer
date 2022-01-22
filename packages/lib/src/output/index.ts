@@ -3,8 +3,6 @@ import Table from 'cli-table3';
 import { program } from 'commander';
 import { prompt } from 'inquirer';
 
-// import Table from 'tty-table';
-
 const { log } = console;
 
 const styles = {
