@@ -76,6 +76,7 @@ describe( 'Client Web', () => {
                 expect( data.payload ).to.be.not.null;
                 expect( data.payload.locator ).to.be.equals( '#home' );
                 expect( data.payload.feature ).to.be.equals( 'test' );
+                expect( data.payload.testPath ).to.be.equals( '/test/path' );
                 expect( data.payload.source ).to.be.string;
 
                 const { document } = new JSDOM( data.payload.source ).window;
@@ -106,6 +107,7 @@ describe( 'Client Web', () => {
             body: document.body.outerHTML,
             feature: 'test',
             locator: '#home',
+            testPath: '/test/path',
         } );
 
         expect( result ).to.be.equals( '.link.link-item' );

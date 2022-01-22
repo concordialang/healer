@@ -67,7 +67,7 @@ describe( 'Plugin', () => {
         await UIElementRepository.upsert( nameElement );
         await HealingResultRepository.save(
             new HealingResult( {
-                newLocator: '#pass',
+                newLocator: '.pass',
                 element: passwordElement,
                 score: 0.9,
                 status: HealingResultStatus.SUCCESS,
@@ -107,7 +107,7 @@ describe( 'Plugin', () => {
         expect( results ).to.have.length( 2 );
         expect( results[ 0 ].newLocator ).to.be.equals( '.name' );
         expect( results[ 0 ].element.locator ).to.be.equals( '#name' );
-        expect( results[ 1 ].newLocator ).to.be.equals( '#pass' );
+        expect( results[ 1 ].newLocator ).to.be.equals( '.pass' );
         expect( results[ 1 ].element.locator ).to.be.equals( '#password' );
     } );
 
@@ -139,7 +139,7 @@ describe( 'Plugin', () => {
           - selector is "#username"
 
         UI Element: Password
-          - selector is "#password"
+          - selector is ".pass"
 
         UI Element: Ok
           - selector is "[type=submit]"

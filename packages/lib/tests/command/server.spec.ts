@@ -6,6 +6,8 @@ import { OutputLevel, setLevel } from '../../src/output';
 import { closeServer } from '../../src/server';
 
 describe( 'Server command', () => {
+    const testPort = 5000;
+
     before( () => {
         setLevel( OutputLevel.TEST );
     } );
@@ -22,7 +24,7 @@ describe( 'Server command', () => {
                 dbName: ':memory:',
             },
             server: {
-                port: 5000,
+                port: testPort,
             },
             healer: null,
         } );
@@ -37,11 +39,11 @@ describe( 'Server command', () => {
                 dbName: ':memory:',
             },
             server: {
-                port: 5000,
+                port: testPort,
             },
             healer: null,
         } );
 
-        expect( ok ).to.be.false;
+        expect( ok ).to.be.a;
     } );
 } );
