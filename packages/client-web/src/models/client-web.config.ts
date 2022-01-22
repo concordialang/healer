@@ -1,5 +1,8 @@
 interface ClientWebConfig {
-    server: string;
+    server: {
+        port: number;
+        host: string;
+    };
 }
 
 export { ClientWebConfig };

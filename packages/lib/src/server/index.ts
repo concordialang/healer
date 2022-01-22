@@ -6,7 +6,7 @@ import { WSServer, wsServer } from './server';
 
 let server: WSServer = null;
 
-const initServer = ( { port }: ServerOptions, healer: HealerOptions ): void => {
+const initServer = ( { port, host }: ServerOptions, healer: HealerOptions ): void => {
     server = wsServer( ( req, resp, err ) => {
         error( `Error on request ${req?.path}: ${err.message || err}` );
     } );
@@ -14,7 +14,7 @@ const initServer = ( { port }: ServerOptions, healer: HealerOptions ): void => {
     server.post( '/element', elementEndpoint );
     server.post( '/heal', healEndpoint( healer ) );
 
-    server.listen( port, () => {
+    server.listen( port, host, () => {
         success( `   The ${colors.magenta.bold( 'Healer' )} server is running. :) ` );
         print();
     } );

@@ -8,7 +8,7 @@ import loadConfig from '../src/load-config';
 
 describe( 'Load config', () => {
     const dirname = __dirname;
-    const jsonConfig: any = { server: 'ws://localhost:5000' };
+    const jsonConfig = { server: { port: 5000, host: 'localhost' } };
 
     before( () => {
         patchRequire( vol );
@@ -42,8 +42,8 @@ describe( 'Load config', () => {
 
         vol.fromJSON( { [ configFile ]: JSON.stringify( jsonConfig ) }, dirname );
 
-        const config = loadConfig( configFile, dirname );
+        const url = loadConfig( configFile, dirname );
 
-        expect( config.server ).to.be.equals( 'ws://localhost:5000' );
+        expect( url ).to.be.equals( 'ws://localhost:5000' );
     } );
 } );

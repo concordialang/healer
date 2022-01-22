@@ -10,7 +10,7 @@ describe( 'Server', () => {
     it( 'Should server and listening on specific port', ( done ) => {
         server = wsServer( ( req, res, error ) => res.send( { error: error.message } ) );
 
-        server.listen( testPort, () => {
+        server.listen( testPort, 'localhost', () => {
             done();
         } );
     } );

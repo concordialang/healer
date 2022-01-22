@@ -21,7 +21,7 @@ type Endpoint = {
 
 type WSServer = {
     post: ( path: string, listener: RequestListener ) => void;
-    listen: ( port: number, listener: () => void ) => void;
+    listen: ( port: number, host: string, listener: () => void ) => void;
     close: () => void;
 };
 
@@ -52,9 +52,10 @@ const wsServer = ( onError: RequestError ): WSServer => {
     const endpoints: Endpoint[] = [];
     let server: Server = null;
 
-    const initServer = ( port: number, listener: () => void ): void => {
+    const initServer = ( port: number, host: string, listener: () => void ): void => {
         server = new Server( {
             port,
+            host,
         } );
 
         server.on( 'connection', ( socket ) => {
@@ -101,8 +102,8 @@ const wsServer = ( onError: RequestError ): WSServer => {
                 listener,
             } );
         },
-        listen: ( port: number, listener: () => void ) => {
-            initServer( port, listener );
+        listen: ( port: number, host: string, listener: () => void ) => {
+            initServer( port, host, listener );
         },
         close: () => {
             server.close();

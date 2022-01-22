@@ -14,14 +14,22 @@ const requireConfig = ( configFile: string, cwd: string ): ClientWebConfig => {
     }
 };
 
-const loadConfig = ( configFile: string, cwd = process.cwd() ): ClientWebConfig => {
+const loadConfig = ( configFile: string, cwd = process.cwd() ): string => {
     const config = requireConfig( configFile, cwd );
 
     if ( !config.server ) {
         throw new Error( `  Server option not provided in configuration file "${configFile}"` );
     }
 
-    return config;
+    if ( !config.server.port ) {
+        throw new Error(
+            `  Port option not provided in server option in configuration file "${configFile}"`,
+        );
+    }
+
+    const { port, host = 'localhost' } = config.server;
+
+    return `ws://${host}:${port}`;
 };
 
 export default loadConfig;

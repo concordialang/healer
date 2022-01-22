@@ -4,8 +4,8 @@ import WSConnection from './ws-connection';
 
 const CONFIG_FILE = '.healerrc.json';
 
-const config = loadConfig( CONFIG_FILE );
-const connection = new WSConnection( config.server );
+const url = loadConfig( CONFIG_FILE );
+const connection = new WSConnection( url );
 const clientWeb = new ClientWeb( connection );
 
 export default clientWeb;
