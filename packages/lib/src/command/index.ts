@@ -32,4 +32,8 @@ output.program
         }
     } );
 
-output.program.parse( process.argv );
+const healerCli = (): void => {
+    output.program.parse( process.argv );
+};
+
+export { healerCli };

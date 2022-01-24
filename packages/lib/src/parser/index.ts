@@ -55,6 +55,10 @@ const loadHealer = async ( entry: HealerEntry ): Promise<HealerInstance> => {
     return instance;
 };
 
+export const getDatabaseOptions = async (): Promise<DatabaseOptions> => {
+    return ( await explorer.load() ).database;
+};
+
 export const getOptions = async (
     configExplorer: Config<HealerConfig> = explorer,
 ): Promise<{
