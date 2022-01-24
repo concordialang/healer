@@ -6,6 +6,9 @@ import { HealingResultStatus } from '../models';
 import { colors, print, prompt, success, table } from '../output';
 import { healFeature } from './heal-feature';
 
+const indexId = ( index: number, length: number ): string => index.toString()
+    .padStart( length.toString().length, '0' );
+
 const findSuccessHealingResult = (): Promise<HealingResult[]> => {
     return HealingResultRepository.find(
         {
@@ -39,9 +42,9 @@ const confirmAdjustment = async (
     const confirmed: HealingResult[] = [];
     const notConfirmed: HealingResult[] = [];
 
-    for ( const result of results ) {
-        // eslint-disable-next-line no-await-in-loop
+    for await ( const [ index, result ] of results.entries() ) {
         const { response } = await prompt( {
+            prefix: colors.bold( `${indexId( index, results.length )} -` ),
             message:
                 `Do you want change ${colors.magenta( result.element.locator )}`
                 + ` to ${colors.green( result.newLocator )}?`,
@@ -111,14 +114,15 @@ const afterReporting = async (
     print( 'Let\'s begin...' );
     print();
     table( {
-        head: [ 'Feature', 'Locator', 'Healed locator', 'Score' ],
-        rows: results.map( ( { element, newLocator, score } ) => [
+        head: [ 'Id', 'Feature', 'Locator', 'Healed locator', 'Score' ],
+        rows: results.map( ( { element, newLocator, score }, index ) => [
+            indexId( index, results.length ),
             element.feature,
             element.locator,
             newLocator,
             score.toFixed( 2 ),
         ] ),
-        colWidths: [ 25, 30, 30, 11 ],
+        colWidths: [ 5, 25, 30, 30, 11 ],
     } );
 
     const [ confirmed, notConfirmed ] = await splitResults( results );
