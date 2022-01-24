@@ -1,17 +1,7 @@
-import { resolve } from 'path';
-
-import { requireDefault } from '../utils';
+import { fromDirname, requireDefault } from '../utils';
 import { RequirementEntry } from './requirement-entry';
 
 type OnArray<Entry, Data> = ( data: Data[], entry: Entry ) => Data;
-
-const fromDirname = ( from: string, dirname: string ): string => {
-    if ( from.startsWith( '.' ) ) {
-        return resolve( dirname, from );
-    }
-
-    return from;
-};
 
 export class Requirement<Entry extends RequirementEntry, Data = any> {
     private cache: Record<string, Data>;

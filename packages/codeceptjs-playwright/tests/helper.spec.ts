@@ -45,6 +45,7 @@ describe( 'Playwright', () => {
     beforeEach( async () => {
         await I._test( {
             titlePath: () => [ 'New feature' ],
+            file: `${process.cwd()}/test/feature.js`,
         } );
         await I._before();
     } );
@@ -90,6 +91,7 @@ describe( 'Playwright', () => {
         expect( payload ).to.be.not.null;
         expect( payload.locator ).to.be.equals( '[href="#information"]' );
         expect( payload.feature ).to.be.equals( 'New feature' );
+        expect( payload.testPath ).to.be.equals( './test/feature.js' );
         expect( payload.body ).to.match( /<body[\S\s]+?>[\S\s]+<\/body>/ );
     } );
 } );

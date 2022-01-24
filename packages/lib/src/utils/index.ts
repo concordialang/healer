@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { v4 as uuid4, v5 as uuid5 } from 'uuid';
 
 import { UIElement } from '../database/entities';
@@ -60,4 +60,12 @@ export const getUIElement = ( {
     return UIElementRepository.findOne( {
         uuid,
     } );
+};
+
+export const fromDirname = ( from: string, dirname: string ): string => {
+    if ( from.startsWith( '.' ) ) {
+        return resolve( dirname, from );
+    }
+
+    return from;
 };

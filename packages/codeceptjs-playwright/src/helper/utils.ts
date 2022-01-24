@@ -29,7 +29,9 @@ class HelperUtils {
     }
 
     onTest( test: Mocha.Test ) {
-        this.lastTestPath = test.file;
+        const relativeTestPath = test.file.replace( process.cwd(), '.' );
+
+        this.lastTestPath = relativeTestPath;
         [ this.lastFeature ] = test.titlePath();
     }
 

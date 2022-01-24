@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { join } from 'path';
 
+import { fromDirname } from '../utils';
+
 const healReplaces = (
     oldLocator: string,
     newLocator: string,
@@ -18,7 +20,8 @@ const healReplaces = (
 };
 
 const featurePathByTest = ( testPath: string, fileSystem = fs ): string => {
-    const testFile = fileSystem.readFileSync( testPath, { encoding: 'utf-8' } );
+    const path = fromDirname( testPath, process.cwd() );
+    const testFile = fileSystem.readFileSync( path, { encoding: 'utf-8' } );
     const [ , testCasePath ] = testFile.match( /\/\/ source: (\/.+\.testcase)\n/ );
 
     return testCasePath.replace( '.testcase', '.feature' );
