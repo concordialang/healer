@@ -1,6 +1,6 @@
 import { requireDefault } from '../utils';
 
-type LoaderFn = ( filepath: string ) => any;
+type LoaderFn = ( filepath: string ) => any | Promise<any>;
 
 interface Loaders {
     [extension: string]: LoaderFn;
