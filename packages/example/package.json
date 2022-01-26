@@ -1,0 +1,33 @@
+{
+  "name": "@healer/example",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
+  "homepage": "https://github.com/concordialang/healer/tree/main/packages/example#readme",
+  "license": "AGPL-3.0",
+  "main": "lib/example.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordialang/healer.git"
+  },
+  "scripts": {
+    "serve": "parcel ./src/*.html --no-cache",
+    "concordia:generate": "npx concordia --seed='example' --no-run --no-result",
+    "concordia:run": "npx concordia --seed='example' --no-test-case --no-script"
+  },
+  "bugs": {
+    "url": "https://github.com/concordialang/healer/issues"
+  },
+  "dependencies": {
+    "@healer/codeceptjs-playwright": "^0.0.0",
+    "@healer/heuristics-web": "^0.0.0",
+    "@mikro-orm/postgresql": "^4.5.10",
+    "@mikro-orm/sqlite": "^4.5.10",
+    "codeceptjs": "^3.2.2",
+    "codeceptjs-cmdhelper": "^2.4.0",
+    "codeceptjs-dbhelper": "^1.2.2",
+    "concordialang": "^2.0.0-alpha.18",
+    "concordialang-healer": "^0.0.0",
+    "parcel-bundler": "^1.12.5"
+  }
+}

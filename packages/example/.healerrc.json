@@ -1,0 +1,48 @@
+{
+  "heuristics": [
+    {
+      "name": "by-id",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    },
+    {
+      "name": "by-classes",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    },
+    {
+      "name": "by-attributes",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    },
+    {
+      "name": "by-tag",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    },
+    {
+      "name": "by-xpath",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    },
+    {
+      "name": "by-text",
+      "from": "@healer/heuristics-web/dist/heuristics",
+      "options": {}
+    }
+  ],
+  "healer": {
+    "from": "@healer/heuristics-web/dist/healer",
+    "options": {}
+  },
+  "plugin": {
+    "from": "@healer/codeceptjs-playwright"
+  },
+  "database": {
+    "type": "sqlite",
+    "dbName": "healer.db"
+  },
+  "server": {
+    "port": 5000
+  }
+}

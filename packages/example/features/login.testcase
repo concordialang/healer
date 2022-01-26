@@ -1,0 +1,56 @@
+# Generated with ❤ by Concordia
+#
+# THIS IS A GENERATED FILE - MODIFICATIONS CAN BE LOST !
+
+import "login.feature"
+
+@generated
+@scenario(1)
+@variant(1)
+Test case: Login with username and password - 1
+  Given that I visit the "/login.html"  # [Login Screen]
+  When I fill <username> with "alice"  # {Username}, valid: last element
+    And I fill <password> with "123456"  # {Password}, valid: last element
+    and I click on <submit>  # {Submit}
+  Then I am in "/welcome.html"  # [Welcome Screen]
+
+@generated
+@scenario(1)
+@variant(1)
+Test case: Login with username and password - 2
+  Given that I visit the "/login.html"  # [Login Screen]
+  When I fill <username> with "bob"  # {Username}, valid: random element
+    And I fill <password> with "123456"  # {Password}, valid: random element
+    and I click on <submit>  # {Submit}
+  Then I am in "/welcome.html"  # [Welcome Screen]
+
+@generated
+@scenario(1)
+@variant(1)
+Test case: Login with username and password - 3
+  Given that I visit the "/login.html"  # [Login Screen]
+  When I fill <username> with ""  # {Username}, invalid: not filled
+    And I fill <password> with ""  # {Password}, valid: first element
+    and I click on <submit>  # {Submit}
+  Then I must see "Please inform the username."  # from <username>
+
+@generated
+@scenario(1)
+@variant(1)
+Test case: Login with username and password - 4
+  Given that I visit the "/login.html"  # [Login Screen]
+  When I fill <username> with "­ÖÛgç í=IËræ¼jÀÖï c6Ö|\\"  # {Username}, invalid: inexistent element
+    And I fill <password> with "À®m1¾ÍÁZ:ÈÊ/ßÁÄw(J¨0±"  # {Password}, invalid: inexistent element
+    and I click on <submit>  # {Submit}
+  Then I must see "Username or password incorrect!"  # from <username>
+    And I must see "Username or password incorrect!"  # from <password>
+
+@generated
+@scenario(1)
+@variant(1)
+Test case: Login with username and password - 5
+  Given that I visit the "/login.html"  # [Login Screen]
+  When I fill <username> with "bob"  # {Username}, valid: first element
+    And I fill <password> with ""  # {Password}, invalid: not filled
+    and I click on <submit>  # {Submit}
+  Then I must see "Please inform the password."  # from <password>

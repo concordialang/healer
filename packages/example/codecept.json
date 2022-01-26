@@ -1,0 +1,47 @@
+{
+  "tests": "test/**/*.js",
+  "output": "output",
+  "helpers": {
+    "DbHelper": {
+      "require": "./node_modules/codeceptjs-dbhelper"
+    },
+    "CmdHelper": {
+      "require": "./node_modules/codeceptjs-cmdhelper"
+    },
+    "Playwright": {
+      "require": "./node_modules/@healer/codeceptjs-playwright/dist/helper",
+      "browser": "chromium",
+      "url": "http://localhost:1234",
+      "show": true,
+      "restart": true
+    }
+  },
+  "bootstrap": false,
+  "mocha": {
+    "reporterOptions": {
+      "codeceptjs-cli-reporter": {
+        "stdout": "-",
+        "options": {
+          "steps": true
+        }
+      },
+      "json": {
+        "stdout": "output/output.json"
+      },
+      "mochawesome": {
+        "stdout": "-",
+        "options": {
+          "reportDir": "output",
+          "reportFilename": "report",
+          "uniqueScreenshotNames": true,
+          "timestamp": false
+        }
+      }
+    }
+  },
+  "multiple": {
+    "parallel": {
+      "chunks": 2
+    }
+  }
+}

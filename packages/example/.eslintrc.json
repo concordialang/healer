@@ -1,0 +1,18 @@
+{
+  "extends": "../../.eslintrc.json",
+  "overrides": [
+    {
+      "files": "test/*",
+      "rules": {
+        "no-undef": "off",
+        "line-comment-position": "off",
+        "no-inline-comments": "off",
+        "require-await": "off",
+        "id-length": "off",
+        "max-len": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ],
+  "ignorePatterns": "output"
+}
