@@ -48,6 +48,10 @@ const defaultConfig: HealerConfig = {
         from: '@healer/heuristics-web/dist/healer',
         options: {},
     },
+    plugin: {
+        from: '@healer/codeceptjs-playwright/dist',
+        options: {},
+    },
     database: {
         type: 'sqlite',
         dbName: ':memory:',

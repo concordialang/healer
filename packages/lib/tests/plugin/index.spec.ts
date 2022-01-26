@@ -99,6 +99,7 @@ describe( 'Plugin', () => {
 
     after( async () => {
         await closeConnection();
+        vol.reset();
     } );
 
     it( 'Should get all not showed success healing results', async () => {

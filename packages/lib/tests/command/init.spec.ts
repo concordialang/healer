@@ -11,6 +11,7 @@ describe( 'Init command', () => {
     const configContent: HealerConfig = {
         heuristics: [],
         healer: null,
+        plugin: null,
         database: {
             type: 'sqlite',
             dbName: ':memory:',

@@ -12,9 +12,15 @@ export interface HealerEntry {
     options?: any;
 }
 
+export interface PluginEntry {
+    from: string;
+    options?: any;
+}
+
 export interface HealerConfig {
     healer: HealerEntry;
     heuristics: HeuristicEntry[];
     database: DatabaseOptions;
     server: ServerOptions;
+    plugin: PluginEntry;
 }

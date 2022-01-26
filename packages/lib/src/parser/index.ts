@@ -12,6 +12,7 @@ import {
 import { explorer } from './explorer';
 import { healerFinder } from './healer-finder';
 import { heuristicFinder } from './heuristic-finder';
+import { getPlugin } from './plugin';
 
 const onInvalid = ( message: string ): void => {
     throw new ConfigException( message );
@@ -55,11 +56,11 @@ const loadHealer = async ( entry: HealerEntry ): Promise<HealerInstance> => {
     return instance;
 };
 
-export const getDatabaseOptions = async (): Promise<DatabaseOptions> => {
+const getDatabaseOptions = async (): Promise<DatabaseOptions> => {
     return ( await explorer.load() ).database;
 };
 
-export const getOptions = async (
+const getOptions = async (
     configExplorer: Config<HealerConfig> = explorer,
 ): Promise<{
     healer: HealerOptions;
@@ -79,3 +80,5 @@ export const getOptions = async (
         database: config.database,
     };
 };
+
+export { getDatabaseOptions, getOptions, getPlugin };
