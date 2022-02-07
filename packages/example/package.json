@@ -1,7 +1,7 @@
 {
   "name": "@concordialang-healer/example",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "concordialang-healer tool usage example",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/example#readme",
   "license": "AGPL-3.0",
