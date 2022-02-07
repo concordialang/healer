@@ -1,11 +1,24 @@
-# `common`
+[![npm version][npm-image]][npm-url]
 
-> TODO: description
+# `@concordialang-healer/common`
 
-## Usage
+> Modelos para criação de _plugins_ de heurísticas e parser para `concordialang-healer`
 
+Esse pacote é usado para fornecer os modelos necessárias para criação de _plugins_ para [`concordialang-healer`](https://github.com/concordialang/healer#readme).
+
+## Instalação
+
+Instale pelo `npm`:
+
+```bash
+npm install @concordialang-healer/common --save
 ```
-const common = require('common');
 
-// TODO: DEMONSTRATE API
-```
+👉 Obs.: Você também pode instalar pelo `yarn`.
+
+## Criando _plugins_
+
+Para criar _plugins_ para `concordialang-healer` acesse as _docs_ abaixo:
+
+- [Criando heurística](//TODO:link_criando_heuristica)
+- [Criando _parser_](//TODO:link_criando_parser)
