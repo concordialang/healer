@@ -7,7 +7,7 @@ let onHealElement: ( payload: any ) => void = null;
 
 const utils = proxyquire.noCallThru()
     .load( '../src/helper/utils', {
-        '@healer/client-web': {
+        '@concordialang-healer/client-web': {
             saveElement( payload: any ) {
                 onSaveElement( payload );
             },

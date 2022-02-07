@@ -1,4 +1,4 @@
-import { Heuristic, HeuristicResult, UIElement } from '@healer/common';
+import { Heuristic, HeuristicResult, UIElement } from '@concordialang-healer/common';
 
 const byClasses: Heuristic = () => ( {
     name: 'by-classes',

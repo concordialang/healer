@@ -9,7 +9,7 @@
       "require": "./node_modules/codeceptjs-cmdhelper"
     },
     "Playwright": {
-      "require": "./node_modules/@healer/codeceptjs-playwright/dist/helper",
+      "require": "./node_modules/@concordialang-healer/codeceptjs-playwright/dist/helper",
       "browser": "chromium",
       "url": "http://localhost:1234",
       "show": true,

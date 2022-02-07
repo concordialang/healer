@@ -1,4 +1,4 @@
-import { Heuristic, HeuristicResult } from '@healer/common';
+import { Heuristic, HeuristicResult } from '@concordialang-healer/common';
 
 import { UIElement } from '../models/ui-element';
 

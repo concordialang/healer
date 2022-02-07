@@ -1,4 +1,4 @@
-import { UIElement } from '@healer/common';
+import { UIElement } from '@concordialang-healer/common';
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 

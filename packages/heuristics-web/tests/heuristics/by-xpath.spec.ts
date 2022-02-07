@@ -1,4 +1,4 @@
-import { HeuristicResult } from '@healer/common';
+import { HeuristicResult } from '@concordialang-healer/common';
 import { expect } from 'chai';
 import { JSDOM } from 'jsdom';
 

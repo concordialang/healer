@@ -1,4 +1,4 @@
-import { UIElement as IUIElement } from '@healer/common';
+import { UIElement as IUIElement } from '@concordialang-healer/common';
 
 import { HTMLElementContent } from './html-content';
 

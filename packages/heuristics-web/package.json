@@ -1,5 +1,5 @@
 {
-  "name": "@healer/heuristics-web",
+  "name": "@concordialang-healer/heuristics-web",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
@@ -24,7 +24,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@healer/common": "^0.0.0",
+    "@concordialang-healer/common": "^0.0.0",
     "jsdom": "^17.0.0",
     "unique-selector": "^0.5.0"
   }

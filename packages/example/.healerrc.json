@@ -3,41 +3,41 @@
   "heuristics": [
     {
       "name": "by-id",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     },
     {
       "name": "by-classes",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     },
     {
       "name": "by-attributes",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     },
     {
       "name": "by-tag",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     },
     {
       "name": "by-xpath",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     },
     {
       "name": "by-text",
-      "from": "@healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
       "options": {}
     }
   ],
   "parser": {
-    "from": "@healer/heuristics-web/dist/parser",
+    "from": "@concordialang-healer/heuristics-web/dist/parser",
     "options": {}
   },
   "plugin": {
-    "from": "@healer/codeceptjs-playwright"
+    "from": "@concordialang-healer/codeceptjs-playwright"
   },
   "database": {
     "type": "sqlite",

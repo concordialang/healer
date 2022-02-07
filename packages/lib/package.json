@@ -1,5 +1,5 @@
 {
-  "name": "@healer/lib",
+  "name": "@concordialang-healer/lib",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
@@ -18,7 +18,7 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "dependencies": {
-    "@healer/common": "^0.0.0",
+    "@concordialang-healer/common": "^0.0.0",
     "@mikro-orm/core": "^4.5.9",
     "chalk": "^2.4.2",
     "cli-table3": "^0.6.1",

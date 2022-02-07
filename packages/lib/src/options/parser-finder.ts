@@ -1,4 +1,4 @@
-import { Parser } from '@healer/common';
+import { Parser } from '@concordialang-healer/common';
 
 import { Requirement } from '../requirement';
 

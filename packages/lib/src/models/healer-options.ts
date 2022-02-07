@@ -1,4 +1,4 @@
-import { HeuristicInstance, ParserInstance } from '@healer/common';
+import { HeuristicInstance, ParserInstance } from '@concordialang-healer/common';
 
 export interface HealerOptions {
     heuristics: HeuristicInstance[];

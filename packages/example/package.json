@@ -1,5 +1,5 @@
 {
-  "name": "@healer/example",
+  "name": "@concordialang-healer/example",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
@@ -19,8 +19,8 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "dependencies": {
-    "@healer/codeceptjs-playwright": "^0.0.0",
-    "@healer/heuristics-web": "^0.0.0",
+    "@concordialang-healer/codeceptjs-playwright": "^0.0.0",
+    "@concordialang-healer/heuristics-web": "^0.0.0",
     "@mikro-orm/postgresql": "^4.5.10",
     "@mikro-orm/sqlite": "^4.5.10",
     "codeceptjs": "^3.2.2",

@@ -3,15 +3,15 @@ import { TestScriptExecutionOptions } from 'concordialang-plugin';
 
 export class PlaywrightHelperConfiguration implements HelperConfiguration {
     readonly _helperName = 'Playwright';
-    readonly _require: string = './node_modules/@healer/codeceptjs-playwright/dist/helper';
-    readonly _browser: string = 'chromium';
-    readonly _url: string = 'http://localhost';
+    readonly _require = './node_modules/@concordialang-healer/codeceptjs-playwright/dist/helper';
+    readonly _browser = 'chromium';
+    readonly _url = 'http://localhost';
 
-    name(): string {
+    name() {
         return this._helperName;
     }
 
-    generate( execOptions: TestScriptExecutionOptions ): any {
+    generate( execOptions: TestScriptExecutionOptions ) {
         const [ browser ] = execOptions.target
             ? execOptions.target.split( ',' )
                 .map( ( value ) => value.trim() )

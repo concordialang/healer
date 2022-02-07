@@ -1,4 +1,4 @@
-import { Parser } from '@healer/common';
+import { Parser } from '@concordialang-healer/common';
 import { JSDOM } from 'jsdom';
 import uniqueSelector from 'unique-selector';
 

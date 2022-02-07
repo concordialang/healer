@@ -1,4 +1,4 @@
-import { Heuristic } from '@healer/common';
+import { Heuristic } from '@concordialang-healer/common';
 
 import { UIElement } from '../models/ui-element';
 import { XPathResult } from '../models/x-path-result';

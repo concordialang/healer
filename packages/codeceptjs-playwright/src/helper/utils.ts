@@ -1,5 +1,5 @@
-import clientWeb from '@healer/client-web';
-import getElementData from '@healer/element-data';
+import clientWeb from '@concordialang-healer/client-web';
+import getElementData from '@concordialang-healer/element-data';
 import ElementNotFound from 'codeceptjs/lib/helper/errors/ElementNotFound';
 
 class HelperUtils {

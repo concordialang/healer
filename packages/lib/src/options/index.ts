@@ -1,4 +1,4 @@
-import { Heuristic, HeuristicInstance, Parser, ParserInstance } from '@healer/common';
+import { Heuristic, HeuristicInstance, Parser, ParserInstance } from '@concordialang-healer/common';
 
 import { Config, ConfigException } from '../config';
 import {

@@ -1,4 +1,4 @@
-import { Heuristic } from '@healer/common';
+import { Heuristic } from '@concordialang-healer/common';
 
 import { HeuristicEntry } from '../models';
 import { Requirement } from '../requirement';

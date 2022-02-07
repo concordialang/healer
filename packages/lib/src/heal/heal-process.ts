@@ -1,4 +1,4 @@
-import { HealingElement, HeuristicInstance, HeuristicResult } from '@healer/common';
+import { HealingElement, HeuristicInstance, HeuristicResult } from '@concordialang-healer/common';
 
 import { UIElement } from '../database/entities';
 import { HealerOptions, ScoredLocator } from '../models';
