@@ -1,11 +1,13 @@
-# `lib`
+[![npm version][npm-image]][npm-url]
 
-> TODO: description
+# `@concordialang-healer/lib`
 
-## Usage
+> ⚛ _Core_ da ferramenta concordialang-healer
 
-```
-const lib = require('lib');
+Esse pacote fornece _core_ da ferramenta [`concordialang-healer`](https://github.com/concordialang/healer#readme).
 
-// TODO: DEMONSTRATE API
-```
+## Instalação
+
+> Não instale esse pacote diretamente.
+
+Utilize o `concordialang-healer`.
