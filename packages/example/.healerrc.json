@@ -1,4 +1,5 @@
 {
+  "minimumScore": 0.5,
   "heuristics": [
     {
       "name": "by-id",

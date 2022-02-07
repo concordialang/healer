@@ -96,6 +96,7 @@ describe( 'Heal Process', () => {
             options: {
                 heuristics,
                 healer,
+                minimumScore: 0.5,
             },
         } );
 
@@ -121,6 +122,7 @@ describe( 'Heal Process', () => {
             options: {
                 heuristics,
                 healer,
+                minimumScore: 0.5,
             },
         } );
 
@@ -146,6 +148,7 @@ describe( 'Heal Process', () => {
             options: {
                 heuristics,
                 healer,
+                minimumScore: 0.5,
             },
         } );
 

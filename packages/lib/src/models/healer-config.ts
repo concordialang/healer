@@ -23,4 +23,5 @@ export interface HealerConfig {
     database: DatabaseOptions;
     server: ServerOptions;
     plugin: PluginEntry;
+    minimumScore: number;
 }

@@ -15,6 +15,7 @@ describe( 'Heal Endpoint', () => {
     const endpoint = healEndpoint( {
         healer: Healer(),
         heuristics: Heuristics.map( ( Heuristic ) => Heuristic() ),
+        minimumScore: 0.5,
     } );
 
     before( async () => {

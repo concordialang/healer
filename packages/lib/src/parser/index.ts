@@ -56,6 +56,18 @@ const loadHealer = async ( entry: HealerEntry ): Promise<HealerInstance> => {
     return instance;
 };
 
+const loadMinimumScore = ( score: number ): number => {
+    if ( !score && score !== 0 ) {
+        onInvalid( 'MinimumScore option not provided in configuration file.' );
+    }
+
+    if ( score < 0 || score > 1 ) {
+        onInvalid( 'The minimumScore option must be between 0 and 1.' );
+    }
+
+    return score;
+};
+
 const getDatabaseOptions = async (): Promise<DatabaseOptions> => {
     return ( await explorer.load() ).database;
 };
@@ -70,11 +82,13 @@ const getOptions = async (
     const config: HealerConfig = await configExplorer.load();
     const heuristics: HeuristicInstance[] = await loadHeuristics( config.heuristics );
     const healer: HealerInstance = await loadHealer( config.healer );
+    const minimumScore: number = loadMinimumScore( config.minimumScore );
 
     return {
         healer: {
             heuristics,
             healer,
+            minimumScore,
         },
         server: config.server,
         database: config.database,

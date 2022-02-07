@@ -12,6 +12,7 @@ type InitOptions = {
 };
 
 const defaultConfig: HealerConfig = {
+    minimumScore: 0.5,
     heuristics: [
         {
             name: 'by-id',
@@ -54,7 +55,7 @@ const defaultConfig: HealerConfig = {
     },
     database: {
         type: 'sqlite',
-        dbName: ':memory:',
+        dbName: 'healer.db',
         host: 'localhost',
         port: null,
         user: null,

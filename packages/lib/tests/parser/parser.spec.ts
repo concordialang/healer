@@ -63,6 +63,7 @@ describe( 'Parser', () => {
                 healer: {
                     from: healerPackage,
                 },
+                minimumScore: 0.5,
             } ),
         } );
 
@@ -96,6 +97,72 @@ describe( 'Parser', () => {
         expect( getOptions( explorer ) ).to.eventually.be.rejectedWith(
             ConfigException,
             `The "${otherHeuristic}" heuristic was not found in "${heuristicsPackage}" package.`,
+        );
+    } );
+
+    it( 'Should throw an error if minimumScore not provided', () => {
+        const jsonFile: string = 'healer.json';
+
+        vol.fromJSON( {
+            [ jsonFile ]: JSON.stringify( {
+                heuristics: [
+                    { from: heuristicsPackage, name: firstHeuristic },
+                    { from: heuristicsPackage, name: secondHeuristic },
+                ],
+                healer: {
+                    from: healerPackage,
+                },
+                minimumScore: 0.5,
+            } ),
+        } );
+
+        expect( getOptions( explorer ) ).to.eventually.be.rejectedWith(
+            ConfigException,
+            'MinimumScore option not provided in configuration file.',
+        );
+    } );
+
+    it( 'Should throw an error if minimumScore is less than 0', () => {
+        const jsonFile: string = 'healer.json';
+
+        vol.fromJSON( {
+            [ jsonFile ]: JSON.stringify( {
+                heuristics: [
+                    { from: heuristicsPackage, name: firstHeuristic },
+                    { from: heuristicsPackage, name: secondHeuristic },
+                ],
+                healer: {
+                    from: healerPackage,
+                },
+                minimumScore: -0.1,
+            } ),
+        } );
+
+        expect( getOptions( explorer ) ).to.eventually.be.rejectedWith(
+            ConfigException,
+            'The minimumScore option must be between 0 and 1.',
+        );
+    } );
+
+    it( 'Should throw an error if minimumScore is grater than 1', () => {
+        const jsonFile: string = 'healer.json';
+
+        vol.fromJSON( {
+            [ jsonFile ]: JSON.stringify( {
+                heuristics: [
+                    { from: heuristicsPackage, name: firstHeuristic },
+                    { from: heuristicsPackage, name: secondHeuristic },
+                ],
+                healer: {
+                    from: healerPackage,
+                },
+                minimumScore: 1.1,
+            } ),
+        } );
+
+        expect( getOptions( explorer ) ).to.eventually.be.rejectedWith(
+            ConfigException,
+            'The minimumScore option must be between 0 and 1.',
         );
     } );
 } );

@@ -67,7 +67,7 @@ const healProcess = ( request: {
     source: any;
     options: HealerOptions;
 } ): ScoredLocator => {
-    const { heuristics, healer } = request.options;
+    const { heuristics, healer, minimumScore } = request.options;
     const { source } = healer.transform( {
         element: request.element,
         source: request.source,
@@ -83,8 +83,7 @@ const healProcess = ( request: {
             ...value,
             totalScore: value.totalScore / maximumWeight,
         } ) )
-        // TODO: Use minimal score from options
-        .filter( ( value ) => value.totalScore > 0.5 )
+        .filter( ( value ) => value.totalScore > minimumScore )
         .sort( ( valueA, valueB ) => valueB.totalScore - valueA.totalScore );
 
     return {
