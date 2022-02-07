@@ -22,21 +22,21 @@ Table: Users
   | alice    | 4l1c3pass |
 
 UI Element: Username
-  - id is "username"
+  - locator is "username"
   - required
     Otherwise I must see "Please inform the username."
   - value comes from "SELECT username FROM [Users]"
     Otherwise I must see "Username or password incorrect!"
 
 UI Element: Password
-  - id is "password"
+  - locator is "password"
   - required
     Otherwise I must see "Please inform the password."
   - value comes from "SELECT password FROM [Users] WHERE username = {Username}"
     Otherwise I must see "Username or password incorrect!"
 
 UI Element: Submit
-  - id is "submit"
+  - locator is "submit"
   - type is button
 
 Constants:
