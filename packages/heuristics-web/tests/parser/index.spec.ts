@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 
-import Healer from '../../src/healer';
+import Parser from '../../src/parser';
 
-describe( 'Healer', () => {
-    const healer = Healer();
+describe( 'Parser', () => {
+    const parser = Parser();
     const source = `
     <html>
         <body>
@@ -17,7 +17,7 @@ describe( 'Healer', () => {
     `;
 
     it( 'Should transform a string page into document', () => {
-        const { source: document } = healer.transform( { source, element: null } );
+        const { source: document } = parser.transform( { source, element: null } );
 
         expect( document ).to.be.not.null;
         expect( document.querySelector( '#username' ) ).to.be.not.null;
@@ -26,14 +26,14 @@ describe( 'Healer', () => {
     } );
 
     it( 'Should generate a locator from node element', () => {
-        const { source: document } = healer.transform( { source, element: null } );
+        const { source: document } = parser.transform( { source, element: null } );
 
         const inputUsername = document.querySelector( '[name="username"]' );
         const inputPassword = document.querySelector( '[name="password"]' );
         const buttonSubmit = document.querySelector( 'button' );
 
         expect(
-            healer.toLocator( {
+            parser.toLocator( {
                 element: null,
                 healing: {
                     totalScore: 1,
@@ -43,7 +43,7 @@ describe( 'Healer', () => {
             } ),
         ).to.be.equals( '#username' );
         expect(
-            healer.toLocator( {
+            parser.toLocator( {
                 element: null,
                 healing: {
                     totalScore: 1,
@@ -53,7 +53,7 @@ describe( 'Healer', () => {
             } ),
         ).to.be.equals( '#password' );
         expect(
-            healer.toLocator( {
+            parser.toLocator( {
                 element: null,
                 healing: {
                     totalScore: 1,

@@ -1,8 +1,8 @@
-import { Healer } from '@healer/common';
+import { Parser } from '@healer/common';
 import { JSDOM } from 'jsdom';
 import uniqueSelector from 'unique-selector';
 
-const healer: Healer = () => ( {
+const parser: Parser = () => ( {
     transform: ( { source } ) => ( {
         source: new JSDOM( source.trim() ).window.document,
     } ),
@@ -11,4 +11,4 @@ const healer: Healer = () => ( {
     } ),
 } );
 
-export default healer;
+export default parser;

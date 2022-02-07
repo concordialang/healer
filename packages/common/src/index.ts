@@ -1,7 +1,7 @@
-import Healer, { HealerInstance } from './healer';
 import HealingElement from './healing-element';
 import Heuristic, { HeuristicInstance } from './heuristic';
 import HeuristicResult, { ScoredElement } from './heuristic-result';
+import Parser, { ParserInstance } from './parser';
 import UIElement from './ui-element';
 
 export {
@@ -10,7 +10,7 @@ export {
     UIElement,
     HeuristicResult,
     ScoredElement,
-    Healer,
-    HealerInstance,
+    Parser,
+    ParserInstance,
     HealingElement,
 };

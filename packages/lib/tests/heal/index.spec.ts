@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import Healer from '../../../heuristics-web/src/healer';
 import Heuristics from '../../../heuristics-web/src/heuristics';
+import Parser from '../../../heuristics-web/src/parser';
 import { closeConnection, initDatabase } from '../../src/database';
 import { UIElement } from '../../src/database/entities';
 import { UIElementRepository } from '../../src/database/repositories';
@@ -10,7 +10,7 @@ import { OutputLevel, setLevel } from '../../src/output';
 import { getUIElement } from '../../src/utils';
 
 describe( 'Heal Process', () => {
-    const healer = Healer();
+    const parser = Parser();
     const heuristics = Heuristics.map( ( Heuristic ) => Heuristic() );
 
     before( async () => {
@@ -95,7 +95,7 @@ describe( 'Heal Process', () => {
             source,
             options: {
                 heuristics,
-                healer,
+                parser,
                 minimumScore: 0.5,
             },
         } );
@@ -121,7 +121,7 @@ describe( 'Heal Process', () => {
             source,
             options: {
                 heuristics,
-                healer,
+                parser,
                 minimumScore: 0.5,
             },
         } );
@@ -147,7 +147,7 @@ describe( 'Heal Process', () => {
             source,
             options: {
                 heuristics,
-                healer,
+                parser,
                 minimumScore: 0.5,
             },
         } );

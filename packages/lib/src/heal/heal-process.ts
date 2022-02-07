@@ -67,8 +67,8 @@ const healProcess = ( request: {
     source: any;
     options: HealerOptions;
 } ): ScoredLocator => {
-    const { heuristics, healer, minimumScore } = request.options;
-    const { source } = healer.transform( {
+    const { heuristics, parser, minimumScore } = request.options;
+    const { source } = parser.transform( {
         element: request.element,
         source: request.source,
     } );
@@ -87,7 +87,7 @@ const healProcess = ( request: {
         .sort( ( valueA, valueB ) => valueB.totalScore - valueA.totalScore );
 
     return {
-        locator: healer.toLocator( {
+        locator: parser.toLocator( {
             element: request.element,
             healing: healingResult,
         } ),

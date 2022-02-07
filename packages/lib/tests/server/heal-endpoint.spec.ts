@@ -1,8 +1,8 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import Healer from '../../../heuristics-web/src/healer';
 import Heuristics from '../../../heuristics-web/src/heuristics';
+import Parser from '../../../heuristics-web/src/parser';
 import { UIElement } from '../../src/database/entities';
 import { closeConnection, initDatabase } from '../../src/database/manager';
 import { UIElementRepository } from '../../src/database/repositories';
@@ -13,7 +13,7 @@ use( chaiAsPromised );
 
 describe( 'Heal Endpoint', () => {
     const endpoint = healEndpoint( {
-        healer: Healer(),
+        parser: Parser(),
         heuristics: Heuristics.map( ( Heuristic ) => Heuristic() ),
         minimumScore: 0.5,
     } );

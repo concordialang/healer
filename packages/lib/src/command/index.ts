@@ -1,5 +1,5 @@
+import { getOptions } from '../options';
 import output from '../output';
-import { getOptions } from '../parser';
 import { init } from './init';
 import { server } from './server';
 

@@ -7,11 +7,11 @@ import { vol } from 'memfs';
 import { Config, ConfigException } from '../../src/config';
 import { CONFIG_FILE_NAMES } from '../../src/constants';
 import { HealerConfig } from '../../src/models';
-import { getOptions } from '../../src/parser';
+import { getOptions } from '../../src/options';
 
 use( chaiAsPromised );
 
-describe( 'Parser', () => {
+describe( 'Get Options', () => {
     const firstHeuristic: string = 'first-heuristic';
     const secondHeuristic: string = 'second-heuristic';
 
@@ -22,8 +22,8 @@ describe( 'Parser', () => {
         () => ( { name: '${secondHeuristic}', run: () => '${secondHeuristic}' } ),
     ]
     `;
-    const healerPackage: string = 'healer';
-    const healerPackageContent: string = `
+    const parserPackage: string = 'parser';
+    const parserPackageContent: string = `
     module.exports = () => ( {
         transform: () => ( { source: 'source' } ),
         toLocator: () => 'new-locator',
@@ -38,7 +38,7 @@ describe( 'Parser', () => {
     beforeEach( () => {
         vol.fromJSON( {
             [ `node_modules/${heuristicsPackage}/index.js` ]: heuristicsPackageContent,
-            [ `node_modules/${healerPackage}/index.js` ]: healerPackageContent,
+            [ `node_modules/${parserPackage}/index.js` ]: parserPackageContent,
         } );
         patchRequire( vol );
     } );
@@ -60,8 +60,8 @@ describe( 'Parser', () => {
                     { from: heuristicsPackage, name: firstHeuristic },
                     { from: heuristicsPackage, name: secondHeuristic },
                 ],
-                healer: {
-                    from: healerPackage,
+                parser: {
+                    from: parserPackage,
                 },
                 minimumScore: 0.5,
             } ),
@@ -109,8 +109,8 @@ describe( 'Parser', () => {
                     { from: heuristicsPackage, name: firstHeuristic },
                     { from: heuristicsPackage, name: secondHeuristic },
                 ],
-                healer: {
-                    from: healerPackage,
+                parser: {
+                    from: parserPackage,
                 },
                 minimumScore: 0.5,
             } ),
@@ -131,8 +131,8 @@ describe( 'Parser', () => {
                     { from: heuristicsPackage, name: firstHeuristic },
                     { from: heuristicsPackage, name: secondHeuristic },
                 ],
-                healer: {
-                    from: healerPackage,
+                parser: {
+                    from: parserPackage,
                 },
                 minimumScore: -0.1,
             } ),
@@ -153,8 +153,8 @@ describe( 'Parser', () => {
                     { from: heuristicsPackage, name: firstHeuristic },
                     { from: heuristicsPackage, name: secondHeuristic },
                 ],
-                healer: {
-                    from: healerPackage,
+                parser: {
+                    from: parserPackage,
                 },
                 minimumScore: 1.1,
             } ),

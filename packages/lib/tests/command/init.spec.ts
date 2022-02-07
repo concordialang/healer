@@ -10,7 +10,7 @@ import { OutputLevel, setLevel } from '../../src/output';
 describe( 'Init command', () => {
     const configContent: HealerConfig = {
         heuristics: [],
-        healer: null,
+        parser: null,
         plugin: null,
         database: {
             type: 'sqlite',
@@ -19,6 +19,7 @@ describe( 'Init command', () => {
         server: {
             port: 5000,
         },
+        minimumScore: 0.5,
     };
 
     const path = __dirname;

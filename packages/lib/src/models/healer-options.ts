@@ -1,7 +1,7 @@
-import { HealerInstance, HeuristicInstance } from '@healer/common';
+import { HeuristicInstance, ParserInstance } from '@healer/common';
 
 export interface HealerOptions {
     heuristics: HeuristicInstance[];
-    healer: HealerInstance;
+    parser: ParserInstance;
     minimumScore: number;
 }

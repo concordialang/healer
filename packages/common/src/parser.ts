@@ -1,14 +1,14 @@
 import { HealingElement, UIElement } from '.';
 
-type HealerInstance = {
+type ParserInstance = {
     transform: ( params: { source: string; element: UIElement } ) => {
         source: any;
     };
     toLocator: ( params: { element: UIElement; healing: HealingElement } ) => string;
 };
 
-type Healer = ( options?: any ) => HealerInstance;
+type Parser = ( options?: any ) => ParserInstance;
 
-export default Healer;
+export default Parser;
 
-export { HealerInstance };
+export { ParserInstance };

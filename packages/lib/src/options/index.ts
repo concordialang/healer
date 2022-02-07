@@ -1,17 +1,17 @@
-import { Healer, HealerInstance, Heuristic, HeuristicInstance } from '@healer/common';
+import { Heuristic, HeuristicInstance, Parser, ParserInstance } from '@healer/common';
 
 import { Config, ConfigException } from '../config';
 import {
     DatabaseOptions,
     HealerConfig,
-    HealerEntry,
     HealerOptions,
     HeuristicEntry,
+    ParserEntry,
     ServerOptions,
 } from '../models';
 import { explorer } from './explorer';
-import { healerFinder } from './healer-finder';
 import { heuristicFinder } from './heuristic-finder';
+import { parserFinder } from './parser-finder';
 import { getPlugin } from './plugin';
 
 const onInvalid = ( message: string ): void => {
@@ -37,9 +37,9 @@ const loadHeuristics = ( entries: HeuristicEntry[] ): Promise<HeuristicInstance[
     return Promise.all( entries.map( loadHeuristic ) );
 };
 
-const loadHealer = async ( entry: HealerEntry ): Promise<HealerInstance> => {
-    const healer: Healer = await healerFinder.find( entry );
-    const instance: HealerInstance = healer?.( entry.options );
+const loadParser = async ( entry: ParserEntry ): Promise<ParserInstance> => {
+    const parser: Parser = await parserFinder.find( entry );
+    const instance: ParserInstance = parser?.( entry.options );
 
     if ( !instance ) {
         onInvalid( `The healer was not found in "${entry.from}" package.` );
@@ -81,13 +81,13 @@ const getOptions = async (
 }> => {
     const config: HealerConfig = await configExplorer.load();
     const heuristics: HeuristicInstance[] = await loadHeuristics( config.heuristics );
-    const healer: HealerInstance = await loadHealer( config.healer );
+    const parser: ParserInstance = await loadParser( config.parser );
     const minimumScore: number = loadMinimumScore( config.minimumScore );
 
     return {
         healer: {
             heuristics,
-            healer,
+            parser,
             minimumScore,
         },
         server: config.server,

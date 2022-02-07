@@ -7,7 +7,7 @@ import { vol } from 'memfs';
 import { Config, ConfigException } from '../../src/config';
 import { CONFIG_FILE_NAMES } from '../../src/constants';
 import { HealerConfig } from '../../src/models';
-import { getPlugin } from '../../src/parser/plugin';
+import { getPlugin } from '../../src/options/plugin';
 
 use( chaiAsPromised );
 

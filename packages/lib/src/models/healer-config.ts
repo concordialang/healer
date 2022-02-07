@@ -7,7 +7,7 @@ export interface HeuristicEntry {
     options?: any;
 }
 
-export interface HealerEntry {
+export interface ParserEntry {
     from: string;
     options?: any;
 }
@@ -18,7 +18,7 @@ export interface PluginEntry {
 }
 
 export interface HealerConfig {
-    healer: HealerEntry;
+    parser: ParserEntry;
     heuristics: HeuristicEntry[];
     database: DatabaseOptions;
     server: ServerOptions;

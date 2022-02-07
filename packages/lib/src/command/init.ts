@@ -45,8 +45,8 @@ const defaultConfig: HealerConfig = {
             options: {},
         },
     ],
-    healer: {
-        from: '@healer/heuristics-web/dist/healer',
+    parser: {
+        from: '@healer/heuristics-web/dist/parser',
         options: {},
     },
     plugin: {
