@@ -1,7 +1,7 @@
 {
   "name": "@concordialang-healer/element-data",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "Get HTML element data to save in concordialang-healer server",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/element-data#readme",
   "license": "AGPL-3.0",
