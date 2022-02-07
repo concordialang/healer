@@ -1,7 +1,7 @@
 {
   "name": "@concordialang-healer/heuristics-web",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "Heuristics and parser for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/heuristics-web#readme",
   "license": "AGPL-3.0",
