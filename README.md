@@ -1,4 +1,5 @@
-[![npm version][npm-image]][npm-url]
+[![npm (tag)](https://img.shields.io/npm/v/concordialang-healer?color=blue&style=flat-square)](https://www.npmjs.com/package/concordialang-healer)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-blueviolet?style=flat-square)](https://lerna.js.org/)
 
 # concordialang-healer
 

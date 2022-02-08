@@ -1,4 +1,4 @@
-[![npm version][npm-image]][npm-url]
+[![npm (tag)](https://img.shields.io/npm/v/@concordialang-healer/client-web?color=blue&style=flat-square)](https://www.npmjs.com/package/@concordialang-healer/client-web)
 
 # `@concordialang-healer/client-web`
 
