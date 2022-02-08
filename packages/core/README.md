@@ -1,6 +1,6 @@
 [![npm version][npm-image]][npm-url]
 
-# `@concordialang-healer/lib`
+# `@concordialang-healer/core`
 
 > ⚛ _Core_ da ferramenta concordialang-healer
 

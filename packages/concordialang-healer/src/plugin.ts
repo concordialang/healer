@@ -1,4 +1,4 @@
-import { getPlugin } from '@concordialang-healer/lib';
+import { getPlugin } from '@concordialang-healer/core';
 import { Plugin } from 'concordialang-plugin';
 
 class HealerPlugin {

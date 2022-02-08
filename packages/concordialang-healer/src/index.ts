@@ -1,4 +1,4 @@
-import { afterReporting, getDatabaseOptions, initDatabase } from '@concordialang-healer/lib';
+import { afterReporting, getDatabaseOptions, initDatabase } from '@concordialang-healer/core';
 import {
     AbstractTestScript,
     Plugin,
