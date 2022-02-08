@@ -119,7 +119,15 @@ Além disso, você precisará instalar:
 
 ## Configuração
 
-Inicialize o arquivo de configuração:
+Adicione o `concordialang-healer` como _plugin_ nas configurações do `Concordia` (geralmente `.concordiarc`).
+
+```json
+{
+  "plugin": "concordialang-healer"
+}
+```
+
+Inicialize o arquivo de configuração do `concordialang-healer`:
 
 `npx concordia-healer --init`
 
