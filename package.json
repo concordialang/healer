@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "description": "Self-Healing of Concordia Specifications",
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
-    "lint-fix": "eslint \"./**/*.{ts,js}\" --fix --no-error-on-unmatched-pattern --ignore-path .gitignore",
+    "build": "rimraf ./packages/*/dist/ && lerna run build",
+    "format": "prettier --write ./**/*.{ts,js,json,md}",
+    "lint-fix": "eslint ./**/*.{ts,js} --fix --no-error-on-unmatched-pattern --ignore-path .gitignore",
     "prepare": "husky install",
     "pre-commit": "lint-staged && npm test",
     "test": "lerna run test",
-    "coverage": "nyc -t coverage npm run test",
-    "bootstrap": "lerna bootstrap"
+    "test:coverage": "nyc -t coverage npm run test",
+    "bootstrap": "lerna bootstrap",
+    "publish": "npm run build && lerna publish"
   },
   "repository": {
     "type": "git",
