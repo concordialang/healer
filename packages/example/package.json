@@ -17,6 +17,9 @@
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@concordialang-healer/codeceptjs-playwright": "^0.0.0",
     "@concordialang-healer/heuristics-web": "^0.0.0",

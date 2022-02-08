@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "typescript": "*"
   }

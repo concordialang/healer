@@ -20,6 +20,9 @@
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/jsdom": "^16.2.13",
     "jsdom": "^17.0.0",

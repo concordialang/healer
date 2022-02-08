@@ -20,6 +20,9 @@
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@concordialang-healer/client-web": "^0.0.0",
     "@concordialang-healer/element-data": "^0.0.0",

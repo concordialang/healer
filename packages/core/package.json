@@ -20,6 +20,9 @@
   "bugs": {
     "url": "https://github.com/concordialang/healer/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@concordialang-healer/common": "^0.0.0",
     "@mikro-orm/core": "^4.5.9",

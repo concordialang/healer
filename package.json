@@ -34,6 +34,9 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "homepage": "https://github.com/concordialang/healer#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.18",
     "@types/chai-as-promised": "^7.1.4",
