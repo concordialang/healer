@@ -5,7 +5,6 @@
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/example#readme",
   "license": "AGPL-3.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/concordialang/healer.git"
