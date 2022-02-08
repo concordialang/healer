@@ -6,6 +6,9 @@
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/client-web#readme",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/concordialang/healer.git"
