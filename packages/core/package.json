@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Core for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
-  "homepage": "https://github.com/concordialang/healer/tree/main/packages/lib#readme",
+  "homepage": "https://github.com/concordialang/healer/tree/main/packages/core#readme",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
   "repository": {
