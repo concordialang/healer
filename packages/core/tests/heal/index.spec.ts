@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import Heuristics from '../../../heuristics-web/src/heuristics';
-import Parser from '../../../heuristics-web/src/parser';
+import Heuristics from '../../../heuristics-web/src';
+import Parser from '../../../parser-web/src';
 import { closeConnection, initDatabase } from '../../src/database';
 import { UIElement } from '../../src/database/entities';
 import { UIElementRepository } from '../../src/database/repositories';

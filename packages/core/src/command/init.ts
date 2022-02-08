@@ -16,42 +16,34 @@ const defaultConfig: HealerConfig = {
     heuristics: [
         {
             name: 'by-id',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
         {
             name: 'by-classes',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
         {
             name: 'by-attributes',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
         {
             name: 'by-tag',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
         {
             name: 'by-xpath',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
         {
             name: 'by-text',
-            from: '@concordialang-healer/heuristics-web/dist/heuristics',
-            options: {},
+            from: '@concordialang-healer/heuristics-web',
         },
     ],
     parser: {
-        from: '@concordialang-healer/heuristics-web/dist/parser',
-        options: {},
+        from: '@concordialang-healer/parser-web',
     },
     plugin: {
-        from: '@concordialang-healer/codeceptjs-playwright/dist',
-        options: {},
+        from: '@concordialang-healer/codeceptjs-playwright',
     },
     database: {
         type: 'sqlite',

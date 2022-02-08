@@ -1,9 +1,9 @@
 {
-  "name": "@concordialang-healer/heuristics-web",
+  "name": "@concordialang-healer/parser-web",
   "version": "0.0.0",
-  "description": "Heuristics for concordialang-healer",
+  "description": "Parser for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
-  "homepage": "https://github.com/concordialang/healer/tree/main/packages/heuristics-web#readme",
+  "homepage": "https://github.com/concordialang/healer/tree/main/packages/parser-web#readme",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
   "files": [
@@ -21,10 +21,13 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "devDependencies": {
+    "@types/jsdom": "^16.2.13",
     "ts-mocha": "^8.0.0",
     "typescript": "*"
   },
   "dependencies": {
-    "@concordialang-healer/common": "^0.0.0"
+    "@concordialang-healer/common": "^0.0.0",
+    "jsdom": "^17.0.0",
+    "unique-selector": "^0.5.0"
   }
 }

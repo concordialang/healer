@@ -2,11 +2,11 @@
 
 # `@concordialang-healer/heuristics-web`
 
-> 🔌 Heurísticas e _parser_ para `concordialang-healer`
+> 🔌 Heurísticas para `concordialang-healer`
 
-Fornece _plugins_ de heurísticas e parser para utilizar em conjunto com [`concordialang-healer`](https://github.com/concordialang/healer#readme).
+Fornece _plugins_ de heurísticas para utilizar em conjunto com [`concordialang-healer`](https://github.com/concordialang/healer#readme).
 
-Os _plugins_ são para interface HTML.
+São heurísticas para interface HTML.
 
 ## Instalação
 
@@ -20,39 +20,36 @@ npm install @concordialang-healer/heuristics-web --save-dev
 
 ## Configuração
 
-Adicione as entradas no arquivo de configuração do `concordialang-healer` (geralmente `.healerrc.json`):
+Adicione as entradas na configuração do `concordialang-healer` (geralmente `.healerrc.json`):
 
 ```json
 {
   "heuristics": [
     {
       "name": "by-id",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     },
     {
       "name": "by-classes",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     },
     {
       "name": "by-attributes",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     },
     {
       "name": "by-tag",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     },
     {
       "name": "by-xpath",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     },
     {
       "name": "by-text",
-      "from": "@concordialang-healer/heuristics-web/heuristics"
+      "from": "@concordialang-healer/heuristics-web"
     }
-  ],
-  "parser": {
-    "from": "@concordialang-healer/heuristics-web/parser"
-  }
+  ]
 }
 ```
 
@@ -98,8 +95,3 @@ querySelectorAll('input');
 
 - Dois elementos serão encontrados
 - Atribui peso `0.5` para cada um deles
-
-## Parser
-
-- Utiliza o pacote [jsdom](https://github.com/jsdom/jsdom) para transformar _html_ em DOM para que as heurísticas possam fazer as buscas.
-- Utiliza o pacote [unique-selector](https://github.com/ericclemmons/unique-selector) para gerar um seletor para um elemento HTML.

@@ -3,37 +3,37 @@
   "heuristics": [
     {
       "name": "by-id",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     },
     {
       "name": "by-classes",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     },
     {
       "name": "by-attributes",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     },
     {
       "name": "by-tag",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     },
     {
       "name": "by-xpath",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     },
     {
       "name": "by-text",
-      "from": "@concordialang-healer/heuristics-web/dist/heuristics",
+      "from": "@concordialang-healer/heuristics-web",
       "options": {}
     }
   ],
   "parser": {
-    "from": "@concordialang-healer/heuristics-web/dist/parser",
+    "from": "@concordialang-healer/parser-web",
     "options": {}
   },
   "plugin": {

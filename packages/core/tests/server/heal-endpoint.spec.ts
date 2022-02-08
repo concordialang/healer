@@ -1,8 +1,8 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import Heuristics from '../../../heuristics-web/src/heuristics';
-import Parser from '../../../heuristics-web/src/parser';
+import Heuristics from '../../../heuristics-web/src';
+import Parser from '../../../parser-web/src';
 import { UIElement } from '../../src/database/entities';
 import { closeConnection, initDatabase } from '../../src/database/manager';
 import { UIElementRepository } from '../../src/database/repositories';
