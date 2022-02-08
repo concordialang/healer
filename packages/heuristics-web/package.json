@@ -21,6 +21,8 @@
     "url": "https://github.com/concordialang/healer/issues"
   },
   "devDependencies": {
+    "@types/jsdom": "^16.2.13",
+    "jsdom": "^17.0.0",
     "ts-mocha": "^8.0.0",
     "typescript": "*"
   },
