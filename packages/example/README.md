@@ -105,7 +105,7 @@ Parabéns! você concluiu os passos para ver a ferramenta `concordialang-healer`
 
 Agora você pode injetar novas mudanças na aplicação e analisar se os testes serão capazes de se recuperar.
 
-Lembrando que você pode [criar suas próprias heurísticas](//TODO:link_para_criar_heuristicas) no caso das heurísticas fornecidas por padrão não te atenderem.
+Lembrando que você pode [criar suas próprias heurísticas](#criando-heurísticas) no caso das heurísticas fornecidas por padrão não te atenderem.
 
 Caso encontre algum erro durante a execução ou tenha alguma sugestão, publique uma
 issue em https://github.com/concordialang/healer/issues.

@@ -327,19 +327,19 @@ Deve retornar um objeto com as seguintes propriedades:
 
 - `run`: Método responsável por executar a heurística
 
-> Se estiver usando Typescript é recomendado implementar o tipo [Heuristic](https://github.com/concordialang/healer/blob/master/packages/common/src/heuristic.ts).
+> Se estiver usando Typescript é recomendado implementar o tipo [Heuristic](https://github.com/concordialang/healer/blob/main/packages/common/src/heuristic.ts).
 
 ### 2. Método `run`
 
 Recebe um objeto:
 
-- `element`: o elemento defasado - [UIElement](https://github.com/concordialang/healer/blob/master/packages/common/src/ui-element.ts)
+- `element`: o elemento defasado - [UIElement](https://github.com/concordialang/healer/blob/main/packages/common/src/ui-element.ts)
 
 - `source`: o conteúdo atual da IU - já transformado pelo [parser](#parser)
 
-Retorna um objeto ([HeuristicResult](https://github.com/concordialang/healer/blob/master/packages/common/src/heuristic-result.ts)):
+Retorna um objeto ([HeuristicResult](https://github.com/concordialang/healer/blob/main/packages/common/src/heuristic-result.ts)):
 
-- `elements`: os elementos que se enquadram na heurísticas com score - [ScoredElement](https://github.com/concordialang/healer/blob/master/packages/common/src/heuristic-result.ts)
+- `elements`: os elementos que se enquadram na heurísticas com score - [ScoredElement](https://github.com/concordialang/healer/blob/main/packages/common/src/heuristic-result.ts)
 - `weight`: o peso da heurística - `number`
 
 👉 **Nota:** Você também pode retornar um _array_ de `HealingResult`, caso seja necessário definir pesos diferentes
@@ -393,7 +393,7 @@ Deve retornar um objeto com as seguintes propriedades:
 
 - `toLocator`: Gera seletor para um determinado elemento
 
-> Se estiver usando Typescript é recomendado implementar o tipo [Parser](https://github.com/concordialang/healer/blob/master/packages/common/src/parser.ts).
+> Se estiver usando Typescript é recomendado implementar o tipo [Parser](https://github.com/concordialang/healer/blob/main/packages/common/src/parser.ts).
 
 ### Exemplo:
 

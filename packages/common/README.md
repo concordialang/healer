@@ -20,5 +20,5 @@ npm install @concordialang-healer/common --save
 
 Para criar _plugins_ para `concordialang-healer` acesse as _docs_ abaixo:
 
-- [Criando heurística](//TODO:link_criando_heuristica)
-- [Criando _parser_](//TODO:link_criando_parser)
+- [Criando heurística](https://github.com/concordialang/healer#criando-heurísticas)
+- [Criando _parser_](https://github.com/concordialang/healer#criando-plugin-parser)
