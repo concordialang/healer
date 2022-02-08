@@ -83,7 +83,7 @@ const healProcess = ( request: {
             ...value,
             totalScore: value.totalScore / maximumWeight,
         } ) )
-        .filter( ( value ) => value.totalScore > minimumScore )
+        .filter( ( value ) => value.totalScore >= minimumScore )
         .sort( ( valueA, valueB ) => valueB.totalScore - valueA.totalScore );
 
     return {
