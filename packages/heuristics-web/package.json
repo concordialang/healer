@@ -1,6 +1,6 @@
 {
   "name": "@concordialang-healer/heuristics-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Heuristics for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/heuristics-web#readme",
@@ -30,6 +30,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@concordialang-healer/common": "^0.0.0"
+    "@concordialang-healer/common": "^1.0.0"
   }
 }

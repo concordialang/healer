@@ -1,6 +1,6 @@
 {
   "name": "@concordialang-healer/parser-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Parser for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/parser-web#readme",
@@ -29,7 +29,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@concordialang-healer/common": "^0.0.0",
+    "@concordialang-healer/common": "^1.0.0",
     "jsdom": "^17.0.0",
     "unique-selector": "^0.5.0"
   }
