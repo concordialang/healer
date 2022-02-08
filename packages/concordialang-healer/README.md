@@ -1,11 +1,7 @@
-# `concordialang-healer`
+[![npm version][npm-image]][npm-url]
 
-> TODO: description
+# concordialang-healer
 
-## Usage
+> ✓ Autocura de especificações escritas em [Concordia](https://github.com/thiagodp/concordialang)
 
-```
-const concordialangHealer = require('concordialang-healer');
-
-// TODO: DEMONSTRATE API
-```
+Saiba mais: https://github.com/concordialang/healer
