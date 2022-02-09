@@ -1,10 +1,5 @@
 {
   "version": "independent",
   "npmClient": "npm",
-  "packages": ["packages/*"],
-  "command": {
-    "publish": {
-      "ignoreChanges": ["packages/example"]
-    }
-  }
+  "packages": ["packages/*"]
 }
