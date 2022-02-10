@@ -4,7 +4,7 @@ export enum HealingResultStatus {
     FAIL = 'fail',
     FAIL_DISPLAYED = 'fail_displayed',
     SUCCESS = 'success',
-    SUCCESS_DISPLAYED = 'success_displayed',
+    SUCCESS_NOT_ACCEPTED = 'success_not_accepted',
     SUCCESS_ACCEPTED = 'success_accepted',
 }
 

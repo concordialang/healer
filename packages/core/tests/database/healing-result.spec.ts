@@ -52,7 +52,7 @@ describe( 'Healing Result', () => {
     } );
 
     it( 'Should update healing result status', async () => {
-        healingResult.status = HealingResultStatus.SUCCESS_DISPLAYED;
+        healingResult.status = HealingResultStatus.SUCCESS_NOT_ACCEPTED;
 
         await HealingResultRepository.update( healingResult );
 

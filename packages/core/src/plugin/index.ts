@@ -130,7 +130,7 @@ const afterReporting = async (
     print();
 
     if ( notConfirmed?.length ) {
-        await updateHealingResults( notConfirmed, HealingResultStatus.SUCCESS_DISPLAYED );
+        await updateHealingResults( notConfirmed, HealingResultStatus.SUCCESS_NOT_ACCEPTED );
     }
 
     if ( !confirmed?.length ) {

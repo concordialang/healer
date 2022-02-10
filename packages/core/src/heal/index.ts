@@ -27,6 +27,7 @@ const findHealingResult = ( { element }: { element: UIElement } ): Promise<Heali
     return HealingResultRepository.findOne(
         {
             element,
+            status: HealingResultStatus.SUCCESS,
         },
         {
             orderBy: {
