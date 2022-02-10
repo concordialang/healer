@@ -1,6 +1,6 @@
 {
   "name": "concordialang-healer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Self-Healing of Concordia Specifications",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/concordialang-healer#readme",
@@ -31,7 +31,7 @@
     "class": "ConcordiaHealer"
   },
   "dependencies": {
-    "@concordialang-healer/core": "^1.0.0",
+    "@concordialang-healer/core": "^1.0.1",
     "concordialang-plugin": "^1.3.1",
     "concordialang-types": "^2.1.6"
   }
