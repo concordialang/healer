@@ -20,7 +20,7 @@ npm install @concordialang-healer/parser-web --save-dev
 
 Adicione a entrada na configuração do `concordialang-healer` (geralmente `.healerrc.json`):
 
-```json
+```js
 {
   "parser": {
     "from": "@concordialang-healer/parser-web",
@@ -41,13 +41,13 @@ Você pode passar opções para gerar o seletor:
 
 Exemplo:
 
-```json
+```js
 {
   "parser": {
     "from": "@concordialang-healer/parser-web",
     "options": {
       "locator": {
-        "selectorTypes": ["ID", "Class", "Attributes"], // Usa id, class e demais atributos para gerar o seletor, nessa ordem
+        "selectorTypes": ["ID", "Class", "Attributes"], // Usa id, class e demais atributos para gerar o seletor
         "attributesToIgnore": ["type"], // Ignora o atributo type
         "exclude": ["btn*"] // Ignora classes contendo btn. Ex.: .btn e .btn-primary
       }
