@@ -23,7 +23,35 @@ Adicione a entrada na configuração do `concordialang-healer` (geralmente `.hea
 ```json
 {
   "parser": {
-    "from": "@concordialang-healer/parser-web"
+    "from": "@concordialang-healer/parser-web",
+    "options": {
+      "locator": { ... }
+    }
+  }
+}
+```
+
+Você pode passar opções para gerar o seletor:
+
+| Opção                | Tipo                                                              | _Default_                                        | Descrição                                                                                                            |
+| -------------------- | ----------------------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `selectorTypes`      | _array_ de "ID" \| "Class" \| "Tag" \| "NthChild" \| "Attributes" | ["ID", "Attributes", "Class", "Tag", "NthChild"] | Tipos de seletores que serão usados para gerar o seletor exclusivo. **Obs.:** A preferência segue a ordem no _array_ |
+| `attributesToIgnore` | _array_ de string                                                 | [ "length", "min", "max" ]                       | Atributos que serão ignorados quando o tipo "Attributes" for passado                                                 |
+| `exclude`            | _array_ de regex                                                  | none                                             | Classes a serem ignoradas                                                                                            |
+
+Exemplo:
+
+```json
+{
+  "parser": {
+    "from": "@concordialang-healer/parser-web",
+    "options": {
+      "locator": {
+        "selectorTypes": ["ID", "Class", "Attributes"], // Usa id, class e demais atributos para gerar o seletor, nessa ordem
+        "attributesToIgnore": ["type"], // Ignora o atributo type
+        "exclude": ["btn*"] // Ignora classes contendo btn. Ex.: .btn e .btn-primary
+      }
+    }
   }
 }
 ```

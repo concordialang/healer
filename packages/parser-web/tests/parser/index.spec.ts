@@ -3,20 +3,20 @@ import { expect } from 'chai';
 import Parser from '../../src/parser';
 
 describe( 'Parser', () => {
-    const parser = Parser();
     const source = `
     <html>
         <body>
             <form>
                 <input type="text" id="username" name="username" class="input">
                 <input type="text" id="password" name="password" class="input">
-                <button type="submit">Sign In</button>
+                <button type="submit" class="btn">Sign In</button>
             </form>
         </body>
     </html>
     `;
 
     it( 'Should transform a string page into document', () => {
+        const parser = Parser();
         const { source: document } = parser.transform( { source, element: null } );
 
         expect( document ).to.be.not.null;
@@ -26,6 +26,11 @@ describe( 'Parser', () => {
     } );
 
     it( 'Should generate a locator from node element', () => {
+        const parser = Parser( {
+            locator: {
+                exclude: [ 'btn' ],
+            },
+        } );
         const { source: document } = parser.transform( { source, element: null } );
 
         const inputUsername = document.querySelector( '[name="username"]' );
