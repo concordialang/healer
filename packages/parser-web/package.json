@@ -1,6 +1,6 @@
 {
   "name": "@concordialang-healer/parser-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parser for concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/parser-web#readme",
