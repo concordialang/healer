@@ -25,7 +25,19 @@ Vamos iniciar os passos para verificar a ferramenta em ação:
 npm install
 ```
 
-### 2. Inicie a aplicação
+### 2. Gere os testes com o Concordia
+
+```bash
+npx concordia --seed="example" --no-run --no-result
+
+ou
+
+npm run concordia:generate
+```
+
+Os arquivos de teste serão gerados na pasta `test`.
+
+### 3. Inicie a aplicação
 
 ```bash
 npm run serve
@@ -35,17 +47,17 @@ Irá iniciar a aplicação em http://localhost:1234/login.html.
 
 Para fazer login você pode usar as credenciais fornecidas em `./src/accounts.json`.
 
-### 3. Execute o servidor do `concordialang-healer`
+### 4. Execute o servidor do `concordialang-healer`
 
 ```bash
-concordia-healer server
+npx concordia-healer server
 ```
 
 Irá iniciar servidor na porta `5000`.
 
 Se estiver ocupada, basta trocar a porta no arquivo de configuração.
 
-### 4. Execute os testes com o Concordia
+### 5. Execute os testes com o Concordia
 
 ```bash
 npx concordia --seed="example" --no-test-case --no-script
@@ -59,7 +71,7 @@ Os testes devem ser executados com sucesso.
 
 Nesse momento todos os elementos envolvidos nos testes serão salvos no banco de dados.
 
-### 5. Injetar modificação
+### 6. Injetar modificação
 
 Agora vamos injetar uma moficação na página de login.
 
@@ -79,7 +91,7 @@ Abra o arquivo `./src/login.html` e altere a linha **29** para:
 
 Veremos como os testes se comportam a partir de agora.
 
-### 6. Execute os testes novamente
+### 7. Execute os testes novamente
 
 Repita o [passo 4](#execute-os-testes-com-o-concordia).
 
@@ -87,7 +99,7 @@ Você verá que os testes irão executar normalmente.
 
 É o processo de autocura em ação! 😉
 
-### 7. Aceite a adaptação
+### 8. Aceite a adaptação
 
 No final da execução dos testes você será questionado se a _feature_ pode ser adaptada com o novo seletor para o campo de entrada do nome do usuário.
 

@@ -29,7 +29,7 @@
     "codeceptjs": "^3.2.2",
     "codeceptjs-cmdhelper": "^2.4.0",
     "codeceptjs-dbhelper": "^1.2.2",
-    "concordialang": "^2.0.0-alpha.18",
+    "concordialang": "^2.0.0-alpha.20",
     "concordialang-healer": "^1.0.2",
     "parcel-bundler": "^1.12.5"
   }
