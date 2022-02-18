@@ -2760,15 +2760,15 @@ async function findFields(locator) {
 }
 
 async function proceedDragAndDrop(sourceLocator: string, destinationLocator: string) {
-    // modern drag and drop in Playwright
-    if (this.page.dragAndDrop) {
-        const source = new Locator(sourceLocator);
-        const dest = new Locator(destinationLocator);
+    // TODO: accept modern drag and drop in Playwright
+    // if (this.page.dragAndDrop) {
+    //     const source = new Locator(sourceLocator);
+    //     const dest = new Locator(destinationLocator);
 
-        if (source.isBasic() && dest.isBasic()) {
-            return this.page.dragAndDrop(source.simplify(), dest.simplify());
-        }
-    }
+    //     if (source.isBasic() && dest.isBasic()) {
+    //         return this.page.dragAndDrop(source.simplify(), dest.simplify());
+    //     }
+    // }
 
     let src = await this._locate(sourceLocator);
     src = await this.helperUtils.assertElementExists(
