@@ -21,7 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@concordialang-healer/codeceptjs-playwright": "^1.0.0",
+    "@concordialang-healer/codeceptjs-playwright": "^1.0.1-alpha.0",
     "@concordialang-healer/heuristics-web": "^1.0.0",
     "@concordialang-healer/parser-web": "^1.0.1",
     "@mikro-orm/postgresql": "^4.5.10",
