@@ -16,7 +16,8 @@ describe( 'By Text Heuristic', () => {
         ` ).window.document;
         const element: any = {
             content: {
-                innerText: 'Test',
+                tag: 'button',
+                textContent: 'Test',
             },
         };
         const healingElements = byText.run( { element, source } );
@@ -33,21 +34,18 @@ describe( 'By Text Heuristic', () => {
         ` ).window.document;
         const element: any = {
             content: {
-                innerText: 'Submit',
+                tag: 'button',
+                textContent: 'Submit',
             },
         };
         const healingElements = byText.run( { element, source } ) as HeuristicResult;
 
         expect( healingElements.elements ).to.have.length( 1 );
         expect( healingElements.weight ).to.be.equals( 1 );
-
-        const [ healingElement ] = healingElements.elements;
-
-        expect( healingElement.score ).to.be.equals( 1 );
-        expect( healingElement.locator ).to.be.equals( '//button[text()="Submit"]' );
+        expect( healingElements.elements[ 0 ].score ).to.be.equals( 1 );
     } );
 
-    it( 'Should find two elements with score 1 and weight 0.5', () => {
+    it( 'Should find one elements with score 1', () => {
         const page = new JSDOM( `
             <form>
                 <input type="text" id="user" name="username" class="input">
@@ -58,19 +56,15 @@ describe( 'By Text Heuristic', () => {
         ` ).window.document;
         const element: any = {
             content: {
-                innerText: 'Submit',
+                tag: 'button',
+                textContent: 'Submit',
             },
         };
 
         const healingElements = byText.run( { element, source: page } ) as HeuristicResult;
 
-        expect( healingElements.elements ).to.have.length( 2 );
-        expect( healingElements.weight ).to.be.equals( 0.5 );
-
+        expect( healingElements.elements ).to.have.length( 1 );
+        expect( healingElements.weight ).to.be.equals( 1 );
         expect( healingElements.elements[ 0 ].score ).to.be.equals( 1 );
-        expect( healingElements.elements[ 0 ].locator ).to.be.equals( '//button[text()="Submit"]' );
-
-        expect( healingElements.elements[ 1 ].score ).to.be.equals( 1 );
-        expect( healingElements.elements[ 1 ].locator ).to.be.equals( '//div[text()="Submit"]' );
     } );
 } );

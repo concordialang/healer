@@ -55,14 +55,14 @@ Adicione as entradas na configuração do `concordialang-healer` (geralmente `.h
 
 ## Heurísticas
 
-| Nome            | Descrição                                               |
-| --------------- | ------------------------------------------------------- |
-| `by-id`         | Busca pela propriedade `id`                             |
-| `by-classes`    | Busca por cada uma das propriedades `class` do elemento |
-| `by-attributes` | Busca pelos demais atributos além de `id` e `class`     |
-| `by-tag`        | Busca pela `tag`                                        |
-| `by-xpath`      | Busca pelo `xpath` (localização)                        |
-| `by-text`       | Busca conteúdo textual (`innerText`)                    |
+| Nome            | Descrição                                                          |
+| --------------- | ------------------------------------------------------------------ |
+| `by-id`         | Busca pela propriedade `id`                                        |
+| `by-classes`    | Busca por cada uma das propriedades `class` do elemento            |
+| `by-attributes` | Busca pelos demais atributos além de `id` e `class`                |
+| `by-tag`        | Busca pela `tag`                                                   |
+| `by-xpath`      | Busca pelo `xpath` (localização)                                   |
+| `by-text`       | Busca elementos com a mesma tag e conteúdo textual (`textContent`) |
 
 Os pesos distrbuidos pelas heurísticas aos elementos são calculados com a base na quantidade de elementos encontrados:
 

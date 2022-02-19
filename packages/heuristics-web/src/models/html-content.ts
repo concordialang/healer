@@ -1,6 +1,6 @@
 export interface HTMLElementContent {
     tag: string;
-    innerText?: string;
+    textContent?: string;
     xpath?: string;
     attributes?: Record<string, string>;
     parents?: HTMLElementContent[];

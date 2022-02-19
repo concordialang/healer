@@ -32,18 +32,18 @@ describe( 'Get Element Data', () => {
         expect( data.tag ).to.be.equals( 'a' );
     } );
 
-    it( 'Should get inner text from element', () => {
+    it( 'Should get text contentt from element', () => {
         const anchor = document.createElement( 'a' );
 
         anchor.setAttribute( 'id', 'home' );
-        anchor.innerText = 'HOME';
+        anchor.textContent = 'HOME';
 
         document.body.appendChild( anchor );
 
         const data = getElementData( anchor );
 
-        expect( data.innerText ).to.be.not.undefined;
-        expect( data.innerText ).to.be.equals( 'HOME' );
+        expect( data.textContent ).to.be.not.undefined;
+        expect( data.textContent ).to.be.equals( 'HOME' );
     } );
 
     it( 'Should get all attributes from element', () => {

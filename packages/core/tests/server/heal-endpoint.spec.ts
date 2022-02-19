@@ -32,7 +32,7 @@ describe( 'Heal Endpoint', () => {
                 locatorType: 'id',
                 content: {
                     tag: 'input',
-                    innerText: null,
+                    textContent: null,
                     xpath: '//html/body/form/input[1]',
                     attributes: {
                         id: 'user',
@@ -49,7 +49,7 @@ describe( 'Heal Endpoint', () => {
                 locatorType: 'id',
                 content: {
                     tag: 'input',
-                    innerText: null,
+                    textContent: null,
                     xpath: '//html/body/form/input[2]',
                     attributes: {
                         id: 'password',
@@ -66,7 +66,7 @@ describe( 'Heal Endpoint', () => {
                 locatorType: 'attribute',
                 content: {
                     tag: 'input',
-                    innerText: null,
+                    textContent: null,
                     xpath: '//html/body/form/input[3]',
                     attributes: {
                         class: 'btn',
