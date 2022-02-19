@@ -112,4 +112,24 @@ describe( 'By Classes Heuristic', () => {
         expect( healingElements[ 1 ].elements[ 0 ].score ).to.be.equals( 1 );
         expect( healingElements[ 1 ].elements[ 0 ].locator ).to.be.equals( '.btn' );
     } );
+
+    it( 'Should replace all unnecessary space classes to query', () => {
+        const source = new JSDOM( `
+        <form>
+            <button class="btn  btn-primary  btn-lg" type="submit">Submit</button>
+        </form>
+        ` ).window.document;
+        const element: any = {
+            content: {
+                attributes: {
+                    class: 'btn  btn-primary',
+                },
+            },
+        };
+        const healingElements = byClasses.run( { element, source } );
+
+        expect( healingElements ).to.have.length( 2 );
+        expect( healingElements[ 0 ].elements[ 0 ].locator ).to.be.equals( '.btn' );
+        expect( healingElements[ 1 ].elements[ 0 ].locator ).to.be.equals( '.btn-primary' );
+    } );
 } );

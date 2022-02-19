@@ -1,4 +1,4 @@
 {
-  "*.{json,md}": ["npm run format"],
-  "*.{ts,js}": ["npm run format", "npm run lint-fix"]
+  "*.{json,md}": ["prettier --write"],
+  "*.{ts,js}": ["prettier --write", "eslint --fix --no-error-on-unmatched-pattern"]
 }

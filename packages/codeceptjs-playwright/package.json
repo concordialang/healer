@@ -1,6 +1,6 @@
 {
   "name": "@concordialang-healer/codeceptjs-playwright",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "Concordia plugin for CodeceptJS with Playwright and healer support with concordialang-healer",
   "author": "Lucas Az. <lucas-azevedo20@outlook.com>",
   "homepage": "https://github.com/concordialang/healer/tree/main/packages/codeceptjs-playwright#readme",
@@ -24,8 +24,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@concordialang-healer/client-web": "^1.0.0",
-    "@concordialang-healer/element-data": "^1.0.0",
+    "@concordialang-healer/client-web": "^1.0.1-alpha.0",
+    "@concordialang-healer/element-data": "^1.0.1-alpha.0",
     "codeceptjs": "^3.1.2",
     "concordialang-codeceptjs-core": "^1.4.1",
     "playwright": "^1.15.0"

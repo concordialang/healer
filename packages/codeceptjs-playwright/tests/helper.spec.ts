@@ -68,7 +68,7 @@ describe( 'Playwright', () => {
         expect( payload.locator ).to.be.equals( '[href="#info"]' );
         expect( payload.feature ).to.be.equals( 'New feature' );
         expect( payload.data.tag ).to.be.equals( 'a' );
-        expect( payload.data.innerText ).to.be.equals( 'Get more info!' );
+        expect( payload.data.textContent ).to.be.equals( 'Get more info!' );
     } );
 
     it( 'Should heal element ', async () => {

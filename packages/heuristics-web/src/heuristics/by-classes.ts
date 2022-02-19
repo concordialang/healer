@@ -7,7 +7,8 @@ const byClasses: Heuristic = () => ( {
             return [];
         }
 
-        const classes: string[] = element.content.attributes.class.split( ' ' );
+        const classes: string[] = element.content.attributes.class.replace( /\s+/g, ' ' )
+            .split( ' ' );
 
         return classes.reduce( ( buffer, classValue ) => {
             const locator = `.${classValue}`;

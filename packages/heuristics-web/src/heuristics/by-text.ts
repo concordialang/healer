@@ -1,30 +1,26 @@
 import { Heuristic } from '@concordialang-healer/common';
 
 import { UIElement } from '../models/ui-element';
-import { XPathResult } from '../models/x-path-result';
+
+const getElementsByText = ( locator: string, source: Document, text: string ): Element[] => {
+    return Array.from( source.querySelectorAll( locator ) )
+        .filter(
+            ( element ) => element.textContent.trim()
+                .toLowerCase() === text.trim()
+                .toLowerCase(),
+        );
+};
 
 const byText: Heuristic = () => ( {
     name: 'by-text',
     run: ( { element, source }: { element: UIElement; source: Document } ) => {
-        if ( !element.content.innerText ) {
+        if ( !element.content.textContent?.trim() ) {
             return [];
         }
 
-        const { innerText } = element.content;
-        const foundElements: Element[] = [];
-        const locator = `//*[text()="${innerText}"]`;
-        const nodes = source.evaluate( locator, source, null, XPathResult.ANY_TYPE, null );
-
-        if ( !nodes ) {
-            return [];
-        }
-
-        let node = nodes.iterateNext();
-
-        while ( node ) {
-            foundElements.push( node as Element );
-            node = nodes.iterateNext();
-        }
+        const { textContent, tag } = element.content;
+        const locator = tag;
+        const foundElements = getElementsByText( locator, source, textContent );
 
         if ( !foundElements.length ) {
             return [];
@@ -34,7 +30,7 @@ const byText: Heuristic = () => ( {
             weight: 1 / foundElements.length,
             elements: foundElements.map( ( value ) => ( {
                 node: value,
-                locator: `//${value.localName}[text()="${innerText}"]`,
+                locator,
                 score: 1,
             } ) ),
         };

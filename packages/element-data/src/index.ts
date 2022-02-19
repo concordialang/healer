@@ -45,7 +45,7 @@ const getElementData = ( element: HTMLElement ): any => {
             .reduce(
                 ( buffer, attribute ) => ( {
                     ...buffer,
-                    [ attribute.name ]: attribute.value,
+                    [ attribute.name ]: attribute.value.trim(),
                 } ),
                 {},
             );
@@ -53,7 +53,7 @@ const getElementData = ( element: HTMLElement ): any => {
 
     return {
         tag: element.localName,
-        innerText: element.innerText,
+        textContent: element.textContent?.trim(),
         xpath: getXPath( element ),
         attributes: getAttributes( element ),
     };
