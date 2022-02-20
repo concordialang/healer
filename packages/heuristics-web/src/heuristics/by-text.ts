@@ -2,12 +2,18 @@ import { Heuristic } from '@concordialang-healer/common';
 
 import { UIElement } from '../models/ui-element';
 
+const MULTIPLE_SPACES = /\s+/g;
+
+const sanitizeText = ( text: string ): string => text.replace( MULTIPLE_SPACES, ' ' )
+    .trim()
+    .toLowerCase();
+
 const getElementsByText = ( locator: string, source: Document, text: string ): Element[] => {
+    const textContent = sanitizeText( text );
+
     return Array.from( source.querySelectorAll( locator ) )
         .filter(
-            ( element ) => element.textContent.trim()
-                .toLowerCase() === text.trim()
-                .toLowerCase(),
+            ( element ) => sanitizeText( element.textContent ) === textContent,
         );
 };
 

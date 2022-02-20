@@ -53,7 +53,8 @@ const getElementData = ( element: HTMLElement ): any => {
 
     return {
         tag: element.localName,
-        textContent: element.textContent?.trim(),
+        textContent: element.textContent?.replace( /\s+/g, ' ' )
+            .trim(),
         xpath: getXPath( element ),
         attributes: getAttributes( element ),
     };
