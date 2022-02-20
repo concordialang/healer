@@ -79,13 +79,13 @@ const heal = async (
         await saveHealingResult( {
             element,
             status: scoredLocator ? HealingResultStatus.SUCCESS : HealingResultStatus.FAIL,
-            newLocator: scoredLocator.locator,
-            score: scoredLocator.score,
+            newLocator: scoredLocator?.locator,
+            score: scoredLocator?.score,
             testPath,
         } );
     }
 
-    return scoredLocator.locator;
+    return scoredLocator?.locator;
 };
 
 export { heal };

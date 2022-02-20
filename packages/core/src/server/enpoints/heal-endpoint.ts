@@ -16,6 +16,8 @@ export const healEndpoint
             res.send( locator );
         } catch ( err: any ) {
             error( `    ${colors.bold( 'Error on heal element:' )} ${err.message}` );
+
+            res.send( null );
         }
 
         print();
