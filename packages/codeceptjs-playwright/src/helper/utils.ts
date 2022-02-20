@@ -35,9 +35,17 @@ class HelperUtils {
         [ this.lastFeature ] = test.titlePath();
     }
 
+    private async getSource( context: any ) {
+        try {
+            return await context.$eval( 'body', ( el ) => el.outerHTML );
+        } catch ( error ) {
+            return context.$eval( 'html', ( el ) => el.outerHTML );
+        }
+    }
+
     private async heal( context: any, locator: string ) {
         const healedLocator = await clientWeb.healElement( {
-            body: await context.$eval( 'body', ( el ) => el.outerHTML ),
+            body: await this.getSource( context ),
             feature: this.lastFeature,
             testPath: this.lastTestPath,
             locator,
