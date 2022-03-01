@@ -35,6 +35,7 @@ Método responsável por enviar um elemento de IU para o servidor `concordialang
 
 Recebe um objeto com os seguintes parâmetros:
 
+| Parâmetro | tipo     | Descrição                                                 |
 | --------- | -------- | --------------------------------------------------------- |
 | _data_    | `any`    | Informações do elemento como propriedades e posição na IU |
 | _feature_ | `string` | Nome da funcionalidade em que o elemento está contido     |
