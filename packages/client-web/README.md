@@ -33,9 +33,8 @@ A _lib_ fornece dois métodos:
 
 Método responsável por enviar um elemento de IU para o servidor `concordialang-healer` salvar.
 
-Recebe um objeto com os seguintes paramêtros:
+Recebe um objeto com os seguintes parâmetros:
 
-| Paramêtro | tipo     | Descrição                                                 |
 | --------- | -------- | --------------------------------------------------------- |
 | _data_    | `any`    | Informações do elemento como propriedades e posição na IU |
 | _feature_ | `string` | Nome da funcionalidade em que o elemento está contido     |
@@ -57,9 +56,9 @@ clientWeb.saveElement(
 
 Método responsável por solicitar a cura de um seletor defasado ao servidor `concordialang-healer`.
 
-Recebe um objeto com os seguintes paramêtros:
+Recebe um objeto com os seguintes parâmetros:
 
-| Paramêtro  | tipo     | Descrição                                   |
+| Parâmetro  | tipo     | Descrição                                   |
 | ---------- | -------- | ------------------------------------------- |
 | _body_     | `string` | Conteúdo da IU atual. Ex.: _html_ do _body_ |
 | _feature_  | `string` | Nome da funcionalidade                      |
