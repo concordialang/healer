@@ -192,7 +192,7 @@ As opções para o serviço de banco de dados:
 O _plugin_ para geração de testes através do concordia com opção de cura.
 
 - `from`: a localização do _plugin_ - **obrigatório**
-- `options`: paramêtros a serem passados para o _plugin_ - somente se ele tiver essa opção
+- `options`: parâmetros a serem passados para o _plugin_ - somente se ele tiver essa opção
 
 ```json
 {
@@ -213,7 +213,7 @@ Cada entrada de heurísticas possui:
 
 - `name`: o identificador da heurística - **obrigatório**
 - `from`: a localização da heurística - **obrigatório**
-- `options`: paramêtros a serem passadas para a heurística - somente se a heurística possuir opções
+- `options`: parâmetros a serem passadas para a heurística - somente se a heurística possuir opções
 
 ```json
 {
@@ -237,7 +237,7 @@ Esse opção deve fornecer um _plugin_ que será usado para:
 As opções a serem fornecidas são:
 
 - `from`: a localização do _plugin_ - **obrigatório**
-- `options`: paramêtros a serem passados para o _plugin_ - somente se ele tiver essa opção
+- `options`: parâmetros a serem passados para o _plugin_ - somente se ele tiver essa opção
 
 ```json
 {
