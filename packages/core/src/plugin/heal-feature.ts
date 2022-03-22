@@ -13,7 +13,7 @@ const healReplaces = (
             replace: `<${newLocator}>`,
         },
         {
-            regex: new RegExp( `(- ?[A-z ]+ (["']))${oldLocator}(\\2)` ),
+            regex: new RegExp( `(- ?[A-zÀ-ú ]+ (["']))${oldLocator}(\\2)` ),
             replace: `$1${newLocator}$3`,
         },
     ];
